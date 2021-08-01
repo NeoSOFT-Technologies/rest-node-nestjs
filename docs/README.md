@@ -1,7 +1,7 @@
 
-## Description
+## NestJS Boiler plate 
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This boiler plate is build over  [Nest](https://github.com/nestjs/nest) framework in which we have covered few of the basic requirement which is required in majorly most of the project.
 
 ## Installation
 
