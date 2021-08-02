@@ -6,4 +6,5 @@ async function bootstrap() {
   coreBootstrap(app);
   await app.listen(3000);
 }
+
 bootstrap();
