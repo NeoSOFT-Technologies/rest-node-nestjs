@@ -128,30 +128,40 @@ $ npm run test:cov
 
 ## Documentations
 
-### 1. [Request and Response Cycle](wiki/modules/request-response.md)
+### 1. Generation with [compdoc](https://docs.nestjs.com/recipes/documentation)
+
+Generate project documentation using the following command (npm 6 is required for npx support). See the [official documentation](https://compodoc.app/guides/usage.html) for more options.
+
+`npm run doc`
+
+OR
+
+`npx @compodoc/compodoc -p tsconfig.json -s`
+
+### 2. [Request and Response Cycle](wiki/modules/request-response.md)
 
 > An explanation of how the request and response cycle works is provided here
 
-#### 1.1 Request and Response Workflow
+#### 2.1 Request and Response Workflow
 
 > Boilerplate has a custom guard enabled for handling response and request for every api. The integration of request response guard is enabled by default with response structure
 
 ![Request and Response Cycle](wiki/images/basic-nestJS-lifecycle.png)
 
-#### 1.2 Request Workflow
+#### 2.2 Request Workflow
 
 > By creating a workflow, you can specify the template that should be used to create a change request when a request for service is logged.
 
 ![Request Workflow](wiki/images/code-flow.jpg)
 
-### 2. Modules
+### 3. Modules
 
 - [Logger](wiki/modules/logger.md)
 - [Request Response](wiki/modules/request-response.md)
 - [Mailer](wiki/modules/mailer.md)
 - [Database](wiki/modules/database.md)
 - [Pattern](wiki/modules/pattern.md)
-### 3. Miscellaneous
+### 4. Miscellaneous
 
 - [Known Issues](wiki/clean-docker.md)
 - [Clean Docker Images](wiki/clean-docker.md)

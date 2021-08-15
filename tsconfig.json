@@ -12,6 +12,7 @@
     "baseUrl": "./",
     "incremental": true,
     "paths": {
+      "@app": ["src"],
       "@app/*": ["src/*"],
       "@config/*": ["config/*"],
       "@libs/core": ["libs/core/src"],
