@@ -48,14 +48,17 @@ Skeleton for REST API applications written in Node JS & Nest JS with TypeScript
 - [Docker Compose](https://docs.docker.com/compose/install/)
 - NestJS CLI <https://nestjs.com/>
 
-### Create development environment
+### Create Development Environment
 
 To get started, clone the repository to your local computer. Use the following command to run in your terminal.
+
+#### Clone The Application
 
 ```bash
 // clone the application
 $ git clone https://github.com/NeoSOFT-Technologies/rest-node-nestjs.git
 ```
+#### Quick Installation
 
 Next, install the packages that are required for this project.
 
@@ -64,7 +67,7 @@ Next, install the packages that are required for this project.
 $ npm install
 ```
 
-### Create the Environment Variables
+### Create The Environment Variables
 
 The `.env` file should be placed in root folder with the following variables.
 
