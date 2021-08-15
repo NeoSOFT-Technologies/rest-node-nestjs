@@ -1,16 +1,29 @@
 import { Injectable, LoggerService } from '@nestjs/common';
 import { Logger, createLogger, format, transports } from 'winston';
-import { customLoggerFormat } from '../config/logger';
-import * as dotenv from 'dotenv';
-import { WinstonLogLevel } from '../config/constants';
-dotenv.config();
+import { ConfigService } from '@nestjs/config';
+
+enum WinstonLogLevel {
+  INFO = 'info',
+  ERROR = 'error',
+  WARN = 'WARN',
+  HTTP = 'HTTP',
+  VERBOSE = 'verbose',
+  DEBUG = 'debug',
+  SILLY = 'silly',
+}
+
 @Injectable()
 export default class AppLogger implements LoggerService {
   private logger: Logger;
-  constructor() {
-    const { combine, timestamp, label } = format;
+  constructor(config: ConfigService) {
+    const { combine, timestamp, label, printf } = format;
+    const customLoggerFormat = printf(
+      ({ level, message, label, timestamp }: { level: string; message: string; label: string; timestamp: string }) => {
+        return `${timestamp} [${label}] ${level}: ${message}`;
+      }
+    );
     this.logger = createLogger({
-      format: combine(label({ label: process.env.APP_NAME }), timestamp(), customLoggerFormat),
+      format: combine(label({ label: config.get('app.name') }), timestamp(), customLoggerFormat),
       transports: [new transports.Console(), new transports.File({ filename: 'app.log' })],
     });
   }

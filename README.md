@@ -77,7 +77,7 @@ The `.env` file should be placed in root folder with the following variables.
 APP_NAME=rest_api
 NODE_ENV=dev
 DB_HOST=127.0.0.1
-DB_NAME=rest_api
+DB_DATABASE=rest_api
 DB_USER=user
 DB_PASSWORD=root
 DB_PORT=3306

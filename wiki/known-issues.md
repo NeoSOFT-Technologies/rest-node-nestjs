@@ -45,3 +45,7 @@ services:
 # The "class-transformer" package is missing. Please, make sure to install this library ($ npm install class-transformer) to take advantage of ValidationPipe.
 
 `npm install class-transformer --save `
+
+# Map src directory in package.json jest config
+
+[https://github.com/nestjs/nest/issues/4953](https://github.com/nestjs/nest/issues/4953)

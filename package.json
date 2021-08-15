@@ -29,17 +29,28 @@
   },
   "author": "Santosh Shinde",
   "license": "",
+  "keywords": [
+    "nestjs-boilerplate",
+    "nestjs-objection",
+    "nestjs-starter-template",
+    "nestjs-template",
+    "nestjs-starter-kit",
+    "nestjs-skeleton",
+    "nestjs-rest-api"
+  ],
   "bugs": {
     "url": "https://github.com/NeoSOFT-Technologies/rest-node-nestjs/issues"
   },
   "homepage": "https://github.com/NeoSOFT-Technologies/rest-node-nestjs#readme",
   "dependencies": {
     "@nestjs/common": "^7.6.15",
+    "@nestjs/config": "^1.0.1",
     "@nestjs/core": "^7.6.15",
     "@nestjs/platform-express": "^7.6.15",
     "@nestjs/typeorm": "^7.1.5",
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
+    "helmet": "^4.6.0",
     "http-status-codes": "^2.1.4",
     "mysql2": "^2.2.5",
     "reflect-metadata": "^0.1.13",
@@ -95,22 +106,15 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/test/"
+    ],
     "moduleNameMapper": {
-      "@app": [
-        "<rootDir>/src"
-      ],
-      "@app/*": [
-        "<rootDir>/src/*"
-      ],
-      "@config/*": [
-        "<rootDir>/config/*"
-      ],
-      "@libs/core": [
-        "<rootDir>/libs/core/src"
-      ],
-      "@libs/core/*": [
-        "<rootDir>/libs/core/src/*"
-      ]
+      "@libs/core/(.*)": "<rootDir>/libs/core/src/$1",
+      "@libs/core": "<rootDir>/libs/core/src",
+      "@config/*": "<rootDir>/config",
+      "@app/(.*)": "<rootDir>/src/$1",
+      "@app": "<rootDir>/src"
     }
   }
 }
