@@ -15,27 +15,27 @@ jobs:
         node-version: [14.x]
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2
-    - name: Set up nodejs version ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install package
-      run: npm install
-    # - name: Test
-    #  run: npm test
-    - name: Build doc
-      run: npm run doc
-    - name: Archive www Artifact
-      uses: actions/upload-artifact@master
-      with:
-        name: documentation
-        path: documentation
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Set up nodejs version ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Install package
+        run: npm install
+      # - name: Test
+      #  run: npm test
+      - name: Build doc
+        run: npm run doc
+      - name: Archive www Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: documentation
+          path: documentation
   deploy:
-    - name : Deploy 🚀
-      needs: [build]
-      runs-on: ubuntu-latest
+    name : Deploy 🚀
+    needs: [build]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
