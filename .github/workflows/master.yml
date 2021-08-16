@@ -12,7 +12,7 @@ jobs:
   node-version-test:
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x]
+        node-version: [14.x]
     runs-on: ubuntu-latest
     steps:
     - name: Checkout Code
@@ -23,17 +23,31 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Install package
       run: npm install
-    - name: Test
-      run: npm test
-  erbium-alpine-test:
-    needs: node-version-test
+    # - name: Test
+    #  run: npm test
+    - name: Build doc
+        run: npm run doc
+    - name: Archive www Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: documentation
+          path: documentation
+  deploy:
+    name : Deploy 🚀
+    needs: [build]
     runs-on: ubuntu-latest
-    container:
-      image: node:erbium-alpine
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2
-    - name: Install package
-      run: npm install
-    - name: Test
-      run: npm test
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Download Artifact
+        uses: actions/download-artifact@master
+        with:
+          name: documentation
+          path: documentation
+      - name: Deploy to github pages
+        uses: JamesIves/github-pages-deploy-action@3.6.2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: documentation # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch
