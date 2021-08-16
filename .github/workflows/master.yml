@@ -9,7 +9,7 @@ on:
       - setup
 
 jobs:
-  node-version-test:
+  builds:
     strategy:
       matrix:
         node-version: [14.x]
@@ -34,6 +34,7 @@ jobs:
           path: documentation
   deploy:
     name : Deploy 🚀
+    needs: [builds]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
