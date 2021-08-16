@@ -15,7 +15,7 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:e2e": "jest .e2e-spec.ts$",
     "prettier:check": "prettier --check ./**/*.{ts,js,json,*rc}",
     "format": "prettier --write \"./**/*.{ts,js,json,*rc}\" \"test/**/*.ts\"",
     "precommit": "lint-staged",
@@ -70,7 +70,6 @@
     "@types/supertest": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
     "@typescript-eslint/parser": "^4.19.0",
-    "dotenv": "^10.0.0",
     "eslint": "^7.28.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.4",
@@ -110,9 +109,6 @@
       "<rootDir>/test/"
     ],
     "moduleNameMapper": {
-      "@libs/core/(.*)": "<rootDir>/libs/core/src/$1",
-      "@libs/core": "<rootDir>/libs/core/src",
-      "@config/*": "<rootDir>/config",
       "@app/(.*)": "<rootDir>/src/$1",
       "@app": "<rootDir>/src"
     }
