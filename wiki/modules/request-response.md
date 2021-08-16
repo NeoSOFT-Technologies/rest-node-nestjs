@@ -1,5 +1,9 @@
 # Request Response 
-  Boiler Plate has a custom guard enabled for handling response and request for every api. The integration of request response guard is enabled by default with response structure 
+  Boilerplate has a custom guard enabled for handling response and request for every api. The integration of request response guard is enabled by default with response structure
+
+## Overview
+
+!['Request Response Life Cycle'](../images/nestjs-request-life-cycle.png)
 
 ## Available function for response.
 

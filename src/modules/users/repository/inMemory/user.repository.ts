@@ -15,9 +15,11 @@ export class UserInMemoryRepository implements UserRepository {
       resolve(user);
     });
   }
+
   findAllUser(): Promise<User[]> {
     return Promise.resolve(this.users);
   }
+
   createUser(payload: CreateUserDto): Promise<User> {
     return new Promise<User>((resolve) => {
       const user: User = { id: `this.users.length`, isActive: true, ...payload };
@@ -25,9 +27,11 @@ export class UserInMemoryRepository implements UserRepository {
       resolve(user);
     });
   }
+
   updateUser(id: string, payload: UpdateUserDto): Promise<User> {
     throw 'Implement update functionality';
   }
+
   async deleteUser(id: string): Promise<void> {
     return new Promise((resolve) => {
       this.users = this.users.filter((userData) => userData.id !== id);

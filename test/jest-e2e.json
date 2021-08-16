@@ -5,5 +5,9 @@
   "testRegex": ".e2e-spec.ts$",
   "transform": {
     "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "moduleNameMapper": {
+    "@libs/core/(.*)": "<rootDir>/../libs/core/src/$1",
+    "@libs/core": "<rootDir>/../libs/core/src"
   }
 }
