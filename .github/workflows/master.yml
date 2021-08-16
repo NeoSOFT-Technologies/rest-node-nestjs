@@ -26,12 +26,12 @@ jobs:
     # - name: Test
     #  run: npm test
     - name: Build doc
-        run: npm run doc
+      run: npm run doc
     - name: Archive www Artifact
-        uses: actions/upload-artifact@master
-        with:
-          name: documentation
-          path: documentation
+      uses: actions/upload-artifact@master
+      with:
+        name: documentation
+        path: documentation
   deploy:
     name : Deploy 🚀
     needs: [build]
