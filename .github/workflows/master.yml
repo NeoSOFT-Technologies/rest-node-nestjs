@@ -34,7 +34,7 @@ jobs:
           path: documentation
   deploy:
     name : Deploy 🚀
-    needs: [build]
+    needs: [documentation]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
