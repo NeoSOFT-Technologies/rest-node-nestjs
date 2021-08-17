@@ -241,7 +241,7 @@ OR
 
 ## Contributing to this project
 
-Contributions are welcome from anyone and everyone. We encourage you to review the [guiding principles for contributing](contribution.md)
+Contributions are welcome from anyone and everyone. We encourage you to review the [guiding principles for contributing](wiki/docs/contribution.md)
 
 * [Bug reports](wiki/docs/contribution/bug-reports.md)
 * [Feature requests](wiki/docs/contribution/feature-requests.md)
