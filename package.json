@@ -21,7 +21,7 @@
     "precommit": "lint-staged",
     "prepush": "",
     "prepare": "husky install",
-    "doc": "npx @compodoc/compodoc -p tsconfig.json -s"
+    "doc": "npx @compodoc/compodoc -p tsconfig.json"
   },
   "repository": {
     "type": "git",
