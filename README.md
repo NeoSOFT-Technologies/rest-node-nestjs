@@ -115,6 +115,10 @@ $ npm run start:prod
 
 ### Test
 
+For this project, I chose [Jest](https://facebook.github.io/jest/) as our test framework.
+While Mocha is probably more common, Mocha seems to be looking for a new maintainer and setting up TypeScript testing in Jest is wicked simple.
+
+
 ```bash
 # unit tests
 $ npm run test
@@ -125,6 +129,67 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+
+### Running the build
+
+All the different build steps are orchestrated via [npm scripts](https://docs.npmjs.com/misc/scripts).
+Npm scripts basically allow us to call (and chain) terminal commands via npm.
+This is nice because most JavaScript tools have easy to use command line utilities allowing us to not need grunt or gulp to manage our builds.
+If you open `package.json`, you will see a `scripts` section with all the different scripts you can call.
+To call a script, simply run `npm run <script-name>` from the command line.
+You'll notice that npm scripts can call each other which makes it easy to compose complex builds out of simple individual build scripts.
+Below is a list of all the scripts this template has available:
+
+
+| Npm Script | Description  |
+| ------------------------- | ------------------------------------------------------------------------------------------------- |
+| `build`                   | Full build. Runs ALL build tasks |
+| `start:debug`                   | Performs a full build and then serves the app in watch mode                                       |
+| `lint`                    | Runs ESLint on project files                                                                      |
+| `format`             | Runs the file formatter                                                              |
+| `serve`                   | Runs node on `dist/server.js` which is the apps entry point                                       |
+| `start`                   | Does the same as 'npm run serve'. Can be invoked with `npm start`                                 |
+| `test`                    | Runs tests using Jest test runner                                                                 |
+| `test:watch`              | Runs tests in watch mode                                                                          |
+| `doc`              | Generate the project documenation using `compdoc`
+
+## Project Structure
+
+In a TypeScript project, it's best to have separate _source_  and _distributable_ files.
+TypeScript (`.ts`) files live in your `src` folder and after compilation are output as JavaScript (`.js`) in the `dist` folder.
+The `test` and `views` folders remain top level as expected.
+
+Please find below a detailed description of the app's folder structures:
+
+
+> **Note!** Make sure you have already built the app using  `npm run build`
+
+| Name | Description |
+| ------------------------ | --------------------------------------------------------------------------------------------- |
+| **.vscode**              | Contains VS Code specific settings                                                            |
+| **.github**              | Contains GitHub settings and configurations, including the GitHub Actions workflows            |
+| **dist**                 | Contains the distributable (or output) from your TypeScript build. This is the code you ship  |
+| **node_modules**         | Contains all your npm dependencies                                                            |
+| **src**                  | Contains your source code that will be compiled to the dist dir                               |
+| **src/config**           | Here you will find all the environment configuration necessary to access the application
+| **src/components**      | Components define group of files/source that respond to various module(http requests)
+| **src/${module_name}/dto/**      |  DTO (Data Transfer Object) Schema, Validation           |
+| **src/${module_name}/entities/**      | Entities belongs to that compoenent             |
+| **src/${module_name}/repository/**      |   Repository belongs to that compoenent           |
+| **src/${module_name}/services/**      |  Services belongs to that compoenent         |
+| **src/${module_name}/${module_name}.controllers.ts**      |  Controller belongs to that compoenent           |
+| **src/${module_name}/${module_name}.module.ts**      |   Module belongs to that compoenent          |
+| **src/core**           | All core modules - Guards, Http Request & Response Handler, Logger|
+| **src**/main.ts        | Entry point to your express app                                                               |
+| **test**                 | Contains your tests. Separate from source because there is a different build process.         |
+| .env.example             | API keys, tokens, passwords, database URI. Clone this, but don't check it in to public repos. |
+| package.json             | File that contains npm dependencies
+| tsconfig.json            | Config settings for compiling server code written in TypeScript                               |
+| tsconfig.build.json      | Config settings for compiling tests written in TypeScript                                     |
+| .eslintrc                | Config settings for ESLint code style checking                                                |
+| .eslintignore            | Config settings for paths to exclude from linting                                             |
+
 
 ## Documentations
 

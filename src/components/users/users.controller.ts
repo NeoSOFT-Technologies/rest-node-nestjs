@@ -1,7 +1,7 @@
 import { User } from './entities/user.entity';
 import { Controller, Get, Post, Req, Res } from '@nestjs/common';
 import { UsersService } from './services/users.service';
-import { Request, Response } from '@libs/core';
+import { Request, Response } from '@app/core';
 import { StatusCodes } from 'http-status-codes';
 import { CreateUserDto } from './dto/create.user.dto';
 

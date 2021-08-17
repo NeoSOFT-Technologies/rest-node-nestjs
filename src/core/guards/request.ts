@@ -1,4 +1,4 @@
-import { Request, Response } from '@libs/core';
+import { Request, Response } from '@app/core';
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { get, omit } from 'lodash';
