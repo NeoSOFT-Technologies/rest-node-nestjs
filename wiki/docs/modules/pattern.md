@@ -8,7 +8,7 @@ This document defines the design pattern for developing any web api application.
 
 In this boiler plate, we define the methods and techniques that would useful for building and maintaining web app build in NestJS. NestJS itself has covered alot techniques like TypeORM, Dependency Injection and so on. This document help us to utilize functionality and follow clean architecture.
 
-!['Code Flow'](../images/code-flow.jpg)
+!['Code Flow'](../../images/code-flow.jpg)
 
 In the above diagram, we code the see the how does the request flows from controller to database. There are lot of aspects that need to consider in this, like external api calls, caching etc which would be covered later.
 
@@ -18,7 +18,7 @@ In software engineering, inversion of control (IoC) is a programming principle. 
 
 Below is the inversion of flow for the boiler plate which has been used for user module.
 
-!['Inversion of control](../images/Inversion-of-control.jpg)
+!['Inversion of control](../../images/Inversion-of-control.jpg)
 
 The control flows from UserController to UserService, we have DTO defined for transfering data between classes eg. create.user.dto, update.user.dto
 
@@ -26,7 +26,7 @@ The control flows from UserController to UserService, we have DTO defined for tr
 
 To start with let's understand the folder structure and files first.
 
-!['Folder structure](../images/folder-structure.png)
+!['Folder structure](../../images/folder-structure.png)
 
 App.module — the core of the project, here we import modules that are providing functionalities.
 users.module — this module will be imported by AppModule to provide everything that is related to our users.

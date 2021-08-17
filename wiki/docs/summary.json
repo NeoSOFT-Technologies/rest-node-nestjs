@@ -1,0 +1,82 @@
+[
+  {
+    "title": "Contribution",
+    "file": "contribution.md",
+    "children": [
+      {
+        "title": "Bug Reports",
+        "file": "contribution/bug-reports.md"
+      },
+      {
+        "title": "Features Requests",
+        "file": "contribution/feature-requests.md"
+      },
+      {
+        "title": "Pull Requests",
+        "file": "contribution/pull-requests.md"
+      }
+    ]
+  },
+  {
+    "title": "Modules",
+    "file": "modules.md",
+    "children": [
+      {
+        "title": "Logger",
+        "file": "modules/logger.md"
+      },
+      {
+        "title": "Request Response",
+        "file": "modules/request-response.md"
+      },
+      {
+        "title": "Mailer",
+        "file": "modules/mailer.md"
+      },
+      {
+        "title": "Database",
+        "file": "modules/database.md"
+      },
+      {
+        "title": "Pattern",
+        "file": "modules/pattern.md"
+      }
+    ]
+  },
+  {
+    "title": "Miscellaneous",
+    "file": "miscellaneous.md",
+    "children": [
+      {
+        "title": "Git commits",
+        "file": "miscellaneous/git-commits.md"
+      },
+      {
+        "title": "Known Issues",
+        "file": "miscellaneous/known-issues.md"
+      },
+      {
+        "title": "Clean Docker Images",
+        "file": "miscellaneous/clean-docker.md"
+      },
+      {
+        "title": "Installation Pretteri, Husky & Lint",
+        "file": "miscellaneous/installation-pretteri-husky-lint.md"
+      }
+    ]
+  },
+  {
+    "title": "Trainings",
+    "file": "trainings.md",
+    "children": [
+      {
+        "title": "Node JS for Beginners",
+        "file": "trainings/nodejs.md"
+      },
+      {
+        "title": "Nest JS for Beginners",
+        "file": "trainings/nestjs.md"
+      }
+    ]
+  }
+]
