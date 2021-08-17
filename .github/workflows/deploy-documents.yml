@@ -2,7 +2,7 @@ name: Deploy Documents
 on:
   push:
     branches:
-      - setup
+      - main
 
 jobs:
   build-test-deploy:

@@ -174,12 +174,12 @@ Please find below a detailed description of the app's folder structures:
 | **src**                  | Contains your source code that will be compiled to the dist dir                               |
 | **src/config**           | Here you will find all the environment configuration necessary to access the application
 | **src/components**      | Components define group of files/source that respond to various module(http requests)
-| **src/${module_name}/dto/**      |  DTO (Data Transfer Object) Schema, Validation           |
-| **src/${module_name}/entities/**      | Entities belongs to that compoenent             |
-| **src/${module_name}/repository/**      |   Repository belongs to that compoenent           |
-| **src/${module_name}/services/**      |  Services belongs to that compoenent         |
-| **src/${module_name}/${module_name}.controllers.ts**      |  Controller belongs to that compoenent           |
-| **src/${module_name}/${module_name}.module.ts**      |   Module belongs to that compoenent          |
+| **src/components/${module_name}/dto/**      |  DTO (Data Transfer Object) Schema, Validation           |
+| **src/components/${module_name}/entities/**      | Entities belongs to that Component             |
+| **src/components/${module_name}/repository/**      |   Repository belongs to that Component           |
+| **src/components/${module_name}/services/**      |  Services belongs to that Component         |
+| **src/components/${module_name}/module_name.controllers.ts**      |  Controller belongs to that Component           |
+| **src/components/${module_name}/module_name.module.ts**      |   Module belongs to that Component          |
 | **src/core**           | All core modules - Guards, Http Request & Response Handler, Logger|
 | **src**/main.ts        | Entry point to your express app                                                               |
 | **test**                 | Contains your tests. Separate from source because there is a different build process.         |
@@ -221,28 +221,31 @@ OR
 
 ### 3. Modules
 
-- [Logger](wiki/modules/logger.md)
-- [Request Response](wiki/modules/request-response.md)
-- [Mailer](wiki/modules/mailer.md)
-- [Database](wiki/modules/database.md)
-- [Pattern](wiki/modules/pattern.md)
+- [Logger](wiki/docs/modules/logger.md)
+- [Request Response](wiki/docs/modules/request-response.md)
+- [Mailer](wiki/docs/modules/mailer.md)
+- [Database](wiki/docs/modules/database.md)
+- [Pattern](wiki/docs/modules/pattern.md)
 ### 4. Miscellaneous
 
-- [Known Issues](wiki/clean-docker.md)
-- [Clean Docker Images](wiki/clean-docker.md)
-- [Nest JS Roadmap for Beginners](wiki/nestjs-roadmap.png)
-- [Nest JS for Beginners](wiki/nestjs.md)
-- [Node JS for Beginners](wiki/nodejs.md)
-- [Git commits](wiki/git-commits.md)
+- [Known Issues](/wiki/docs/miscellaneous/known-issues.md)
+- [Git commits](wiki/docs/miscellaneous/git-commits.md)
+- [Clean Docker Images](wiki/docs/miscellaneous/clean-docker.md)
+- [Installation Pretteri, Husky & Lint](wiki/docs/miscellaneous/installation-pretteri-husky-lint.md)
+
+
+### 5. Trainings
+- [Nest JS for Beginners](wiki/docs/trainings/nestjs.md)
+- [Node JS for Beginners](wiki/docs/trainings/nodejs.md)
 
 
 ## Contributing to this project
 
-Contributions are welcome from anyone and everyone. We encourage you to review the [guiding principles for contributing](CONTRIBUTING.md)
+Contributions are welcome from anyone and everyone. We encourage you to review the [guiding principles for contributing](contribution.md)
 
-* [Bug reports](CONTRIBUTING.md#bugs)
-* [Feature requests](CONTRIBUTING.md#features)
-* [Pull requests](CONTRIBUTING.md#pull-requests)
+* [Bug reports](wiki/docs/contribution/bug-reports.md)
+* [Feature requests](wiki/docs/contribution/feature-requests.md)
+* [Pull requests](wiki/docs/contribution/pull-requests.md)
 
 ### Issues/Discussions
 

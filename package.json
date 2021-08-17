@@ -21,7 +21,8 @@
     "precommit": "lint-staged",
     "prepush": "",
     "prepare": "husky install",
-    "doc": "npx @compodoc/compodoc -p tsconfig.json"
+    "doc": "npx @compodoc/compodoc -p tsconfig.json -a wiki --includesName Documentation --includes wiki/docs --theme stripe",
+    "document": "npx @compodoc/compodoc -p tsconfig.json -a wiki --includesName Documentation --includes wiki/docs --theme stripe -s"
   },
   "repository": {
     "type": "git",
