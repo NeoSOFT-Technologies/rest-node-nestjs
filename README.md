@@ -25,7 +25,6 @@
 - Rather than spending time on the project setup, get on with the important stuff right away.
 
 Take it for a test drive. We'd love to hear any feedback you have or if you've thought of a new feature.
-
 ## Common Features
 
 - Quick start
@@ -153,7 +152,6 @@ Below is a list of all the scripts this template has available:
 | `test`                    | Runs tests using Jest test runner                                                                 |
 | `test:watch`              | Runs tests in watch mode                                                                          |
 | `doc`              | Generate the project documenation using `compdoc`
-
 ## Project Structure
 
 In a TypeScript project, it's best to have separate _source_  and _distributable_ files.
@@ -189,8 +187,6 @@ Please find below a detailed description of the app's folder structures:
 | tsconfig.build.json      | Config settings for compiling tests written in TypeScript                                     |
 | .eslintrc                | Config settings for ESLint code style checking                                                |
 | .eslintignore            | Config settings for paths to exclude from linting                                             |
-
-
 ## Documentations
 
 ### 1. Generation with [compdoc](https://docs.nestjs.com/recipes/documentation)
@@ -238,10 +234,9 @@ OR
 - [Nest JS for Beginners](wiki/docs/trainings/nestjs.md)
 - [Node JS for Beginners](wiki/docs/trainings/nodejs.md)
 
-
 ## Contributing to this project
 
-Contributions are welcome from anyone and everyone. We encourage you to review the [guiding principles for contributing](contribution.md)
+Contributions are welcome from anyone and everyone. We encourage you to review the [guiding principles for contributing](wiki/docs/contribution.md)
 
 * [Bug reports](wiki/docs/contribution/bug-reports.md)
 * [Feature requests](wiki/docs/contribution/feature-requests.md)
@@ -259,4 +254,4 @@ Contributions are welcome from anyone and everyone. We encourage you to review t
 * Meetup -  [https://www.meetup.com/neosoft-technologies/](https://www.meetup.com/neosoft-technologies/)
 * Medium -  [https://medium.com/@neosofttech-technologies-blog](https://medium.com/@neosofttech-technologies-blog)
 * GitHub - [https://github.com/NeoSOFT-Technologies](https://github.com/NeoSOFT-Technologies)
-
+* Discord - [NodeJS](https://discord.gg/9xW5gQhQa4)
