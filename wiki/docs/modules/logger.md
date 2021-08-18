@@ -9,7 +9,7 @@ Logger module is already present in Boiler Plate. We have used  [winston](https:
 Logger is part of CoreModule imports which would be default enabled for every application. To call the logger module we need to import it as dependency and then call the desired function for logging info 
 
 
-!['database config'](../../images/logger-function.png)
+!['database config'](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/images/logger-function.png?raw=true)
 
 Logger module has different level of functions for logging
 

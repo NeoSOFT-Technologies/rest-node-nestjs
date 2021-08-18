@@ -6,7 +6,7 @@ Boiler plate has already included mysql database configuration with the core mod
 > **Note:** It is a best practice to import database information from environment.
 
 
-!['database config'](../../images/database-config.png)
+!['database config'](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/images/database-config.png?raw=true)
 
 > ```entities:  ``` Entities that maps with database table.
 

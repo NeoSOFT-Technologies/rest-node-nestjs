@@ -199,7 +199,7 @@ OR
 
 `npx @compodoc/compodoc -p tsconfig.json -s`
 
-### 2. [Request and Response Cycle](wiki/modules/request-response.md)
+### 2. [Request and Response Cycle](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/modules/request-response.md)
 
 > An explanation of how the request and response cycle works is provided here
 
@@ -207,40 +207,40 @@ OR
 
 > Boilerplate has a custom guard enabled for handling response and request for every api. The integration of request response guard is enabled by default with response structure
 
-![Request and Response Cycle](wiki/images/basic-nestJS-lifecycle.png)
+![Request and Response Cycle](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/images/basic-nestJS-lifecycle.png?raw=true)
 
 #### 2.2 Request Workflow
 
 > By creating a workflow, you can specify the template that should be used to create a change request when a request for service is logged.
 
-![Request Workflow](wiki/images/code-flow.jpg)
+![Request Workflow](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/images/code-flow.jpg?raw=true)
 
 ### 3. Modules
 
-- [Logger](wiki/docs/modules/logger.md)
-- [Request Response](wiki/docs/modules/request-response.md)
-- [Mailer](wiki/docs/modules/mailer.md)
-- [Database](wiki/docs/modules/database.md)
-- [Pattern](wiki/docs/modules/pattern.md)
+- [Logger](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/logger.md)
+- [Request Response](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/request-response.md)
+- [Mailer](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/mailer.md)
+- [Database](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/database.md)
+- [Pattern](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/pattern.md)
 ### 4. Miscellaneous
 
-- [Known Issues](/wiki/docs/miscellaneous/known-issues.md)
-- [Git commits](wiki/docs/miscellaneous/git-commits.md)
-- [Clean Docker Images](wiki/docs/miscellaneous/clean-docker.md)
-- [Installation Pretteri, Husky & Lint](wiki/docs/miscellaneous/installation-pretteri-husky-lint.md)
+- [Known Issues](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main//wiki/docs/miscellaneous/known-issues.md)
+- [Git commits](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/miscellaneous/git-commits.md)
+- [Clean Docker Images](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/miscellaneous/clean-docker.md)
+- [Installation Pretteri, Husky & Lint](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/miscellaneous/installation-pretteri-husky-lint.md)
 
 
 ### 5. Trainings
-- [Nest JS for Beginners](wiki/docs/trainings/nestjs.md)
-- [Node JS for Beginners](wiki/docs/trainings/nodejs.md)
+- [Nest JS for Beginners](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/trainings/nestjs.md)
+- [Node JS for Beginners](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/trainings/nodejs.md)
 
 ## Contributing to this project
 
-Contributions are welcome from anyone and everyone. We encourage you to review the [guiding principles for contributing](wiki/docs/contribution.md)
+Contributions are welcome from anyone and everyone. We encourage you to review the [guiding principles for contributing](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/contribution.md)
 
-* [Bug reports](wiki/docs/contribution/bug-reports.md)
-* [Feature requests](wiki/docs/contribution/feature-requests.md)
-* [Pull requests](wiki/docs/contribution/pull-requests.md)
+* [Bug reports](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/contribution/bug-reports.md)
+* [Feature requests](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/contribution/feature-requests.md)
+* [Pull requests](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/contribution/pull-requests.md)
 
 ### Issues/Discussions
 
