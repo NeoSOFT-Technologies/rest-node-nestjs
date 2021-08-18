@@ -1,67 +1,37 @@
+## PR Checklist
+Please check if your PR fulfills the following requirements:
 
-## Pull requests
+- [ ] The commit message follows our guidelines: https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/CONTRIBUTING.md
+- [ ] Tests for the changes have been added (for bug fixes / features)
+- [ ] Docs have been added / updated (for bug fixes / features)
 
-Good pull requests - patches, improvements, new features - are a fantastic
-help. They should remain focused in scope and avoid containing unrelated
-commits.
 
-**Please ask first** before embarking on any significant pull request (e.g.
-implementing features, refactoring code, porting to a different language),
-otherwise you risk spending a lot of time working on something that the
-project's developers might not want to merge into the project.
+## PR Type
+What kind of change does this PR introduce?
 
-Please adhere to the coding conventions used throughout a project (indentation,
-accurate comments, etc.) and any other requirements (such as test coverage).
+<!-- Please check the one that applies to this PR using "x". -->
+- [ ] Bugfix
+- [ ] Feature
+- [ ] Code style update (formatting, local variables)
+- [ ] Refactoring (no functional changes, no api changes)
+- [ ] Build related changes
+- [ ] CI related changes
+- [ ] Other... Please describe:
 
-Follow this process if you'd like your work considered for inclusion in the
-project:
+## What is the current behavior?
+<!-- Please describe the current behavior that you are modifying, or link to a relevant issue. -->
 
-1. [Fork](http://help.github.com/fork-a-repo/) the project, clone your fork,
-   and configure the remotes:
+Issue Number: N/A
 
-   ```bash
-   # Clone your fork of the repo into the current directory
-   git clone https://github.com/<your-username>/<repo-name>
-   # Navigate to the newly cloned directory
-   cd <repo-name>
-   # Assign the original repo to a remote called "upstream"
-   git remote add upstream https://github.com/<upstream-owner>/<repo-name>
-   ```
 
-2. If you cloned a while ago, get the latest changes from upstream:
+## What is the new behavior?
 
-   ```bash
-   git checkout <dev-branch>
-   git pull upstream <dev-branch>
-   ```
 
-3. Create a new topic branch (off the main project development branch) to
-   contain your feature, change, or fix:
+## Does this PR introduce a breaking change?
+- [ ] Yes
+- [ ] No
 
-   ```bash
-   git checkout -b <topic-branch-name>
-   ```
+<!-- If this PR contains a breaking change, please describe the impact and migration path for existing applications below. -->
 
-4. Commit your changes in logical chunks. Please adhere to these [git commit
-   message guidelines](wiki/git-commits.md)
-   or your code is unlikely be merged into the main project. Use Git's
-   [interactive rebase](https://help.github.com/articles/interactive-rebase)
-   feature to tidy up your commits before making them public.
 
-5. Locally merge (or rebase) the upstream development branch into your topic branch:
-
-   ```bash
-   git pull [--rebase] upstream <dev-branch>
-   ```
-
-6. Push your topic branch up to your fork:
-
-   ```bash
-   git push origin <topic-branch-name>
-   ```
-
-7. [Open a Pull Request](https://help.github.com/articles/using-pull-requests/)
-    with a clear title and description.
-
-**IMPORTANT**: By submitting a patch, you agree to allow the project owner to
-license your work under the same license as that used by the project.
+## Other information
