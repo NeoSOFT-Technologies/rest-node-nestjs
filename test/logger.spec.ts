@@ -3,8 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import AppLogger from '../libs/core/src/logger/logger';
 import { AppModule } from '../src/app.module';
-// const fs = require('fs');
-import fs from 'fs';
+const fs = require('fs');
 
 describe('Testing logger', () => {
   let app: INestApplication;
