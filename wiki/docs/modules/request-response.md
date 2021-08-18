@@ -3,13 +3,13 @@
 
 ## Overview
 
-!['Request Response Life Cycle'](../../images/nestjs-request-life-cycle.png)
+!['Request Response Life Cycle'](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/images/nestjs-request-life-cycle.png?raw=true)
 
 ## Available function for response.
 
 ### **success**
 
-!['success response'](../../images/success-response.png)
+!['success response'](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/images/success-response.png?raw=true)
 
  The success function expected two parameters
  1) data: Json response data.
@@ -17,7 +17,7 @@
 
 ### **error**
 
-!['error response'](../../images/error-response.png)
+!['error response'](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/images/error-response.png?raw=true)
 
  The error function expected two parameters
  1) error: Json response data.
@@ -25,14 +25,14 @@
 
 ### **noContent**
 
-!['noContent response'](../../images/no-content-response.png)
+!['noContent response'](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/images/no-content-response.png?raw=true)
 
  The noContent function expected no parameters
 
 
 ### **withMeta**
 
-!['meta response'](../../images/meta-response.png)
+!['meta response'](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/images/meta-response.png?raw=true)
 
  The withMeta function expected two parameters. This function extract additional data passed to response object into new response key as meta.
  1) data: Json response data.

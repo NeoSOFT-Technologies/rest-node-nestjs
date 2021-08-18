@@ -11,7 +11,7 @@ patches and features.
 
 ## Using the issue tracker
 
-The issue tracker is the preferred channel for [bug reports](contribution/bug-reports.md),
-[features requests](contribution/feature-requests.md) and [submitting pull
-requests](contribution/pull-requests.md).
+The issue tracker is the preferred channel for [bug reports](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/contribution/bug-reports.md),
+[features requests](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/contribution/feature-requests.md) and [submitting pull
+requests](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/contribution/pull-requests.md).
 

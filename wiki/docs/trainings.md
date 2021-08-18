@@ -1,4 +1,4 @@
 # Trainings
 
-- [Node JS for Beginners](trainings/nodejs.md)
-- [Nest JS for Beginners](trainings/nestjs.md)
+- [Node JS for Beginners](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/trainings/nodejs.md)
+- [Nest JS for Beginners](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/trainings/nestjs.md)
