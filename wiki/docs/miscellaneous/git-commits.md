@@ -2,6 +2,10 @@
 
 We have added some git pre hooks while committing the code. These pre hooks are executed on every git commit.
 
+## What is commitlint
+
+[Commitlint](https://github.com/conventional-changelog/commitlint) checks if your commit messages meet the [conventional commit format](https://www.conventionalcommits.org/en/v1.0.0/).
+
 Commit message can be bifurcated into 3 section "<Type>(<Module/Scope>): <Commit_Message>"
 
 Type: can be anyone of them feat | bugfix | feature etc.

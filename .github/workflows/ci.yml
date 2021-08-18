@@ -1,0 +1,44 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+      - release-*
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+      - release-*
+
+jobs:
+  node-version-test:
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v2
+    - name: Set up nodejs version ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: Install package
+      run: npm install
+    - name: Linter
+      run:  npm run lint
+    - name: Build
+      run: npm run build --if-present
+
+  sonarcloud:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        # Disabling shallow clone is recommended for improving relevancy of reporting
+        fetch-depth: 0
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
