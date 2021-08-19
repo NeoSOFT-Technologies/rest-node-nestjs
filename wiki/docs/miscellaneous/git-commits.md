@@ -14,7 +14,7 @@ Type: can be anyone of them feat | bugfix | feature etc.
 
 Commit_Message: Actual commit message
 
-``` git commit -m "feat(documentation): Adding documentation" ```
+``` git commit -m "feat(documentation): adding documentation" ```
 
 ### Type
 
