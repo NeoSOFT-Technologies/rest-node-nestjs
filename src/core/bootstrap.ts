@@ -9,6 +9,9 @@ import { RequestGuard } from './guards';
  *
  */
 export default async function bootstrap(app: INestApplication) {
+  // Global Prefix
+  // app.setGlobalPrefix('api');
+
   // middlewares, express specific
   app.use(bodyParser.json({ limit: '50mb' }));
   app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
