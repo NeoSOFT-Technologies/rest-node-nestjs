@@ -21,6 +21,10 @@
     "precommit": "lint-staged",
     "prepush": "",
     "prepare": "husky install",
+    "db:setup": "docker-compose --env-file ./config/env/.env -f docker/docker-compose.yml up -d --build",
+    "db:setup:dev": "docker-compose --env-file ./config/env/.env.dev -f docker/docker-compose.yml up -d --build",
+    "db:setup:prod": "docker-compose --env-file ./config/env/.env.prod -f docker/docker-compose.yml up -d --build",
+    "db:setup:test": "docker-compose --env-file ./config/env/.env.test -f docker/docker-compose.yml up -d --build",
     "doc": "npx @compodoc/compodoc -p tsconfig.json --includesName Documentation --includes wiki/docs --theme stripe",
     "document": "npx @compodoc/compodoc -p tsconfig.json --includesName Documentation --includes wiki/docs --theme stripe -s"
   },

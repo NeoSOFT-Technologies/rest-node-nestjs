@@ -24,7 +24,7 @@ export default class AppLogger implements LoggerService {
     );
     this.logger = createLogger({
       format: combine(label({ label: config.get('app.name') }), timestamp(), customLoggerFormat),
-      transports: [new transports.Console(), new transports.File({ filename: 'app.log' })],
+      transports: [new transports.Console(), new transports.File({ filename: config.get('app.logFileName') })],
     });
   }
 

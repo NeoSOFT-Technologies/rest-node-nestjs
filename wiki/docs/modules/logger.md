@@ -19,7 +19,7 @@ constructor( private appLogger: AppLogger) {}
 this.appLogger.log('API called');
 ```
 
-Logs are created in app.log file at project root level below
+Logs are created in logs/app.log file at project root level below
 ## Output format
 ```Log format would be (datetime [app_name] level: message)eg. 2021-06-15T05:45:28.894Z [Boiler plate NestJS] info: API called ```
 
