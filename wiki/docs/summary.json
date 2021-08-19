@@ -76,6 +76,10 @@
       {
         "title": "Nest JS for Beginners",
         "file": "trainings/nestjs.md"
+      },
+      {
+        "title": "Git for Beginners",
+        "file": "trainings/git.md"
       }
     ]
   }
