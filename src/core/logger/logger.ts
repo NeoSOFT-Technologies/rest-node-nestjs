@@ -29,18 +29,18 @@ export default class AppLogger implements LoggerService {
   }
 
   log(message: any) {
-    this.logger.log(WinstonLogLevel.INFO, message);
+    return this.logger.log(WinstonLogLevel.INFO, message);
   }
   error(message: any) {
-    this.logger.log(WinstonLogLevel.ERROR, message);
+    return this.logger.log(WinstonLogLevel.ERROR, message);
   }
   warn(message: any) {
-    this.logger.log(WinstonLogLevel.WARN, message);
+    return this.logger.log(WinstonLogLevel.WARN, message);
   }
   debug?(message: any) {
-    this.logger.log(WinstonLogLevel.DEBUG, message);
+    return this.logger.log(WinstonLogLevel.DEBUG, message);
   }
   verbose?(message: any) {
-    this.logger.log(WinstonLogLevel.VERBOSE, message);
+    return this.logger.log(WinstonLogLevel.VERBOSE, message);
   }
 }

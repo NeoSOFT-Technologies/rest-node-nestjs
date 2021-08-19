@@ -17,7 +17,7 @@ import { User } from '@app/components/users/entities/user.entity';
         database: config.get('db.database'),
         entities: [User],
         // entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        synchronize: false,
+        synchronize: true,
       }),
     }),
   ],

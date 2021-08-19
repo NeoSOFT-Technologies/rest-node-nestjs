@@ -23,7 +23,6 @@ export class UsersController {
   async saveUser(@Req() req: Request, @Res() res: Response): Promise<Response> {
     try {
       const user: CreateUserDto = req.body;
-      console.log(user);
       await this.usersService.save(user);
       return res.success('success', StatusCodes.CREATED);
     } catch (e) {
