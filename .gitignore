@@ -36,7 +36,6 @@ package-lock.json
 !.vscode/extensions.json
 
 # dotenv
-.env
 config/env/*.env.dev
 config/env/*.env.prod
 config/env/*.env.test
