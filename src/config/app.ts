@@ -6,4 +6,5 @@ export default registerAs('app', () => ({
   debug: +process.env.APP_DEBUG || 1,
   url: process.env.APP_URL || 'localhost',
   port: +process.env.APP_PORT || 5000,
+  logFileName: './logs/app.log',
 }));

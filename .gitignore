@@ -37,3 +37,7 @@ package-lock.json
 
 # dotenv
 .env
+config/env/*.env.dev
+config/env/*.env.prod
+config/env/*.env.test
+

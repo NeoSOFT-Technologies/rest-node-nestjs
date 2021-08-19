@@ -90,14 +90,14 @@ Docker Compose is what we will be using in our case, In the project directory, e
 
 ```
 # build images, create and run containers in background
-docker-compose up -d
+docker-compose --env-file ./config/env/.env -f docker/docker-compose.yml up -d
 ```
 
 In order to apply your modified code to a running container, you should add a build option.
 
 ```
 # if source code is changed, rebuild image, recreate and start container
-docker-compose up -d --build
+docker-compose --env-file ./config/env/.env -f docker/docker-compose.yml up -d --build
 ```
 
 ### Running the app
