@@ -21,7 +21,7 @@ jobs:
     - name: Configure git and update package-lock.json
       run: |
         git config user.email "santosh.shinde@neosofttech.com"
-        git config user.name "Neosoft Bot"
+        git config user.name "NeoSoft Bot"
         npm install --package-lock-only
         git add -f package-lock.json
         if git commit -m "Update package-lock.json"; then
