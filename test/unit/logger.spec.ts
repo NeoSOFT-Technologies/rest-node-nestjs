@@ -22,15 +22,16 @@ describe('Testing logger', () => {
   it('Testing log method from AppLogger class', () => {
     const config = app.get(ConfigService);
     const appLogger = new AppLogger(config);
-    const result = appLogger.log('This is Logger');
-    expect(result).toBeTruthy();
+    const spy = jest.spyOn(appLogger.logger, 'log');
+    appLogger.log('This is Logger');
+    expect(spy).toHaveBeenCalled();
   });
 
   it('Testing error method from AppLogger class', () => {
     const config = app.get(ConfigService);
     const appLogger = new AppLogger(config);
-
-    const result = appLogger.error('This is error');
-    expect(result).toBeTruthy();
+    const spy = jest.spyOn(appLogger.logger, 'log');
+    appLogger.error('This is error');
+    expect(spy).toHaveBeenCalled();
   });
 });
