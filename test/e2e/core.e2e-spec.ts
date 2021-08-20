@@ -5,7 +5,7 @@ import { ConfigService } from '@nestjs/config';
 import { AppModule } from '../../src/app.module';
 import coreBootstrap from '@app/core/bootstrap';
 import { RequestGuard } from '../../src/core';
-import AppLogger from '../../src/core/logger/logger';
+import AppLogger from '../../src/core/logger/AppLogger';
 
 describe('Core module (e2e)', () => {
   let app: INestApplication;

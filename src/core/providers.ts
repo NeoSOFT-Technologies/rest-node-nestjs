@@ -1,4 +1,4 @@
-import AppLogger from './logger/logger';
+import AppLogger from './logger/AppLogger';
 
 export const getProviders = (): [any] => {
   return [AppLogger];
