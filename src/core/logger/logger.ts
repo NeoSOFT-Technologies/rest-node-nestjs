@@ -14,7 +14,7 @@ enum WinstonLogLevel {
 
 @Injectable()
 export default class AppLogger implements LoggerService {
-  private logger: Logger;
+  public logger: Logger;
   constructor(config: ConfigService) {
     const { combine, timestamp, label, printf } = format;
     const customLoggerFormat = printf(
@@ -29,18 +29,18 @@ export default class AppLogger implements LoggerService {
   }
 
   log(message: any) {
-    return this.logger.log(WinstonLogLevel.INFO, message);
+    this.logger.log(WinstonLogLevel.INFO, message);
   }
   error(message: any) {
-    return this.logger.log(WinstonLogLevel.ERROR, message);
+    this.logger.log(WinstonLogLevel.ERROR, message);
   }
   warn(message: any) {
-    return this.logger.log(WinstonLogLevel.WARN, message);
+    this.logger.log(WinstonLogLevel.WARN, message);
   }
   debug?(message: any) {
-    return this.logger.log(WinstonLogLevel.DEBUG, message);
+    this.logger.log(WinstonLogLevel.DEBUG, message);
   }
   verbose?(message: any) {
-    return this.logger.log(WinstonLogLevel.VERBOSE, message);
+    this.logger.log(WinstonLogLevel.VERBOSE, message);
   }
 }

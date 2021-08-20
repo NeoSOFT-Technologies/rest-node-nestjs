@@ -69,10 +69,16 @@ $ npm install
 
 ### Create The Environment Variables
 
-The `.env` file should be placed in root folder with the following variables.
+The `config/env/.env` file should be placed in root folder with the following variables.
+
+- `config/env/.env` : Default Environment File
+- `config/env/.env.dev` : Development Environment File
+- `config/env/.env.test` : Test Environment File
+- `config/env/.env.prod` : Production Environment File
+
 
 ```
-# .env.example
+# config/env/.env.example
 
 APP_NAME=rest_api
 NODE_ENV=dev
@@ -90,14 +96,14 @@ Docker Compose is what we will be using in our case, In the project directory, e
 
 ```
 # build images, create and run containers in background
-docker-compose --env-file ./config/env/.env -f docker/docker-compose.yml up -d
+docker-compose -f ./docker/docker-compose.yml --env-file ./config/env/.env up -d
 ```
 
 In order to apply your modified code to a running container, you should add a build option.
 
 ```
 # if source code is changed, rebuild image, recreate and start container
-docker-compose --env-file ./config/env/.env -f docker/docker-compose.yml up -d --build
+docker-compose  -f ./docker/docker-compose.yml --env-file ./config/env/.env up -d --build
 ```
 
 ### Running the app
@@ -182,7 +188,7 @@ Please find below a detailed description of the app's folder structures:
 | **src/core**           | All core modules - Guards, Http Request & Response Handler, Logger|
 | **src**/main.ts        | Entry point to your express app                                                               |
 | **test**                 | Contains your tests. Separate from source because there is a different build process.         |
-| .env.example             | API keys, tokens, passwords, database URI. Clone this, but don't check it in to public repos. |
+| config/env/.env.example             | API keys, tokens, passwords, database URI. Clone this, but don't check it in to public repos. |
 | package.json             | File that contains npm dependencies
 | tsconfig.json            | Config settings for compiling server code written in TypeScript                               |
 | tsconfig.build.json      | Config settings for compiling tests written in TypeScript                                     |
