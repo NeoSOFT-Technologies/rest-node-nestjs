@@ -5,7 +5,6 @@ import { Request, Response } from '@app/core';
 import { StatusCodes } from 'http-status-codes';
 import { CreateUserDto } from './dto/create.user.dto';
 import { UpdateUserDto } from './dto/update.user.dto';
-import { STATUS_CODES } from 'http';
 
 @Controller('users')
 export class UsersController {
@@ -15,7 +14,6 @@ export class UsersController {
   async getUsers(@Req() req: Request, @Res() res: Response): Promise<Response> {
     try {
       const users: User[] = await this.usersService.findAll();
-      console.log(typeof users[0].id);
       return res.success(users);
     } catch (e) {
       return res.error(e);
@@ -26,7 +24,6 @@ export class UsersController {
   async saveUser(@Req() req: Request, @Res() res: Response): Promise<Response> {
     try {
       const user: CreateUserDto = req.body;
-      console.log(typeof user);
       await this.usersService.save(user);
       return res.success('success', StatusCodes.CREATED);
     } catch (e) {
@@ -37,8 +34,6 @@ export class UsersController {
   async getUserById(@Req() req: Request, @Res() res: Response, @Param('id') id: string): Promise<Response> {
     try {
       const userById = await this.usersService.findOne(id);
-      console.log(typeof userById);
-      console.log(userById);
       return res.success(userById, StatusCodes.OK);
     } catch (e) {
       return res.error(e);

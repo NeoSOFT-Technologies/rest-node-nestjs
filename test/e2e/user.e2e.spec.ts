@@ -37,11 +37,10 @@ describe('AppController (e2e)', () => {
   });
 
   it('Should return user of specified id along with 200 status code', async () => {
-    const { status, body } = await request(app.getHttpServer()).get('/users/1').expect(200);
-    expect(status).toEqual(200);
-    const { success, data } = body;
-    expect(success).toEqual(true);
-    expect(data.id).toEqual(1);
+    const response = await request(app.getHttpServer()).get('/users/1').expect(200);
+    expect(response.status).toEqual(200);
+    expect(response.body.success).toEqual(true);
+    expect(response.body.data.id).toEqual(1);
   });
 
   it('Should update user of specified id and return 200 status code', async () => {
