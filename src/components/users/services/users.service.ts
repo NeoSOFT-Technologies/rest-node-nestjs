@@ -10,7 +10,7 @@ import { UserRepository } from '../repository/user.repository';
 export class UsersService {
   constructor(
     @InjectRepository(UserDbRepository)
-    private usersRepository: UserRepository
+    private readonly usersRepository: UserRepository
   ) {}
 
   findAll(): Promise<User[]> {
@@ -24,6 +24,9 @@ export class UsersService {
     await this.usersRepository.createUser(user);
   }
 
+  // async update(id: string, user: UpdateUserDto): Promise<void> {
+  //   await this.usersRepository.updateUser(id, user);
+  // }
   async update(id: string, user: UpdateUserDto): Promise<void> {
     await this.usersRepository.updateUser(id, user);
   }

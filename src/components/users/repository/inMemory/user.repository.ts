@@ -2,7 +2,7 @@ import { CreateUserDto } from '../../dto/create.user.dto';
 import { UpdateUserDto } from '../../dto/update.user.dto';
 import { User } from '../../entities/user.entity';
 import { UserRepository } from '../user.repository';
-import { EntityRepository } from 'typeorm';
+import { EntityRepository, UpdateResult } from 'typeorm';
 import { Injectable } from '@nestjs/common';
 @Injectable()
 @EntityRepository(User)
@@ -28,7 +28,10 @@ export class UserInMemoryRepository implements UserRepository {
     });
   }
 
-  updateUser(id: string, payload: UpdateUserDto): Promise<User> {
+  // updateUser(id: string, payload: UpdateUserDto): Promise<User> {
+  //   throw 'Implement update functionality';
+  // }
+  updateUser(id: string, payload: UpdateUserDto): Promise<UpdateResult> {
     throw 'Implement update functionality';
   }
 

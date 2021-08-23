@@ -18,8 +18,8 @@ export default class AppLogger implements LoggerService {
   constructor(config: ConfigService) {
     const { combine, timestamp, label, printf } = format;
     const customLoggerFormat = printf(
-      ({ level, message, label, timestamp }: { level: string; message: string; label: string; timestamp: string }) => {
-        return `${timestamp} [${label}] ${level}: ${message}`;
+      ({ level, message, Label, Timestamp }: { level: string; message: string; Label: string; Timestamp: string }) => {
+        return `${Timestamp} [${Label}] ${level}: ${message}`;
       }
     );
     this.logger = createLogger({

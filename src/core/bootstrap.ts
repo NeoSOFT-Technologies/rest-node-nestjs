@@ -1,5 +1,5 @@
 import { INestApplication, ValidationPipe } from '@nestjs/common';
-import * as bodyParser from 'body-parser';
+import { json, urlencoded } from 'express';
 import * as helmet from 'helmet';
 import { RequestGuard } from './guards';
 
@@ -13,8 +13,8 @@ export default async function bootstrap(app: INestApplication) {
   // app.setGlobalPrefix('api');
 
   // middlewares, express specific
-  app.use(bodyParser.json({ limit: '50mb' }));
-  app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+  app.use(json({ limit: '50mb' }));
+  app.use(urlencoded({ limit: '50mb', extended: true }));
   app.use(helmet());
 
   // Auto-validation
