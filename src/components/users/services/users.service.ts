@@ -10,7 +10,7 @@ import { UserRepository } from '../repository/user.repository';
 export class UsersService {
   constructor(
     @InjectRepository(UserDbRepository)
-    private usersRepository: UserRepository
+    private readonly usersRepository: UserRepository
   ) {}
 
   findAll(): Promise<User[]> {
