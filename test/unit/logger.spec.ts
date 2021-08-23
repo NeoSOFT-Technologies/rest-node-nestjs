@@ -2,7 +2,7 @@ import { INestApplication } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '../../src/app.module';
-import AppLogger from '@app/core/logger/logger';
+import AppLogger from '@app/core/logger/AppLogger';
 
 describe('Testing logger', () => {
   let app: INestApplication;
