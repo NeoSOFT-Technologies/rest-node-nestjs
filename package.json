@@ -14,21 +14,49 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
+    "test:custom": "npm test -- test/unit/logger.spec.ts",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:e2e": "jest .e2e-spec.ts$",
     "prettier:check": "prettier --check ./**/*.{ts,js,json,*rc}",
     "format": "prettier --write \"./**/*.{ts,js,json,*rc}\" \"test/**/*.ts\"",
     "precommit": "lint-staged",
     "prepush": "",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "db:setup": "docker-compose -f ./docker/docker-compose.yml --env-file ./config/env/.env up -d --build",
+    "db:setup:dev": "docker-compose -f ./docker/docker-compose.yml  --env-file ./config/env/.env.dev up -d --build",
+    "db:setup:prod": "docker-compose --env-file -f ./docker/docker-compose.yml up  ./config/env/.env.prod -d --build",
+    "db:setup:test": "docker-compose --env-file -f docker/docker-compose.yml  ./config/env/.env.test up -d --build",
+    "doc": "npx @compodoc/compodoc -p tsconfig.json --includesName Documentation --includes wiki/docs --theme stripe",
+    "document": "npx @compodoc/compodoc -p tsconfig.json --includesName Documentation --includes wiki/docs --theme stripe -s"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NeoSOFT-Technologies/rest-node-nestjs.git"
   },
   "author": "Santosh Shinde",
   "license": "",
+  "keywords": [
+    "nestjs-boilerplate",
+    "nestjs-objection",
+    "nestjs-starter-template",
+    "nestjs-template",
+    "nestjs-starter-kit",
+    "nestjs-skeleton",
+    "nestjs-rest-api"
+  ],
+  "bugs": {
+    "url": "https://github.com/NeoSOFT-Technologies/rest-node-nestjs/issues"
+  },
+  "homepage": "https://github.com/NeoSOFT-Technologies/rest-node-nestjs#readme",
   "dependencies": {
     "@nestjs/common": "^7.6.15",
+    "@nestjs/config": "^1.0.1",
     "@nestjs/core": "^7.6.15",
     "@nestjs/platform-express": "^7.6.15",
     "@nestjs/typeorm": "^7.1.5",
+    "class-transformer": "^0.4.0",
+    "class-validator": "^0.13.1",
+    "helmet": "^4.6.0",
     "http-status-codes": "^2.1.4",
     "mysql2": "^2.2.5",
     "reflect-metadata": "^0.1.13",
@@ -38,20 +66,24 @@
     "winston": "^3.3.3"
   },
   "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "@compodoc/compodoc": "^1.1.14",
     "@nestjs/cli": "^7.6.0",
-    "@nestjs/schematics": "^7.3.0",
+    "@nestjs/schematics": "^8.0.3",
     "@nestjs/testing": "^7.6.15",
     "@types/express": "^4.17.11",
     "@types/jest": "^26.0.22",
-    "@types/node": "^14.14.36",
+    "@types/node": "^16.7.1",
     "@types/supertest": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
     "@typescript-eslint/parser": "^4.19.0",
-    "dotenv": "^10.0.0",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.28.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.23.4",
-    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-import": "^2.24.1",
+    "eslint-plugin-prettier": "^3.4.1",
     "husky": "^6.0.0",
     "jest": "^26.6.3",
     "lint-staged": "^11.0.0",
@@ -83,19 +115,12 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node",
+    "roots": [
+      "<rootDir>/test/"
+    ],
     "moduleNameMapper": {
-      "@app/*": [
-        "<rootDir>/src/*"
-      ],
-      "@config/*": [
-        "<rootDir>/config/*"
-      ],
-      "@libs/core": [
-        "<rootDir>/libs/core/src"
-      ],
-      "@libs/core/*": [
-        "<rootDir>/libs/core/src/*"
-      ]
+      "@app/(.*)": "<rootDir>/src/$1",
+      "@app": "<rootDir>/src"
     }
   }
 }
