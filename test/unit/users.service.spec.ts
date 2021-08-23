@@ -5,7 +5,7 @@ import { UpdateUserDto } from '../../src/components/users/dto/update.user.dto';
 import { User } from '../../src/components/users/entities/user.entity';
 import { UserDbRepository } from '../../src/components/users/repository/db/user.repository';
 import { UsersService } from '../../src/components/users/services/users.service';
-import { userStub } from './mock/user.stub';
+import { userStub } from '../mock/user.stub';
 
 describe('UsersService', () => {
   let usersService: UsersService;

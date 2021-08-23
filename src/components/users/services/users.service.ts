@@ -24,6 +24,9 @@ export class UsersService {
     await this.usersRepository.createUser(user);
   }
 
+  // async update(id: string, user: UpdateUserDto): Promise<void> {
+  //   await this.usersRepository.updateUser(id, user);
+  // }
   async update(id: string, user: UpdateUserDto): Promise<void> {
     await this.usersRepository.updateUser(id, user);
   }
