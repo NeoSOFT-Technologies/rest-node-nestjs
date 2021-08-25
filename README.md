@@ -121,7 +121,7 @@ $ npm run start:prod
 
 ### Test
 
-For this project, I chose [Jest](https://facebook.github.io/jest/) as our test framework.
+For this project, We chose [Jest](https://facebook.github.io/jest/) as our test framework.
 While Mocha is probably more common, Mocha seems to be looking for a new maintainer and setting up TypeScript testing in Jest is wicked simple.
 
 
