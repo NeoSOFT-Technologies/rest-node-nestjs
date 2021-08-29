@@ -1,4 +1,7 @@
+[![CI](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/actions/workflows/ci.yml/badge.svg)](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/actions/workflows/ci.yml)
+
 # Nest JS Skeleton for REST Application
+
 
 ## Description
 
