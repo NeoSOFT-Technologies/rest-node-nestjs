@@ -7,4 +7,5 @@ export default registerAs('app', () => ({
   url: process.env.APP_URL || 'localhost',
   port: +process.env.APP_PORT || 5000,
   logFileName: './logs/app.log',
+  applyEncription: +process.env.APPLY_ENCRYPTION,
 }));

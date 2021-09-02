@@ -1,4 +1,5 @@
 import { INestApplication, ValidationPipe } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { json, urlencoded } from 'express';
 import * as helmet from 'helmet';
 import { RequestGuard } from './guards';
@@ -22,5 +23,6 @@ export default async function bootstrap(app: INestApplication) {
   app.useGlobalPipes(new ValidationPipe());
 
   // guards
-  app.useGlobalGuards(new RequestGuard());
+  const config = app.get(ConfigService);
+  app.useGlobalGuards(new RequestGuard(config));
 }
