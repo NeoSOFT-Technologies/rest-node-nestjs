@@ -33,6 +33,7 @@ export class RequestGuard implements CanActivate {
 
   bindResponseHelpers(response: Response): Response {
     const APPLY_ENCRYPTION = this.config.get('app.applyEncription');
+    const PASSWORD = this.config.get('app.password');
     const success = (data: Record<string, any> | Array<any> | string, status = StatusCodes.OK) => {
       let result: ResponseType | any = {
         success: true,
@@ -41,7 +42,7 @@ export class RequestGuard implements CanActivate {
       };
 
       if (APPLY_ENCRYPTION) {
-        result = encrypt(result);
+        result = encrypt(result, PASSWORD);
       }
 
       return response.status(status).json(result);
@@ -65,7 +66,7 @@ export class RequestGuard implements CanActivate {
       };
 
       if (APPLY_ENCRYPTION) {
-        result = encrypt(result);
+        result = encrypt(result, PASSWORD);
       }
       return response.status(status).json(result);
     };
@@ -83,7 +84,7 @@ export class RequestGuard implements CanActivate {
       };
 
       if (APPLY_ENCRYPTION) {
-        result = encrypt(result);
+        result = encrypt(result, PASSWORD);
       }
       return response.status(status).json(result);
     };
