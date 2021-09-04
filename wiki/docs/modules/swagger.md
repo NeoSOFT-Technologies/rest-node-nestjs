@@ -43,3 +43,7 @@ if (envList.includes(config.get('app.env'))) {
     setupSwagger(app);
 }
 ```
+
+### Run the Swagger
+
+You can check [swagger](http://localhost:5000/api/docs) running on [`http://localhost:5000/api/docs`](http://localhost:5000/api/docs)
