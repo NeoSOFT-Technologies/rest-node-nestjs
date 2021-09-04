@@ -49,3 +49,22 @@ services:
 # Map src directory in package.json jest config
 
 [https://github.com/nestjs/nest/issues/4953](https://github.com/nestjs/nest/issues/4953)
+
+# Error: Interface 'Response<ResBody>' incorrectly extends interface 'Response'
+
+`npm i -D @types/express-serve-static-core`
+
+[https://stackoverflow.com/questions/63330265/getting-interface-responseresbody-incorrectly-extends-interface-response](https://stackoverflow.com/questions/63330265/getting-interface-responseresbody-incorrectly-extends-interface-response)
+[https://github.com/DefinitelyTyped/DefinitelyTyped/issues/46639](https://github.com/DefinitelyTyped/DefinitelyTyped/issues/46639)
+
+# Is there a recommended way to update NestJS?
+
+```
+$ npm install -g @nestjs/cli
+$ nest update
+```
+
+`npm install --save @nestjs/common@latest @nestjs/config@latest @nestjs/core@latest @nestjs/platform-express@latest @nestjs/typeorm@latest reflect-metadata rxjs`
+
+`npm install --save-dev @nestjs/testing`
+[https://stackoverflow.com/questions/57469252/is-there-a-recommended-way-to-update-nestjs](https://stackoverflow.com/questions/57469252/is-there-a-recommended-way-to-update-nestjs)

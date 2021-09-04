@@ -9,7 +9,7 @@ import { userStub } from '../mock/user.stub';
 
 describe('UsersService', () => {
   let usersService: UsersService;
-
+  let userId = '1';
   const mockUsersRepository = {
     findUser: jest.fn().mockResolvedValue(userStub()),
     findAllUser: jest.fn().mockResolvedValue([userStub()]),
@@ -36,6 +36,9 @@ describe('UsersService', () => {
     let users: User[];
     beforeAll(async () => {
       users = await usersService.findAll();
+      if (users && users.length) {
+        userId = users[0].id;
+      }
     });
     it('Then usersService should be defined', () => {
       expect(usersService).toBeDefined();
@@ -52,10 +55,10 @@ describe('UsersService', () => {
   describe('When findOne method of users service is called', () => {
     let user: User;
     beforeAll(async () => {
-      user = await usersService.findOne(userStub().id);
+      user = await usersService.findOne(userId);
     });
     it('Then findOne method of users service should be called with an id', () => {
-      expect(mockUsersRepository.findUser).toHaveBeenCalledWith(userStub().id);
+      expect(mockUsersRepository.findUser).toHaveBeenCalledWith(userId);
     });
     it('Then findOne method of users service should return a user', () => {
       expect(user).toEqual(userStub());
@@ -87,19 +90,19 @@ describe('UsersService', () => {
         lastName: userStub().lastName,
         isActive: userStub().isActive,
       };
-      await usersService.update(userStub().id, updateuserDto);
+      await usersService.update(userId, updateuserDto);
     });
     it('Then update method of users service should be called with a updateUserDTO', () => {
-      expect(mockUsersRepository.updateUser).toHaveBeenCalledWith(userStub().id, updateuserDto);
+      expect(mockUsersRepository.updateUser).toHaveBeenCalledWith(userId, updateuserDto);
     });
   });
 
   describe('When remove method of users service is called', () => {
     beforeAll(async () => {
-      await usersService.remove(userStub().id);
+      await usersService.remove(userId);
     });
     it('Then remove method of users service should be called with a updateUserDTO', () => {
-      expect(mockUsersRepository.deleteUser).toHaveBeenCalledWith(userStub().id);
+      expect(mockUsersRepository.deleteUser).toHaveBeenCalledWith(userId);
     });
   });
 });
