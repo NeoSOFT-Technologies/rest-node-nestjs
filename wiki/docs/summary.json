@@ -40,6 +40,14 @@
       {
         "title": "Pattern",
         "file": "modules/pattern.md"
+      },
+      {
+        "title": "Crypto",
+        "file": "modules/crypto.md"
+      },
+      {
+        "title": "Open API/Swagger",
+        "file": "modules/swagger.md"
       }
     ]
   },
