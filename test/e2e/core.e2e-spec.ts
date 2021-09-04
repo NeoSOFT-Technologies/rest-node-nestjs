@@ -25,13 +25,15 @@ describe('Core module (e2e)', () => {
   });
 
   describe('TestCases', () => {
-    const guard = new RequestGuard();
-
     it('Testing Request binder', () => {
+      const config = app.get(ConfigService);
+      const guard = new RequestGuard(config);
       expect(guard.bindRequestHelpers).toBeDefined();
     });
 
     it('Testing Response binder', () => {
+      const config = app.get(ConfigService);
+      const guard = new RequestGuard(config);
       expect(guard.bindResponseHelpers).toBeDefined();
     });
 

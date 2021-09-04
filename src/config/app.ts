@@ -8,4 +8,5 @@ export default registerAs('app', () => ({
   port: +process.env.APP_PORT || 5000,
   logFileName: './logs/app.log',
   applyEncription: +process.env.APPLY_ENCRYPTION,
+  password: process.env.PASSWORD,
 }));
