@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { get, omit } from 'lodash';
 
 import { StatusCodes } from 'http-status-codes';
+import { encrypt } from '../crypto/crypto';
+import { ConfigService } from '@nestjs/config';
+
 interface ResponseType {
   success: boolean;
   code: StatusCodes;
@@ -14,6 +17,7 @@ interface ResponseType {
 }
 @Injectable()
 export class RequestGuard implements CanActivate {
+  constructor(private readonly config: ConfigService) {}
   canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
     this.bindRequestHelpers(context.switchToHttp().getRequest());
     this.bindResponseHelpers(context.switchToHttp().getResponse());
@@ -26,13 +30,21 @@ export class RequestGuard implements CanActivate {
    *
    * @param response
    */
+
   bindResponseHelpers(response: Response): Response {
+    const APPLY_ENCRYPTION = this.config.get('app.applyEncription');
+    const PASSWORD = this.config.get('app.password');
     const success = (data: Record<string, any> | Array<any> | string, status = StatusCodes.OK) => {
-      const result: ResponseType = {
+      let result: ResponseType | any = {
         success: true,
         code: status,
         data: data,
       };
+
+      if (APPLY_ENCRYPTION) {
+        result = encrypt(result, PASSWORD);
+      }
+
       return response.status(status).json(result);
     };
 
@@ -45,13 +57,17 @@ export class RequestGuard implements CanActivate {
       } else {
         errorMsg = errorObject;
       }
-      const result: ResponseType = {
+      let result: ResponseType | any = {
         success: false,
         code: status,
         message: errorMsg,
         errors: errors,
         data: null,
       };
+
+      if (APPLY_ENCRYPTION) {
+        result = encrypt(result, PASSWORD);
+      }
       return response.status(status).json(result);
     };
 
@@ -60,12 +76,16 @@ export class RequestGuard implements CanActivate {
     };
 
     const withMeta = (data: Record<string, any>, status = StatusCodes.OK) => {
-      const result: ResponseType = {
+      let result: ResponseType | any = {
         success: true,
         code: status,
         data: get(data, 'data'),
         meta: omit(data, ['data']),
       };
+
+      if (APPLY_ENCRYPTION) {
+        result = encrypt(result, PASSWORD);
+      }
       return response.status(status).json(result);
     };
     response.success = success;
