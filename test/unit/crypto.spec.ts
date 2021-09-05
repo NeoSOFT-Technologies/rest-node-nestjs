@@ -23,7 +23,7 @@ describe('Testing Encryption-Decryption', () => {
     const config = app.get(ConfigService);
     const data = 'This data is to be encrypted';
     const encrypted = encrypt(config, data);
-    const decrypted = JSON.parse(decrypt(config, encrypted));
+    const decrypted = decrypt(config, encrypted);
     expect(decrypted).toEqual(data);
   });
 
@@ -31,7 +31,7 @@ describe('Testing Encryption-Decryption', () => {
     const config = app.get(ConfigService);
     const data = ['this', 'is', 'array'];
     const encrypted = encrypt(config, data);
-    const decrypted = JSON.parse(decrypt(config, encrypted));
+    const decrypted = decrypt(config, encrypted);
     expect(decrypted).toEqual(data);
   });
 
@@ -42,7 +42,7 @@ describe('Testing Encryption-Decryption', () => {
       key2: 'value2',
     };
     const encrypted = encrypt(config, data);
-    const decrypted = JSON.parse(decrypt(config, encrypted));
+    const decrypted = decrypt(config, encrypted);
     expect(decrypted).toEqual(data);
   });
 });

@@ -39,6 +39,29 @@ A nonce, in the broad sense, is just "a number used only once". The only thing g
 ### [Why does the Signal protocol use AES/CBC instead of AES/GCM?](https://crypto.stackexchange.com/questions/68163/why-does-the-signal-protocol-use-aes-cbc-instead-of-aes-gcm)
 ### [AES-GCM Disadvantage](https://crypto.stackexchange.com/questions/18420/aes-gcm-disadvantage)
 ### [Why would I ever use AES-256-CBC if AES-256-GCM is more secure?]( https://security.stackexchange.com/questions/184305/why-would-i-ever-use-aes-256-cbc-if-aes-256-gcm-is-more-secure)### [How to choose an Authenticated Encryption mode](https://blog.cryptographyengineering.com/2012/05/19/how-to-choose-authenticated-encryption/)
+### [Node.js - AES Encryption/Decryption with AES-256-GCM using random Initialization Vector + Salt](https://gist.github.com/AndiDittrich/4629e7db04819244e843)
+
+### Encryption algorithms should be used with secure mode and padding scheme
+
+- Encryption operation mode and the padding scheme should be chosen appropriately to guarantee data confidentiality, integrity and authenticity:
+    - For block cipher encryption algorithms (like AES):
+        - The GCM (Galois Counter Mode) mode which works internally with zero/no padding scheme, is recommended, as it is designed to provide both data authenticity (integrity) and confidentiality. Other similar modes are CCM, CWC, EAX, IAPM and OCB.
+        - The CBC (Cipher Block Chaining) mode by itself provides only data confidentiality, it’s recommended to use it along with Message Authentication Code or similar to achieve data authenticity (integrity) too and thus to prevent padding oracle attacks.
+        - The ECB (Electronic Codebook) mode doesn’t provide serious message confidentiality: under a given key any given plaintext block always gets encrypted to the same ciphertext block. This mode should not be used.
+        - For RSA encryption algorithm, the recommended padding scheme is OAEP.
+
+- Noncompliant Code Example
+    - Noncompliant: CBC with PKCS5/7 (set by default) is vulnerable to oracle padding attacks
+
+    `crypto.createCipheriv("AES-128-CBC", key, iv);`
+
+    - Noncompliant: ECB doesn't provide serious message confidentiality
+
+    `crypto.createCipheriv("AES-128-ECB", key, "");`
+
+- Compliant Solution
+
+`crypto.createCipheriv("AES-256-GCM", key, iv);`
 
 ### Test
 
