@@ -20,12 +20,6 @@ const digest = 'sha512';
 // salt
 const salt = crypto.randomBytes(64);
 
-/**
- *
- * @param config
- * @param data
- * @returns
- */
 export const encrypt = (config: ConfigService, data: any) => {
   try {
     // constant to encrypt the data
@@ -36,7 +30,7 @@ export const encrypt = (config: ConfigService, data: any) => {
     const password = config.get('crypto.secretKey');
 
     // random initialization vector
-    const iv = crypto.randomBytes(16);
+    const iv = crypto.randomBytes(12);
 
     // The method gives an asynchronous Password-Based Key Derivation
     const key: Buffer = crypto.pbkdf2Sync(password, salt, iterations, keylen, digest);
@@ -48,39 +42,39 @@ export const encrypt = (config: ConfigService, data: any) => {
     // @options
     const cipher = crypto.createCipheriv(algorithm, key, iv);
 
-    // cipher.update - Used to update the cipher with data according to the given encoding format.
-    // @data: It is used to update the cipher by new content
-    // @inputEncoding: Input encoding format
-    // @outputEncoding: Output encoding format
-    // cipher.final = Return the buffer containing the value of cipher object.
-    // @outputEncoding: Output encoding format
-    let encryptedData = cipher.update(JSON.stringify(data), inputEncoding, outputEncoding);
+    // create a Cipher object, with the stated algorithm, key and initialization vector (iv).
+    // @algorithm - AES 256 GCM Mode
+    // @key
+    // @iv
+    // @options
+    const enc1 = cipher.update(JSON.stringify(data), inputEncoding);
 
     // Return the buffer containing the value of cipher object.
     // @outputEncoding: Output encoding format
-    encryptedData += cipher.final(outputEncoding);
+    // const enc2 = cipher.final();
+    const enc2 = cipher.final();
 
     // extract the auth tag
     const tag = cipher.getAuthTag();
 
+    // return [enc1, enc2, iv, tag];
+    const encryptedData = Buffer.concat([enc1, enc2, iv, tag]).toString(outputEncoding);
+
     // return the result
-    return [encryptedData, iv, tag];
+    return encryptedData;
   } catch (exception) {
     throw new Error(exception);
   }
 };
 
-/**
- *
- * @param config
- * @param encryptedDatawithIV
- * @returns
- */
 export const decrypt = (config: ConfigService, data: any) => {
   try {
     // constant to decrypt the data
     const inputEncoding = 'base64';
     const outputEncoding = 'utf8';
+
+    // Creates a new Buffer containing the given JavaScript string {str}
+    data = Buffer.from(data, inputEncoding);
 
     // password - master key
     const password = config.get('crypto.secretKey');
@@ -88,10 +82,14 @@ export const decrypt = (config: ConfigService, data: any) => {
     // derive key using; 32 byte key length
     const key = crypto.pbkdf2Sync(password, salt, iterations, keylen, digest);
 
-    // encrypted data with iv & tag
-    const text = data[0];
-    const iv = data[1];
-    const tag = data[2];
+    // extract iv from encrypted data
+    const iv = data.slice(data.length - 28, data.length - 16);
+
+    // extract tag from encrypted data
+    const tag = data.slice(data.length - 16);
+
+    // extract encrypted text from encrypted data
+    data = data.slice(0, data.length - 28);
 
     // AES 256 GCM Mode
     const decipher = crypto.createDecipheriv(algorithm, key, iv);
@@ -103,14 +101,15 @@ export const decrypt = (config: ConfigService, data: any) => {
     // @data: It is used to update the cipher by new content
     // @inputEncoding: Input encoding format
     // @outputEncoding: Output encoding format
-    let decryptedData = decipher.update(JSON.stringify(text), inputEncoding, outputEncoding);
+    let str = decipher.update(data, inputEncoding, outputEncoding);
 
     // Return the buffer containing the value of cipher object.
     // @outputEncoding: Output encoding format
-    decryptedData += decipher.final(outputEncoding);
+    str += decipher.final(outputEncoding);
 
-    return JSON.parse(decryptedData);
-  } catch (exp) {
-    throw exp;
+    // parse the string decrypted data
+    return JSON.parse(str);
+  } catch (exception) {
+    throw new Error(exception);
   }
 };
