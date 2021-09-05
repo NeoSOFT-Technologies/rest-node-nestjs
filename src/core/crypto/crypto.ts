@@ -39,7 +39,7 @@ export const encrypt = (config: ConfigService, data: any) => {
     const iv = crypto.randomBytes(16);
 
     // The method gives an asynchronous Password-Based Key Derivation
-    const key: Buffer = crypto.pbkdf2Sync(password, salt, 2145, 32, 'sha512');
+    const key: Buffer = crypto.pbkdf2Sync(password, salt, iterations, keylen, digest);
 
     // create a Cipher object, with the stated algorithm, key and initialization vector (iv).
     // @algorithm - AES 256 GCM Mode
