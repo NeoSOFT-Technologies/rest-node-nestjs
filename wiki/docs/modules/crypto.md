@@ -38,7 +38,8 @@ A nonce, in the broad sense, is just "a number used only once". The only thing g
 
 ### [Why does the Signal protocol use AES/CBC instead of AES/GCM?](https://crypto.stackexchange.com/questions/68163/why-does-the-signal-protocol-use-aes-cbc-instead-of-aes-gcm)
 ### [AES-GCM Disadvantage](https://crypto.stackexchange.com/questions/18420/aes-gcm-disadvantage)
-### [Why would I ever use AES-256-CBC if AES-256-GCM is more secure?]( https://security.stackexchange.com/questions/184305/why-would-i-ever-use-aes-256-cbc-if-aes-256-gcm-is-more-secure)### [How to choose an Authenticated Encryption mode](https://blog.cryptographyengineering.com/2012/05/19/how-to-choose-authenticated-encryption/)
+### [Why would I ever use AES-256-CBC if AES-256-GCM is more secure?]( https://security.stackexchange.com/questions/184305/why-would-i-ever-use-aes-256-cbc-if-aes-256-gcm-is-more-secure)
+### [How to choose an Authenticated Encryption mode](https://blog.cryptographyengineering.com/2012/05/19/how-to-choose-authenticated-encryption/)
 ### [Node.js - AES Encryption/Decryption with AES-256-GCM using random Initialization Vector + Salt](https://gist.github.com/AndiDittrich/4629e7db04819244e843)
 
 ### Encryption algorithms should be used with secure mode and padding scheme
