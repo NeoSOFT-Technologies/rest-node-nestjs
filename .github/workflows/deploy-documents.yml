@@ -11,13 +11,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Set-up Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2.4.0
         with:
           node-version: "10.x"
       - run: npm install
       - run: npm run doc
       - name: Deploy
-        uses: crazy-max/ghaction-github-pages@v1
+        uses: crazy-max/ghaction-github-pages@v2.5.0
         with:
           target_branch: gh-pages
           build_dir: documentation
