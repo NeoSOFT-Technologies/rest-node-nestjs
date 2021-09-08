@@ -22,15 +22,15 @@ describe('Testing compression middleware', () => {
   });
   it('checking content-encoding of response', async () => {
     const response = await request(app.getHttpServer()).get('/users');
-    expect(response.headers['content-encoding']).toBe('gzip');
+    expect(response.headers['content-encoding']).toEqual('gzip');
   });
   it('should respond with gzip when "Accept-Encoding: gzip,deflate"', async () => {
     const response = await request(app.getHttpServer()).get('/users').set('Accept-Encoding', 'gzip,deflate');
-    expect(response.headers['content-encoding']).toBe('gzip');
+    expect(response.headers['content-encoding']).toEqual('gzip');
   });
   it('should respond with deflate when "Accept-Encoding: deflate"', async () => {
     const response = await request(app.getHttpServer()).get('/users').set('Accept-Encoding', 'deflate');
-    expect(response.headers['content-encoding']).toBe('deflate');
+    expect(response.headers['content-encoding']).toEqual('deflate');
   });
   it('should skip unknown accept-encoding', async () => {
     const response = await request(app.getHttpServer()).get('/').set('Accept-Encoding', 'bogus');
@@ -43,7 +43,7 @@ describe('Testing compression middleware', () => {
   });
   it('should compress responses above the threshold size', async () => {
     const response = await request(app.getHttpServer()).get('/users');
-    expect(response.headers['content-encoding']).toBe('gzip');
+    expect(response.headers['content-encoding']).toEqual('gzip');
   });
   it('should not compress response when x-no-compression header is set', async () => {
     const response = await request(app.getHttpServer()).get('/users').set('x-no-compression', 'true');
