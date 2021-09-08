@@ -22,7 +22,8 @@ export default async function bootstrap(app: INestApplication) {
   app.use(
     compression({
       filter: shouldCompress,
-      threshold: 1024,
+      //threshold: 1024,
+      threshold: 0,
     })
   );
 
