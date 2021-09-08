@@ -50,7 +50,7 @@ describe('AppController (e2e)', () => {
   });
 
   it('Should delete user of specified id and return 200 status code', async () => {
-    const { status, body } = await request(app.getHttpServer()).delete('/users/3').expect(200);
+    const { status, body } = await request(app.getHttpServer()).delete('/users/1').expect(200);
     expect(status).toEqual(200);
     const { data } = body;
     expect(data).toEqual('Deletion Successfull');
