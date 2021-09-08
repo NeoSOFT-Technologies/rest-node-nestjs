@@ -9,4 +9,7 @@ export default registerAs('app', () => ({
   port: +process.env.APP_PORT || 5000,
   logFileName: './logs/app.log',
   applyEncription: +process.env.APPLY_ENCRYPTION,
+  apiVersioning: process.env.API_VERSIONING || 'URI', // URI, Header, Media Type
+  apiVersioningHeader: process.env.API_VERSIONING_HEADER || 'custom',
+  apiVersioningKey: process.env.API_VERSIONING_KEY || 'v=',
 }));
