@@ -4,11 +4,6 @@ import { ConfigService } from '@nestjs/config';
 export const setupAPIVersioning = (app: INestApplication) => {
   const config = app.get(ConfigService);
   switch (config.get('app.apiVersioning')) {
-    case 'URI':
-      app.enableVersioning({
-        type: VersioningType.URI,
-      });
-      break;
     case 'Header':
       app.enableVersioning({
         type: VersioningType.HEADER,

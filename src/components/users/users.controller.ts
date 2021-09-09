@@ -1,18 +1,5 @@
 import { User } from './entities/user.entity';
-import {
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Patch,
-  Post,
-  Req,
-  Res,
-  Put,
-  NotFoundException,
-  Version,
-  Headers,
-} from '@nestjs/common';
+import { Controller, Delete, Get, Param, Patch, Post, Req, Res, Version } from '@nestjs/common';
 import { UsersService } from './services/users.service';
 import { Request, Response } from '@app/core';
 import { StatusCodes } from 'http-status-codes';
