@@ -6,6 +6,7 @@ import { get, omit } from 'lodash';
 import { StatusCodes } from 'http-status-codes';
 import { encrypt } from '../crypto/crypto';
 import { ConfigService } from '@nestjs/config';
+import { key, manager } from '../middleware/cache.middleware';
 
 interface ResponseType {
   success: boolean;
@@ -33,6 +34,7 @@ export class RequestGuard implements CanActivate {
 
   bindResponseHelpers(response: Response): Response {
     const APPLY_ENCRYPTION = this.config.get('app.applyEncription');
+    const APPLY_CACHING = this.config.get('app.applyCaching');
     const success = (data: Record<string, any> | Array<any> | string, status = StatusCodes.OK) => {
       let result: ResponseType | any = {
         success: true,
@@ -43,7 +45,9 @@ export class RequestGuard implements CanActivate {
       if (APPLY_ENCRYPTION) {
         result = encrypt(this.config, result);
       }
-
+      if (APPLY_CACHING) {
+        manager.set(key, result);
+      }
       return response.status(status).json(result);
     };
 
@@ -67,6 +71,10 @@ export class RequestGuard implements CanActivate {
       if (APPLY_ENCRYPTION) {
         result = encrypt(this.config, result);
       }
+
+      if (APPLY_CACHING) {
+        manager.set(key, result);
+      }
       return response.status(status).json(result);
     };
 
@@ -85,6 +93,10 @@ export class RequestGuard implements CanActivate {
       if (APPLY_ENCRYPTION) {
         result = encrypt(this.config, result);
       }
+
+      if (APPLY_CACHING) {
+        manager.set(key, result);
+      }
       return response.status(status).json(result);
     };
     response.success = success;
@@ -101,6 +113,7 @@ export class RequestGuard implements CanActivate {
    * @param request
    */
   bindRequestHelpers(request: Request): Request {
+    // console.log('Request binder called');
     const all = (): Record<string, any> => {
       const inputs = { ...request.query, ...request.body, ...request.params };
 

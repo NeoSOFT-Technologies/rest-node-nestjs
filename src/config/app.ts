@@ -12,4 +12,5 @@ export default registerAs('app', () => ({
   apiVersioning: process.env.API_VERSIONING || 'URI', // URI, Header, Media Type
   apiVersioningHeader: process.env.API_VERSIONING_HEADER || 'custom',
   apiVersioningKey: process.env.API_VERSIONING_KEY || 'v=',
+  applyCaching: process.env.USE_CACHING,
 }));
