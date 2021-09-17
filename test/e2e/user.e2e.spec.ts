@@ -5,6 +5,7 @@ import { AppModule } from '@app/app.module';
 import coreBootstrap from '@app/core/bootstrap';
 import { userStub } from '../mock/user.stub';
 import { updateUserStub } from '../mock/user.update.stub';
+import { redisConnection } from '@app/core/middleware/cache.middleware';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -16,6 +17,7 @@ describe('AppController (e2e)', () => {
 
     app = moduleFixture.createNestApplication();
     coreBootstrap(app);
+    // redisConnection(app);
     await app.init();
   });
 

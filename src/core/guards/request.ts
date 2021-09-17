@@ -113,7 +113,6 @@ export class RequestGuard implements CanActivate {
    * @param request
    */
   bindRequestHelpers(request: Request): Request {
-    // console.log('Request binder called');
     const all = (): Record<string, any> => {
       const inputs = { ...request.query, ...request.body, ...request.params };
 
