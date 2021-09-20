@@ -3,14 +3,15 @@ import { ConfigService } from '@nestjs/config';
 import { json, urlencoded } from 'express';
 import * as helmet from 'helmet';
 import { RequestGuard } from './guards';
-// const compression = require('compression');
 import * as compression from 'compression';
 import { shouldCompress } from './compression/compression';
+import { CacheMiddleware } from './middleware/cache.middleware';
 /**
  * Core bootstrap module should be loaded here.
  * @param app
  *
  */
+
 export default async function bootstrap(app: INestApplication) {
   // Global Prefix
   // app.setGlobalPrefix('api');
@@ -27,6 +28,8 @@ export default async function bootstrap(app: INestApplication) {
     })
   );
 
+  // middlewares, express specific
+  // app.use(CacheMiddleware);
   // Auto-validation
   // We'll start by binding ValidationPipe at the application level, thus ensuring all endpoints are protected from receiving incorrect data.
   app.useGlobalPipes(new ValidationPipe());

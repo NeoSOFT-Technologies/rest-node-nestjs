@@ -3,6 +3,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
 import { AppModule } from '../../src/app.module';
 import coreBootstrap from '@app/core/bootstrap';
+import { redisConnection } from '@app/core/middleware/cache.middleware';
 
 describe('Testing compression middleware', () => {
   let app: INestApplication;
@@ -14,6 +15,7 @@ describe('Testing compression middleware', () => {
 
     app = moduleFixture.createNestApplication();
     coreBootstrap(app);
+    // redisConnection(app);
     await app.init();
   });
 
@@ -37,16 +39,16 @@ describe('Testing compression middleware', () => {
     expect(response.headers['content-encoding']).toBeUndefined();
     expect(response.headers['content-length']).toBeDefined();
   });
-//   it('should not compress responses below the threshold size', async () => {
-//     const response = await request(app.getHttpServer()).get('');
-//     expect(response.headers['content-encoding']).toBeUndefined();
-//   });
+  //   it('should not compress responses below the threshold size', async () => {
+  //     const response = await request(app.getHttpServer()).get('');
+  //     expect(response.headers['content-encoding']).toBeUndefined();
+  //   });
   it('should compress responses above the threshold size', async () => {
     const response = await request(app.getHttpServer()).get('/users');
     expect(response.headers['content-encoding']).toEqual('gzip');
   });
-//   it('should not compress response when x-no-compression header is set', async () => {
-//     const response = await request(app.getHttpServer()).get('/users').set('x-no-compression', 'true');
-//     expect(response.headers['content-encoding']).toBeUndefined();
-//   });
+  //   it('should not compress response when x-no-compression header is set', async () => {
+  //     const response = await request(app.getHttpServer()).get('/users').set('x-no-compression', 'true');
+  //     expect(response.headers['content-encoding']).toBeUndefined();
+  //   });
 });
