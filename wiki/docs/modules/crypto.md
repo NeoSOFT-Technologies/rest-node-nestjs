@@ -7,7 +7,7 @@ The objective of Encryption-Decryption module
 1) This module would support sending the requests to the server from the user in encrypted form and also encryptingthe reponses that the user will receive from the server.
 2) We need to provide a flag variable which tells us whether we need to encrypt the data or not in the .env file.
 3) Also we need to define the constants such as which algorithm to be used for encryption in the crypto.ts file.
-4) Currently we are using aes-256-cbc algorithm for encryption and decryption.
+4) Currently we are using **aes-256-gcm** algorithm for encryption and decryption.
 
 # Configuration
 
