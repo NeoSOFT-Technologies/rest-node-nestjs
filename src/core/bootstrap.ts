@@ -6,6 +6,8 @@ import { RequestGuard } from './guards';
 import * as compression from 'compression';
 import { shouldCompress } from './compression/compression';
 import { CacheMiddleware } from './middleware/cache.middleware';
+import * as cors from 'cors';
+import { corsOptions } from './CORS/cors.config';
 /**
  * Core bootstrap module should be loaded here.
  * @param app
@@ -27,6 +29,7 @@ export default async function bootstrap(app: INestApplication) {
       threshold: 0,
     })
   );
+  app.use(cors(corsOptions));
 
   // middlewares, express specific
   // app.use(CacheMiddleware);
