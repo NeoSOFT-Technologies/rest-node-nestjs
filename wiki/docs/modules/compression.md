@@ -12,15 +12,35 @@ The objective of Compression
     - gzip
 3) Gzip (gzip): The most widely used compression format for server and client interactions. It is based on the Deflate algorithm and is compatible with all current browsers
 
+## Install
+
+This is a [Node.js](https://nodejs.org/en/) module available through the
+[npm registry](https://www.npmjs.com/). Installation is done using the
+[`npm install` command](https://docs.npmjs.com/getting-started/installing-npm-packages-locally):
+
+```bash
+$ npm install compression
+```
+
+## Using compression middleware
 ```
 app.use(compression({
     filter: shouldCompress,
-    threshold: 1024
+    threshold: 0
   }));
 ```
 
 `filter` decide if the answer should be compressed or not, depending on the 'shouldCompress' function
-`threshold` means the byte threshold for the response body size before considering compression. Currently the threshold is set to 1kb
+`threshold` means the byte threshold for the response body size before considering compression, the default is 1 kB. Currently the threshold is set to 0 bytes which means every response body is going to be compressed. We can tweak this parameter according to our convenience.
 
-For a complete list of properties you can choose from, see the documentation [here](http://expressjs.com/en/resources/middleware/compression.html).
+> When compression middleware is not used, response body size is 4.3kB
+
+![Console](https://github.com/ssingh3006/rest-node-nestjs/blob/newFeatures/wiki/images/uncompressed.PNG?raw=true)
+
+> When compression middleware is used, response body size reduces to 1.3kB. We can also see response header **`Content-Encoding`** is set to **`gzip`**
+
+![Console](https://github.com/ssingh3006/rest-node-nestjs/blob/newFeatures/wiki/images/compressed.PNG?raw=true)
+
+
+For a complete list of properties to choose from, see the documentation [here](http://expressjs.com/en/resources/middleware/compression.html).
 
