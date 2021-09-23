@@ -18,7 +18,6 @@ async function bootstrap() {
   if (envList.includes(config.get('app.env'))) {
     setupAPIVersioning(app);
     setupSwagger(app);
-    // redisConnection(app);
   }
   if (config.get('app.applyCaching')) {
     redisConnection(app);
