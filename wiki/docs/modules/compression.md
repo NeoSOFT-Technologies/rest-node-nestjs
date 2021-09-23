@@ -34,10 +34,10 @@ app.use(compression({
 `threshold` means the byte threshold for the response body size before considering compression, the default is 1 kB. Currently the threshold is set to 0 bytes which means every response body is going to be compressed. We can tweak this parameter according to our convenience.
 
 > When compression middleware is not used, response body size is 4.3kB
-![Console](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/images/uncompressed.PNG?raw=true)
+![Console](https://github.com/ssingh3006/rest-node-nestjs/blob/newFeatures/wiki/images/uncompressed.PNG?raw=true)
 
 > When compression middleware is used, response body size reduces to 1.3kB. We can also see response header `Content-Encoding` is set to `gzip`
-![Console](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/images/compressed.PNG?raw=true)
+![Console](https://github.com/ssingh3006/rest-node-nestjs/blob/newFeatures/wiki/images/compressed.PNG?raw=true)
 
 
 For a complete list of properties to choose from, see the documentation [here](http://expressjs.com/en/resources/middleware/compression.html).

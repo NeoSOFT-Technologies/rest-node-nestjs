@@ -64,5 +64,5 @@ Now the rate-limiting functionality has been implemented and now we can run our 
 
 The output can be seen when a request made to the specific endpoint exceeds a given limit.
 >
-!['Rate Limit Output'](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/images/rate-limit-output.png?raw=true)
+!['Rate Limit Output'](https://github.com/ssingh3006/rest-node-nestjs/blob/newFeatures/wiki/images/rate-limit-output.png?raw=true)
 >
