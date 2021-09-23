@@ -4,6 +4,7 @@ import { AppModule } from '../../src/app.module';
 import coreBootstrap from '@app/core/bootstrap';
 import { ThrottleModule } from '../../src/core/rate limiter/throttle.module';
 import * as request from 'supertest';
+import { ConfigService } from '@nestjs/config';
 
 describe('Testing api rate limit', () => {
   let app: INestApplication;
@@ -27,8 +28,11 @@ describe('Testing api rate limit', () => {
   });
 
   it('Checking limited response message', async () => {
-    await request(app.getHttpServer()).get('/');
-    await request(app.getHttpServer()).get('/');
+    const config = app.get(ConfigService);
+    const limit = config.get('throttler.limit');
+    for (let index = 0; index < limit; index++) {
+      await request(app.getHttpServer()).get('/');
+    }
     const response = await request(app.getHttpServer()).get('/');
     expect(response.body.statusCode).toEqual(429);
     expect(response.body.message).toEqual('ThrottlerException: Too Many Requests');
