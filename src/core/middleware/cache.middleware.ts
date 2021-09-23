@@ -15,22 +15,15 @@ const redisConnection = (app: INestApplication) => {
     ttl: config.get('cache.ttl'),
   });
 };
-// let config: ConfigService;
-// const manager = cacheManager.caching({
-//   store: redisStore,
-//   host: process.env.REDIS_HOST,
-//   port: +process.env.REDIS_PORT,
-//   ttl: 10,
-// });
 
-let key: any;
+let cacheKey: any;
 async function CacheMiddleware(req: Request, res: Response, next: NextFunction) {
-  key = req.url; //string
-  const data = await manager.get(key);
+  cacheKey = req.url; //string
+  const data = await manager.get(cacheKey);
   if (data) {
-    return res.status(200).json(data);
+    res.status(200).json(data);
   } else {
     next();
   }
 }
-export { manager, key, CacheMiddleware, redisConnection };
+export { manager, cacheKey, CacheMiddleware, redisConnection };

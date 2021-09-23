@@ -5,6 +5,7 @@ import coreBootstrap from '@app/core/bootstrap';
 import { ThrottleModule } from '../../src/core/rate limiter/throttle.module';
 import * as request from 'supertest';
 import { ConfigService } from '@nestjs/config';
+import { redisConnection } from '../../src/core/middleware/cache.middleware';
 
 describe('Testing api rate limit', () => {
   let app: INestApplication;
@@ -15,8 +16,11 @@ describe('Testing api rate limit', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
+    const config = app.get(ConfigService);
+    if (config.get('app.applyCaching')) {
+      redisConnection(app);
+    }
     coreBootstrap(app);
-    // redisConnection(app);
     await app.init();
   });
 

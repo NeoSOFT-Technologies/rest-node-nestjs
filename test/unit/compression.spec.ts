@@ -3,10 +3,13 @@ import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
 import { AppModule } from '../../src/app.module';
 import coreBootstrap from '@app/core/bootstrap';
-import { redisConnection } from '@app/core/middleware/cache.middleware';
+import { ConfigService } from '@nestjs/config';
+import { redisConnection } from '../../src/core/middleware/cache.middleware';
 
 describe('Testing compression middleware', () => {
   let app: INestApplication;
+  const contentEncoding = 'content-encoding';
+  const acceptEncoding = 'Accept-Encoding';
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -14,8 +17,11 @@ describe('Testing compression middleware', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
+    const config = app.get(ConfigService);
+    if (config.get('app.applyCaching')) {
+      redisConnection(app);
+    }
     coreBootstrap(app);
-    // redisConnection(app);
     await app.init();
   });
 
@@ -24,31 +30,23 @@ describe('Testing compression middleware', () => {
   });
   it('checking content-encoding of response', async () => {
     const response = await request(app.getHttpServer()).get('/users');
-    expect(response.headers['content-encoding']).toEqual('gzip');
+    expect(response.headers[contentEncoding]).toEqual('gzip');
   });
   it('should respond with gzip when "Accept-Encoding: gzip,deflate"', async () => {
-    const response = await request(app.getHttpServer()).get('/users').set('Accept-Encoding', 'gzip,deflate');
-    expect(response.headers['content-encoding']).toEqual('gzip');
+    const response = await request(app.getHttpServer()).get('/users').set(acceptEncoding, 'gzip,deflate');
+    expect(response.headers[contentEncoding]).toEqual('gzip');
   });
   it('should respond with deflate when "Accept-Encoding: deflate"', async () => {
-    const response = await request(app.getHttpServer()).get('/users').set('Accept-Encoding', 'deflate');
-    expect(response.headers['content-encoding']).toEqual('deflate');
+    const response = await request(app.getHttpServer()).get('/users').set(acceptEncoding, 'deflate');
+    expect(response.headers[contentEncoding]).toEqual('deflate');
   });
   it('should skip unknown accept-encoding', async () => {
-    const response = await request(app.getHttpServer()).get('/').set('Accept-Encoding', 'bogus');
-    expect(response.headers['content-encoding']).toBeUndefined();
+    const response = await request(app.getHttpServer()).get('/').set(acceptEncoding, 'bogus');
+    expect(response.headers[contentEncoding]).toBeUndefined();
     expect(response.headers['content-length']).toBeDefined();
   });
-  //   it('should not compress responses below the threshold size', async () => {
-  //     const response = await request(app.getHttpServer()).get('');
-  //     expect(response.headers['content-encoding']).toBeUndefined();
-  //   });
   it('should compress responses above the threshold size', async () => {
     const response = await request(app.getHttpServer()).get('/users');
-    expect(response.headers['content-encoding']).toEqual('gzip');
+    expect(response.headers[contentEncoding]).toEqual('gzip');
   });
-  //   it('should not compress response when x-no-compression header is set', async () => {
-  //     const response = await request(app.getHttpServer()).get('/users').set('x-no-compression', 'true');
-  //     expect(response.headers['content-encoding']).toBeUndefined();
-  //   });
 });

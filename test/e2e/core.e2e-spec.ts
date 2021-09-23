@@ -6,7 +6,7 @@ import { AppModule } from '../../src/app.module';
 import coreBootstrap from '@app/core/bootstrap';
 import { RequestGuard } from '../../src/core';
 import AppLogger from '../../src/core/logger/AppLogger';
-import { redisConnection } from '@app/core/middleware/cache.middleware';
+import { redisConnection } from '../../src/core/middleware/cache.middleware';
 
 describe('Core module (e2e)', () => {
   let app: INestApplication;
@@ -17,8 +17,11 @@ describe('Core module (e2e)', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
+    const config = app.get(ConfigService);
+    if (config.get('app.applyCaching')) {
+      redisConnection(app);
+    }
     coreBootstrap(app);
-    // redisConnection(app);
     await app.init();
   });
 

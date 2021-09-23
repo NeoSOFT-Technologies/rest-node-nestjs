@@ -4,6 +4,7 @@ import * as request from 'supertest';
 import { AppModule } from '../../src/app.module';
 import coreBootstrap from '@app/core/bootstrap';
 import { CacheMiddleware, manager, redisConnection } from '@app/core/middleware/cache.middleware';
+import { ConfigService } from '@nestjs/config';
 
 describe('Testing redis cache manager', () => {
   let app: INestApplication;
@@ -14,8 +15,11 @@ describe('Testing redis cache manager', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
+    const config = app.get(ConfigService);
+    if (config.get('app.applyCaching')) {
+      redisConnection(app);
+    }
     coreBootstrap(app);
-    // redisConnection(app);
     await app.init();
   });
 
