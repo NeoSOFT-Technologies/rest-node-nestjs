@@ -53,7 +53,7 @@ The result that we got are shown below
 
 > Here we can see that the responnse header `Access-Control-Allow-Origin` is set to the origin from where we are making fetch request
 
-![Response Headers](https://github.com/ssingh3006/rest-node-nestjs/blob/newFeatures/wiki/CORS-response-headers.PNG?raw=true)
+![Response Headers](https://github.com/ssingh3006/rest-node-nestjs/blob/newFeatures/wiki/images/CORS-response-headers.PNG?raw=true)
 
 
 ## Configuration Options
