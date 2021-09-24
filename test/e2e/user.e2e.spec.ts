@@ -5,7 +5,8 @@ import { AppModule } from '@app/app.module';
 import coreBootstrap from '@app/core/bootstrap';
 import { userStub } from '../mock/user.stub';
 import { updateUserStub } from '../mock/user.update.stub';
-import { redisConnection } from '@app/core/middleware/cache.middleware';
+import { ConfigService } from '@nestjs/config';
+import { redisConnection } from '../../src/core/middleware/cache.middleware';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -16,8 +17,11 @@ describe('AppController (e2e)', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
+    const config = app.get(ConfigService);
+    if (config.get('app.applyCaching')) {
+      redisConnection(app);
+    }
     coreBootstrap(app);
-    // redisConnection(app);
     await app.init();
   });
 
