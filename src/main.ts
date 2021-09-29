@@ -3,6 +3,8 @@ import { AppModule } from './app.module';
 import coreBootstrap from '@app/core/bootstrap';
 import { ConfigService } from '@nestjs/config';
 import { setupSwagger } from './swagger';
+import { setupAPIVersioning } from './core/api.versioning';
+import { redisConnection } from './core/middleware/cache.middleware';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -14,7 +16,11 @@ async function bootstrap() {
   const envList = ['dev', 'staging', 'local', 'test'];
 
   if (envList.includes(config.get('app.env'))) {
+    setupAPIVersioning(app);
     setupSwagger(app);
+  }
+  if (config.get('app.applyCaching')) {
+    redisConnection(app);
   }
 
   // core bootstrap

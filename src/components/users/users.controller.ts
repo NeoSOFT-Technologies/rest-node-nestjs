@@ -1,5 +1,5 @@
 import { User } from './entities/user.entity';
-import { Controller, Delete, Get, Param, Patch, Post, Req, Res, Put, NotFoundException } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Patch, Post, Req, Res, Version } from '@nestjs/common';
 import { UsersService } from './services/users.service';
 import { Request, Response } from '@app/core';
 import { StatusCodes } from 'http-status-codes';
@@ -9,6 +9,28 @@ import { UpdateUserDto } from './dto/update.user.dto';
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
+
+  // Versioning API
+
+  @Get()
+  @Version('1')
+  async getUsersV1(@Req() req: Request, @Res() res: Response): Promise<Response> {
+    try {
+      return res.success('Response from API version 1');
+    } catch (e) {
+      return res.error(e);
+    }
+  }
+
+  @Get()
+  @Version('2')
+  async getUsersV2(@Req() req: Request, @Res() res: Response): Promise<Response> {
+    try {
+      return res.success('Response from API version 2');
+    } catch (e) {
+      return res.error(e);
+    }
+  }
 
   @Get()
   async getUsers(@Req() req: Request, @Res() res: Response): Promise<Response> {

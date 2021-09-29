@@ -3,6 +3,8 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from '@app/app.module';
 import coreBootstrap from '@app/core/bootstrap';
+import { ConfigService } from '@nestjs/config';
+import { redisConnection } from '../../src/core/middleware/cache.middleware';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -13,6 +15,10 @@ describe('AppController (e2e)', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
+    const config = app.get(ConfigService);
+    if (config.get('app.applyCaching')) {
+      redisConnection(app);
+    }
     coreBootstrap(app);
     await app.init();
   });
