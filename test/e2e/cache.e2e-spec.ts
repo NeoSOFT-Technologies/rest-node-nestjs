@@ -33,14 +33,14 @@ describe('Testing redis cache manager', () => {
   if (+process.env.USE_CACHING) {
     it('Checking "/" key is generated', async () => {
       const response = await request(app.getHttpServer()).get('/');
-      expect(await manager.get('/')).toBeDefined();
-      expect(await manager.get('/')).toEqual(response.body);
+      expect(await manager.get('GET /')).toBeDefined();
+      expect(await manager.get('GET /')).toEqual(response.body);
     });
 
     it('Checking "/users" key is generated', async () => {
       const response = await request(app.getHttpServer()).get('/users');
-      expect(await manager.get('/users')).toBeDefined();
-      expect(await manager.get('/users')).toEqual(response.body);
+      expect(await manager.get('GET /users')).toBeDefined();
+      expect(await manager.get('GET /users')).toEqual(response.body);
     });
   }
 });

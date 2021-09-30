@@ -52,6 +52,11 @@ describe('Core module (e2e)', () => {
       expect(response.body.error).toBe('Not Found');
     });
 
+    it('Checking Response binder for invalid GET request', async () => {
+      const response = await request(app.getHttpServer()).get('/users/test');
+      expect(response.body.success).toBe(false);
+    });
+
     it('Checking Applogger', async () => {
       const config = app.get(ConfigService);
       const applogger = new AppLogger(config);

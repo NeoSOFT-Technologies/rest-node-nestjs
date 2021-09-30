@@ -16,9 +16,9 @@ const redisConnection = (app: INestApplication) => {
   });
 };
 
-let cacheKey: any;
+let cacheKey: string;
 async function CacheMiddleware(req: Request, res: Response, next: NextFunction) {
-  cacheKey = req.url; //string
+  cacheKey = req.method + ' ' + req.url; //string
   const data = await manager.get(cacheKey);
   if (data) {
     res.status(200).json(data);

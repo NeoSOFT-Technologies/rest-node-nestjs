@@ -11,7 +11,7 @@ export class UserDbRepository extends Repository<User> implements UserRepository
     super();
   }
   findUser(id: string): Promise<User> {
-    return this.findOne(id);
+    return this.findOneOrFail(id);
   }
   findAllUser(): Promise<User[]> {
     return this.find();
@@ -23,13 +23,20 @@ export class UserDbRepository extends Repository<User> implements UserRepository
   //   // let id = parseInt(id);
   //   return this.save({ ...payload, id });
   // }
-  updateUser(id: string, user: UpdateUserDto): Promise<UpdateResult> {
+  async updateUser(id: string, user: UpdateUserDto): Promise<UpdateResult> {
+    const result = await this.findOne(id);
+    if (result === undefined) {
+      throw new Error('User not found in database');
+    }
     return this.update(id, {
       ...user,
     });
   }
   async deleteUser(id: string): Promise<void> {
-    await this.findOneOrFail(id);
+    const result = await this.findOne(id);
+    if (result === undefined) {
+      throw new Error('User not found in database');
+    }
     await this.delete(id);
   }
 }
