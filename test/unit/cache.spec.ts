@@ -1,11 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import * as request from 'supertest';
 import { AppModule } from '../../src/app.module';
 import { CacheMiddleware, manager, redisConnection } from '../../src/core/middleware/cache.middleware';
-import coreBootstrap from '@app/core/bootstrap';
-import * as httpMocks from 'node-mocks-http';
-import { ConfigService } from '@nestjs/config';
 
 describe('Testing Cache', () => {
   let app: INestApplication;
