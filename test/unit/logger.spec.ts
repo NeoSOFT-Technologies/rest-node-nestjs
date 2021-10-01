@@ -13,6 +13,11 @@ describe('Testing logger', () => {
     }).compile();
 
     app = module.createNestApplication();
+    await app.init();
+  });
+
+  afterAll(async () => {
+    await app.close();
   });
 
   it('Testing log method from AppLogger class', () => {

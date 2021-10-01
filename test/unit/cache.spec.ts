@@ -12,7 +12,7 @@ describe('Testing Cache', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
-    // await app.init();
+    await app.init();
   });
 
   afterAll(async () => {
