@@ -43,20 +43,20 @@ describe('AppController (e2e)', () => {
   });
 
   it('Should return user of specified id along with 200 status code', async () => {
-    const response = await request(app.getHttpServer()).get('/users/1').expect(200);
+    const response = await request(app.getHttpServer()).get('/users/2').expect(200);
     expect(response.status).toEqual(200);
     expect(response.body.success).toEqual(true);
   });
 
   it('Should update user of specified id and return 200 status code', async () => {
-    const { status, body } = await request(app.getHttpServer()).patch('/users/1').send(updateUserStub());
+    const { status, body } = await request(app.getHttpServer()).patch('/users/2').send(updateUserStub());
     expect(status).toEqual(200);
     const { data } = body;
     expect(data).toEqual('Updation Successfull');
   });
 
   it('Should delete user of specified id and return 200 status code', async () => {
-    const { status, body } = await request(app.getHttpServer()).delete('/users/1').expect(200);
+    const { status, body } = await request(app.getHttpServer()).delete('/users/2').expect(200);
     expect(status).toEqual(200);
     const { data } = body;
     expect(data).toEqual('Deletion Successfull');
