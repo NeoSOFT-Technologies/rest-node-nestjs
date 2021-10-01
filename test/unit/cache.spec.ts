@@ -5,6 +5,7 @@ import { AppModule } from '../../src/app.module';
 import { CacheMiddleware, manager, redisConnection } from '../../src/core/middleware/cache.middleware';
 import coreBootstrap from '@app/core/bootstrap';
 import * as httpMocks from 'node-mocks-http';
+import { ConfigService } from '@nestjs/config';
 
 describe('Testing Cache', () => {
   let app: INestApplication;
@@ -15,23 +16,27 @@ describe('Testing Cache', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
-    // redisConnection(app);
-    // coreBootstrap(app);
-    await app.init();
+    // await app.init();
   });
 
   afterAll(async () => {
     await app.close();
   });
 
-  it('Manager should be defined', async () => {
-    redisConnection(app);
-    expect(manager).toBeDefined();
+  it('Cache middleware should be defined', async () => {
+    expect(CacheMiddleware).toBeDefined();
   });
-  it('"app.get" should be called when redisConnection is called', async () => {
-    const spy = jest.spyOn(app, 'get');
-    redisConnection(app);
-    expect(spy).toHaveBeenCalled();
-    spy.mockRestore();
-  });
+
+  if (+process.env.USE_CACHING) {
+    it('Manager should be defined', async () => {
+      redisConnection(app);
+      expect(manager).toBeDefined();
+    });
+    it('"app.get" should be called when redisConnection is called', async () => {
+      const spy = jest.spyOn(app, 'get');
+      redisConnection(app);
+      expect(spy).toHaveBeenCalled();
+      spy.mockRestore();
+    });
+  }
 });

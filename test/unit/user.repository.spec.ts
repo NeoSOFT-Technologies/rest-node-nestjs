@@ -15,8 +15,15 @@ describe('UsersController', () => {
     userDbRepository = module.get<UserDbRepository>(UserDbRepository);
   });
 
+  it('Testing UserDbRepository method "createUser"', async () => {
+    expect(await userDbRepository.createUser(userStub())).toEqual({
+      id: expect.any(Number),
+      ...userStub(),
+    });
+  });
+
   it('Testing UserDbRepository method "findUser"', async () => {
-    expect(await userDbRepository.findUser('2')).toBeInstanceOf(User);
+    expect(await userDbRepository.findUser('1')).toBeInstanceOf(User);
   });
 
   it('Testing UserDbRepository method "findUser" - when user not present', async () => {
@@ -29,15 +36,8 @@ describe('UsersController', () => {
     expect((await userDbRepository.findAllUser())[0]).toBeInstanceOf(User);
   });
 
-  it('Testing UserDbRepository method "createUser"', async () => {
-    expect(await userDbRepository.createUser(userStub())).toEqual({
-      id: expect.any(Number),
-      ...userStub(),
-    });
-  });
-
   it('Testing UserDbRepository method "updateUser"', async () => {
-    expect((await userDbRepository.updateUser('2', userStub())).affected).toEqual(1);
+    expect((await userDbRepository.updateUser('1', userStub())).affected).toEqual(1);
   });
 
   it('Testing UserDbRepository method "updateUser" - when user not present', async () => {
@@ -47,13 +47,13 @@ describe('UsersController', () => {
   });
 
   it('Testing UserDbRepository method "deleteUser"', async () => {
-    await userDbRepository.deleteUser('2');
-    expect(async () => await userDbRepository.findUser('2')).rejects.toThrow(
-      'Could not find any entity of type "User" matching: "2"'
+    await userDbRepository.deleteUser('1');
+    expect(async () => await userDbRepository.findUser('1')).rejects.toThrow(
+      'Could not find any entity of type "User" matching: "1"'
     );
   });
 
   it('Testing UserDbRepository method "deleteUser" - when user not present', async () => {
-    expect(async () => await userDbRepository.deleteUser('2')).rejects.toThrow('User not found in database');
+    expect(async () => await userDbRepository.deleteUser('test')).rejects.toThrow('User not found in database');
   });
 });

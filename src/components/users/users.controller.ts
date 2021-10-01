@@ -10,8 +10,6 @@ import { UpdateUserDto } from './dto/update.user.dto';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  // Versioning API
-
   @Get()
   async getUsers(@Req() req: Request, @Res() res: Response): Promise<Response> {
     try {
@@ -22,6 +20,7 @@ export class UsersController {
     }
   }
 
+  // Versioning API
   @Get()
   @Version('1')
   async getUsersV1(@Req() req: Request, @Res() res: Response): Promise<Response> {
