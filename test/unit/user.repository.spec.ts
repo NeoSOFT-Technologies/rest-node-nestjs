@@ -6,6 +6,7 @@ import { UserDbRepository } from '../../src/components/users/repository/db/user.
 import { userStub } from '../mock/user.stub';
 
 describe('Testing UserDbRepository', () => {
+
   let app: INestApplication;
   let userDbRepository: UserDbRepository;
 
