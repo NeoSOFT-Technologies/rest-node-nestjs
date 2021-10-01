@@ -1,10 +1,12 @@
+import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '../../src/app.module';
 import { User } from '../../src/components/users/entities/user.entity';
 import { UserDbRepository } from '../../src/components/users/repository/db/user.repository';
 import { userStub } from '../mock/user.stub';
 
-describe('UsersController', () => {
+describe('Testing UserDbRepository', () => {
+  let app: INestApplication;
   let userDbRepository: UserDbRepository;
 
   beforeAll(async () => {
@@ -12,7 +14,13 @@ describe('UsersController', () => {
       imports: [AppModule],
     }).compile();
 
+    app = module.createNestApplication();
     userDbRepository = module.get<UserDbRepository>(UserDbRepository);
+    await app.init();
+  });
+
+  afterAll(async () => {
+    await app.close();
   });
 
   it('Testing UserDbRepository method "createUser"', async () => {

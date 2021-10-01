@@ -5,7 +5,7 @@ import { UsersController } from '../../src/components/users/users.controller';
 import * as httpMocks from 'node-mocks-http';
 import { users } from '../mock/users.response';
 
-describe('UsersController', () => {
+describe('Testing UsersController', () => {
   let usersController: UsersController;
 
   const mockRequest: Request = httpMocks.createRequest();
