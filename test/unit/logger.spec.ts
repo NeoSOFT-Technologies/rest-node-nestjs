@@ -19,9 +19,9 @@ describe('Testing logger', () => {
     const config = app.get(ConfigService);
     const appLogger = new AppLogger(config);
     const logMock = jest.spyOn(appLogger, 'log');
-    logMock.mockImplementation(() => 'this is mylogger');
+    logMock.mockImplementation(() => 'This is myLogger');
 
-    expect(appLogger.log('This is Logger')).toEqual('this is mylogger');
+    expect(appLogger.log('Sample string')).toEqual('This is myLogger');
     expect(logMock).toHaveBeenCalled();
   });
 
@@ -29,9 +29,9 @@ describe('Testing logger', () => {
     const config = app.get(ConfigService);
     const appLogger = new AppLogger(config);
     const errorMock = jest.spyOn(appLogger, 'error');
-    errorMock.mockImplementation(() => 'this is myerror');
+    errorMock.mockImplementation(() => 'This is myError');
 
-    expect(appLogger.error('This is Error')).toEqual('this is myerror');
+    expect(appLogger.error('Test string')).toEqual('This is myError');
     expect(errorMock).toHaveBeenCalled();
   });
 
@@ -39,9 +39,9 @@ describe('Testing logger', () => {
     const config = app.get(ConfigService);
     const appLogger = new AppLogger(config);
     const warnMock = jest.spyOn(appLogger, 'warn');
-    warnMock.mockImplementation(() => 'this is mywarn');
+    warnMock.mockImplementation(() => 'This is myWarn');
 
-    expect(appLogger.warn('This is Warn')).toEqual('this is mywarn');
+    expect(appLogger.warn('Test string')).toEqual('This is myWarn');
     expect(warnMock).toHaveBeenCalled();
   });
 
@@ -49,9 +49,9 @@ describe('Testing logger', () => {
     const config = app.get(ConfigService);
     const appLogger = new AppLogger(config);
     const debugMock = jest.spyOn(appLogger, 'debug');
-    debugMock.mockImplementation(() => 'this is mydebug');
+    debugMock.mockImplementation(() => 'This is myDebug');
 
-    expect(appLogger.debug('This is Debug')).toEqual('this is mydebug');
+    expect(appLogger.debug('Test string')).toEqual('This is myDebug');
     expect(debugMock).toHaveBeenCalled();
   });
 
@@ -59,56 +59,9 @@ describe('Testing logger', () => {
     const config = app.get(ConfigService);
     const appLogger = new AppLogger(config);
     const verboseMock = jest.spyOn(appLogger, 'verbose');
-    verboseMock.mockImplementation(() => 'this is myverbose');
+    verboseMock.mockImplementation(() => 'This is myVerbose');
 
-    expect(appLogger.verbose('This is Verbose')).toEqual('this is myverbose');
+    expect(appLogger.verbose('Test string')).toEqual('This is myVerbose');
     expect(verboseMock).toHaveBeenCalled();
   });
 });
-
-// const mockAppLogger = {
-//   log : jest.fn(()=> "this is logger"),
-//   error: function (message: any): void {
-//     throw new Error('Function not implemented.');
-//   },
-//   warn: function (message: any): void {
-//     throw new Error('Function not implemented.');
-//   }
-// }
-
-// beforeAll(async () => {
-//   const module: TestingModule = await Test.createTestingModule({
-//     imports: [AppModule],
-//     // imports: [CoreModule],
-//   })
-//   .compile();
-//   // .overrideProvider(AppLogger)
-//   // .useValue(mockAppLogger)
-//   // .compile();
-
-//   app = module.createNestApplication();
-//   // appLogge = module.get<AppLogger>(AppLogger);
-// });
-
-// // afterAll(async () => {
-// //   await app.close();
-// // });
-
-// it('Testing log method from AppLogger class', async() => {
-//   const config = app.get(ConfigService);
-//   const appLogger = new AppLogger(config);
-//   // const spy = jest.spyOn(appLogger, 'log').mockImplementation(()=>"this is mylogger");
-//   const logMock = jest.spyOn(appLogger, 'log');
-//   logMock.mockImplementation(()=>"this is mylogger");
-
-//   // const res = appLogger.log('This is Logger');
-//   // console.log(res);
-
-//   // console.log("spy ",spy)
-//   expect(appLogger.log('This is Logger')).toEqual("this is mylogger");
-//   expect(logMock).toHaveBeenCalled();
-//   // console.log(appLogger.log("hello"));
-//   // await request(app.getHttpServer()).get('')
-//   // console.log("hellll");
-
-// });
