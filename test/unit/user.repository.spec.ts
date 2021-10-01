@@ -31,7 +31,7 @@ describe('Testing UserDbRepository', () => {
   });
 
   it('Testing UserDbRepository method "findUser"', async () => {
-    expect(await userDbRepository.findUser('2')).toBeInstanceOf(User);
+    expect(await userDbRepository.findUser('1')).toBeInstanceOf(User);
   });
 
   it('Testing UserDbRepository method "findUser" - when user not present', async () => {
@@ -45,7 +45,7 @@ describe('Testing UserDbRepository', () => {
   });
 
   it('Testing UserDbRepository method "updateUser"', async () => {
-    expect((await userDbRepository.updateUser('2', userStub())).affected).toEqual(1);
+    expect((await userDbRepository.updateUser('1', userStub())).affected).toEqual(1);
   });
 
   it('Testing UserDbRepository method "updateUser" - when user not present', async () => {
@@ -55,9 +55,9 @@ describe('Testing UserDbRepository', () => {
   });
 
   it('Testing UserDbRepository method "deleteUser"', async () => {
-    await userDbRepository.deleteUser('2');
-    expect(async () => await userDbRepository.findUser('2')).rejects.toThrow(
-      'Could not find any entity of type "User" matching: "2"'
+    await userDbRepository.deleteUser('1');
+    expect(async () => await userDbRepository.findUser('1')).rejects.toThrow(
+      'Could not find any entity of type "User" matching: "1"'
     );
   });
 
