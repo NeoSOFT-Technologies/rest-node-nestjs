@@ -3,11 +3,9 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UsersService } from '../../src/components/users/services/users.service';
 import { UsersController } from '../../src/components/users/users.controller';
 import * as httpMocks from 'node-mocks-http';
-import { INestApplication } from '@nestjs/common';
 import { users } from '../mock/users.response';
 
 describe('UsersController', () => {
-  let app: INestApplication;
   let usersController: UsersController;
 
   const mockRequest: Request = httpMocks.createRequest();
