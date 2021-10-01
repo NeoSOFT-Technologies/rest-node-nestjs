@@ -9,7 +9,7 @@ import { users } from '../mock/users.response';
 import * as request from 'supertest';
 import { Request, Response } from '@app/core';
 
-describe('request-guard', () => {
+describe('Testing request-guard', () => {
   let app: INestApplication;
 
   const mockUsersService = {

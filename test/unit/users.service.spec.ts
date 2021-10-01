@@ -7,7 +7,7 @@ import { UserDbRepository } from '../../src/components/users/repository/db/user.
 import { UsersService } from '../../src/components/users/services/users.service';
 import { userStub } from '../mock/user.stub';
 
-describe('UsersService', () => {
+describe('Testing UsersService', () => {
   let usersService: UsersService;
   let userId = '1';
   const mockUsersRepository = {
