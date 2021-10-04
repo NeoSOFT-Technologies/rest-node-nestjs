@@ -131,6 +131,10 @@
     "roots": [
       "<rootDir>/test/"
     ],
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/tests/"
+    ],
     "moduleNameMapper": {
       "@app/(.*)": "<rootDir>/src/$1",
       "@app": "<rootDir>/src"
