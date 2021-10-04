@@ -44,16 +44,52 @@ jobs:
       run: npm run build --if-present
     - name: Test
       run: npm run test
+name: CI
+on:
+  push:
+    branches:
+      - main
+      - release-*
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+      - release-*
 
-  sonarcloud:
+jobs:
+  CI:
+    strategy:
+      matrix:
+        # node-version: [10.x, 12.x, 14.x]
+        node-version: [14.x]
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout Code
+      uses: actions/checkout@v2
+    - name: Set up nodejs version ${{ matrix.node-version }}
+      uses: actions/setup-node@v2.4.0
       with:
-        # ref: ${{ github.event.pull_request.head.ref }}
-        # repository: ${{ github.event.pull_request.head.repo.full_name }}
-        # Disabling shallow clone is recommended for improving relevancy of reporting
-        fetch-depth: 0
+        node-version: ${{ matrix.node-version }}
+    - name: Set up MySQL Database
+      uses: mirromutth/mysql-action@v1.1
+      with:
+        # host port: 3800 # Optional, default value is 3306. The port of host
+        # container port: 3307 # Optional, default value is 3306. The port of container
+        character set server: 'utf8' # Optional, default value is 'utf8mb4'. The '--character-set-server' option for mysqld
+        collation server: 'utf8_general_ci' # Optional, default value is 'utf8mb4_general_ci'. The '--collation-server' option for mysqld
+        mysql version: '8.0' # Optional, default value is "latest". The version of the MySQL
+        mysql database: 'rest_api' # Optional, default value is "test". The specified database which will be create
+        mysql root password: root # Required if "mysql user" is empty, default is empty. The root superuser password
+        mysql user: 'user' # Required if "mysql root password" is empty, default is empty. The superuser for the specified database. Can use secrets, too
+        mysql password: root # Required if "mysql user" exists. The password for the "mysql user"
+    - name: Install package
+      run: npm install
+    - name: Linter
+      run:  npm run lint
+    - name: Build
+      run: npm run build --if-present
+    - name: Test
+      run: npm run test
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       env:
