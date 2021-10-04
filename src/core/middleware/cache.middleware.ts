@@ -4,16 +4,18 @@ import * as cacheManager from 'cache-manager';
 import { ConfigService } from '@nestjs/config';
 import { INestApplication } from '@nestjs/common';
 
-let manager;
+let manager: cacheManager.Cache;
 const redisConnection = (app: INestApplication) => {
   const config = app.get(ConfigService);
 
-  manager = cacheManager.caching({
+  const storeConfig: cacheManager.StoreConfig = {
     store: config.get('cache.store'),
     host: config.get('cache.host'),
     port: config.get('cache.rport'),
     ttl: config.get('cache.ttl'),
-  });
+  };
+
+  manager = cacheManager.caching(storeConfig);
 };
 
 let cacheKey: string;
