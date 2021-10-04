@@ -10,5 +10,5 @@ export interface UserRepository {
   createUser(payload: CreateUserDto): Promise<User>;
   // updateUser(id: string, payload: UpdateUserDto): Promise<User>;
   updateUser(id: string, user: UpdateUserDto): Promise<UpdateResult>;
-  deleteUser(id: string): void;
+  deleteUser(id: string): Promise<void>;
 }

@@ -10,8 +10,17 @@ import { UpdateUserDto } from './dto/update.user.dto';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  // Versioning API
+  @Get()
+  async getUsers(@Req() req: Request, @Res() res: Response): Promise<Response> {
+    try {
+      const users: User[] = await this.usersService.findAll();
+      return res.success(users);
+    } catch (e) {
+      return res.error(e);
+    }
+  }
 
+  // Versioning API
   @Get()
   @Version('1')
   async getUsersV1(@Req() req: Request, @Res() res: Response): Promise<Response> {
@@ -27,16 +36,6 @@ export class UsersController {
   async getUsersV2(@Req() req: Request, @Res() res: Response): Promise<Response> {
     try {
       return res.success('Response from API version 2');
-    } catch (e) {
-      return res.error(e);
-    }
-  }
-
-  @Get()
-  async getUsers(@Req() req: Request, @Res() res: Response): Promise<Response> {
-    try {
-      const users: User[] = await this.usersService.findAll();
-      return res.success(users);
     } catch (e) {
       return res.error(e);
     }
