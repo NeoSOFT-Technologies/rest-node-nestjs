@@ -15,7 +15,6 @@ describe('Testing api rate limit', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
-    const config = app.get(ConfigService);
     coreBootstrap(app);
     await app.init();
   });

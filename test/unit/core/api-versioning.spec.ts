@@ -4,7 +4,6 @@ import * as request from 'supertest';
 import { AppModule } from '@app/app.module';
 import coreBootstrap from '@app/core/bootstrap';
 import { ConfigService } from '@nestjs/config';
-import { redisConnection } from '../../../src/core/middleware/cache.middleware';
 
 describe('Testing API Versioning', () => {
   let app: INestApplication;
@@ -15,10 +14,6 @@ describe('Testing API Versioning', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
-    const config = app.get(ConfigService);
-    if (config.get('app.applyCaching')) {
-      redisConnection(app);
-    }
     coreBootstrap(app);
   });
 

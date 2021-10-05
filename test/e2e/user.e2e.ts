@@ -5,7 +5,6 @@ import { AppModule } from '@app/app.module';
 import coreBootstrap from '@app/core/bootstrap';
 import { userStub } from '../mock/user.stub';
 import { updateUserStub } from '../mock/user.update.stub';
-import { ConfigService } from '@nestjs/config';
 import { setupAPIVersioning } from '../../src/core/api.versioning';
 import { setupSwagger } from '../../src/swagger';
 
@@ -18,7 +17,6 @@ export const AppController_test = () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
-    const config = app.get(ConfigService);
     coreBootstrap(app);
     setupAPIVersioning(app);
     setupSwagger(app);

@@ -3,8 +3,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
 import { AppModule } from '../../../src/app.module';
 import coreBootstrap from '@app/core/bootstrap';
-import { ConfigService } from '@nestjs/config';
-import { redisConnection } from '../../../src/core/middleware/cache.middleware';
 import { userStub } from '../../mock/user.stub';
 import { StatusCodes } from 'http-status-codes';
 
@@ -19,10 +17,6 @@ describe('Testing middlewares', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
-    const config = app.get(ConfigService);
-    if (config.get('app.applyCaching')) {
-      redisConnection(app);
-    }
     coreBootstrap(app);
     await app.init();
   });

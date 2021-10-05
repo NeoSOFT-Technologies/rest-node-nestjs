@@ -1,5 +1,4 @@
 import { INestApplication } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '../../../src/app.module';
 import { UsersService } from '../../../src/components/users/services/users.service';
@@ -25,7 +24,6 @@ describe('Testing request-guard', () => {
       .compile();
 
     app = moduleFixture.createNestApplication();
-    const config = app.get(ConfigService);
     coreBootstrap(app);
     setupAPIVersioning(app);
     await app.init();
