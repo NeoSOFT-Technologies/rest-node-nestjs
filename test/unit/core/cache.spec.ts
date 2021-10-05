@@ -1,7 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppModule } from '../../src/app.module';
-import { CacheMiddleware, manager, redisConnection } from '../../src/core/middleware/cache.middleware';
+import { AppModule } from '../../../src/app.module';
+import { CacheMiddleware, manager, redisConnection } from '../../../src/core/middleware/cache.middleware';
 
 describe('Testing Cache', () => {
   let app: INestApplication;

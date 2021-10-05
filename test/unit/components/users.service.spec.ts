@@ -1,11 +1,11 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
-import { CreateUserDto } from '../../src/components/users/dto/create.user.dto';
-import { UpdateUserDto } from '../../src/components/users/dto/update.user.dto';
-import { User } from '../../src/components/users/entities/user.entity';
-import { UserDbRepository } from '../../src/components/users/repository/db/user.repository';
-import { UsersService } from '../../src/components/users/services/users.service';
-import { userStub } from '../mock/user.stub';
+import { CreateUserDto } from '../../../src/components/users/dto/create.user.dto';
+import { UpdateUserDto } from '../../../src/components/users/dto/update.user.dto';
+import { User } from '../../../src/components/users/entities/user.entity';
+import { UserDbRepository } from '../../../src/components/users/repository/db/user.repository';
+import { UsersService } from '../../../src/components/users/services/users.service';
+import { userStub } from '../../mock/user.stub';
 
 describe('Testing UsersService', () => {
   let usersService: UsersService;
