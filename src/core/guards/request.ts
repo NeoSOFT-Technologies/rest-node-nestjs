@@ -6,7 +6,6 @@ import { get, omit } from 'lodash';
 import { StatusCodes } from 'http-status-codes';
 import { encrypt } from '../crypto/crypto';
 import { ConfigService } from '@nestjs/config';
-import { cacheKey, manager } from '../middleware/cache.middleware';
 
 interface ResponseType {
   success: boolean;
@@ -45,9 +44,6 @@ export class RequestGuard implements CanActivate {
       if (APPLY_ENCRYPTION) {
         result = encrypt(this.config, result);
       }
-      if (APPLY_CACHING) {
-        manager.set(cacheKey, result);
-      }
       return response.status(status).json(result);
     };
 
@@ -71,10 +67,6 @@ export class RequestGuard implements CanActivate {
       if (APPLY_ENCRYPTION) {
         result = encrypt(this.config, result);
       }
-
-      if (APPLY_CACHING) {
-        manager.set(cacheKey, result);
-      }
       return response.status(status).json(result);
     };
 
@@ -92,10 +84,6 @@ export class RequestGuard implements CanActivate {
 
       if (APPLY_ENCRYPTION) {
         result = encrypt(this.config, result);
-      }
-
-      if (APPLY_CACHING) {
-        manager.set(cacheKey, result);
       }
       return response.status(status).json(result);
     };

@@ -3,7 +3,6 @@ import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '../../src/app.module';
 import { UsersService } from '../../src/components/users/services/users.service';
-import { redisConnection } from '../../src/core/middleware/cache.middleware';
 import coreBootstrap from '@app/core/bootstrap';
 import { users } from '../mock/users.response';
 import * as request from 'supertest';
@@ -26,9 +25,6 @@ describe('Testing request-guard', () => {
 
     app = moduleFixture.createNestApplication();
     const config = app.get(ConfigService);
-    if (config.get('app.applyCaching')) {
-      redisConnection(app);
-    }
     coreBootstrap(app);
     await app.init();
   });

@@ -4,7 +4,6 @@ import * as request from 'supertest';
 import { AppModule } from '../../src/app.module';
 import coreBootstrap from '@app/core/bootstrap';
 import { ConfigService } from '@nestjs/config';
-import { redisConnection } from '../../src/core/middleware/cache.middleware';
 
 describe('Testing compression middleware', () => {
   let app: INestApplication;
@@ -18,9 +17,6 @@ describe('Testing compression middleware', () => {
 
     app = moduleFixture.createNestApplication();
     const config = app.get(ConfigService);
-    if (config.get('app.applyCaching')) {
-      redisConnection(app);
-    }
     coreBootstrap(app);
     await app.init();
   });
