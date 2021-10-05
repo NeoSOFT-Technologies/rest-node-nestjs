@@ -1,9 +1,10 @@
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppModule } from '../../src/app.module';
-import { User } from '../../src/components/users/entities/user.entity';
-import { UserDbRepository } from '../../src/components/users/repository/db/user.repository';
-import { userStub } from '../mock/user.stub';
+import { AppModule } from '../../../src/app.module';
+import { User } from '../../../src/components/users/entities/user.entity';
+import { UserDbRepository } from '../../../src/components/users/repository/db/user.repository';
+import { AppController_test } from '../../e2e/user.e2e';
+import { userStub } from '../../mock/user.stub';
 
 describe('Testing UserDbRepository', () => {
   let app: INestApplication;
@@ -65,3 +66,5 @@ describe('Testing UserDbRepository', () => {
     expect(async () => await userDbRepository.deleteUser('test')).rejects.toThrow('User not found in database');
   });
 });
+
+describe('AppController (e2e)', AppController_test);

@@ -1,7 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppModule } from '../../src/app.module';
+import { AppModule } from '../../../src/app.module';
 import AppLogger from '@app/core/logger/AppLogger';
 
 describe('Testing logger', () => {
@@ -26,7 +26,7 @@ describe('Testing logger', () => {
     const logMock = jest.spyOn(appLogger, 'log');
     logMock.mockImplementation(() => 'This is myLogger');
 
-    expect(appLogger.log('Sample string')).toEqual('This is myLogger');
+    expect(appLogger.log('Test string')).toEqual('This is myLogger');
     expect(logMock).toHaveBeenCalled();
   });
 
