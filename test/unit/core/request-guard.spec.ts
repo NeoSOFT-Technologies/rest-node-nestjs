@@ -1,13 +1,12 @@
 import { INestApplication } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppModule } from '../../src/app.module';
-import { UsersService } from '../../src/components/users/services/users.service';
-import { redisConnection } from '../../src/core/middleware/cache.middleware';
+import { AppModule } from '@app/app.module';
+import { UsersService } from '@app/components/users/services/users.service';
 import coreBootstrap from '@app/core/bootstrap';
-import { users } from '../mock/users.response';
+import { users } from '../../mock/users.response';
 import * as request from 'supertest';
 import { Request, Response } from '@app/core';
+import { setupAPIVersioning } from '@app/core/api.versioning';
 
 describe('Testing request-guard', () => {
   let app: INestApplication;
@@ -25,11 +24,8 @@ describe('Testing request-guard', () => {
       .compile();
 
     app = moduleFixture.createNestApplication();
-    const config = app.get(ConfigService);
-    if (config.get('app.applyCaching')) {
-      redisConnection(app);
-    }
     coreBootstrap(app);
+    setupAPIVersioning(app);
     await app.init();
   });
 

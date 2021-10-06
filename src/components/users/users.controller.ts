@@ -1,5 +1,5 @@
 import { User } from './entities/user.entity';
-import { Controller, Delete, Get, Param, Patch, Post, Req, Res, Version } from '@nestjs/common';
+import { Controller, Delete, Get, Param, Patch, Post, Req, Res, Version, VERSION_NEUTRAL } from '@nestjs/common';
 import { UsersService } from './services/users.service';
 import { Request, Response } from '@app/core';
 import { StatusCodes } from 'http-status-codes';
@@ -10,19 +10,9 @@ import { UpdateUserDto } from './dto/update.user.dto';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Get()
-  async getUsers(@Req() req: Request, @Res() res: Response): Promise<Response> {
-    try {
-      const users: User[] = await this.usersService.findAll();
-      return res.success(users);
-    } catch (e) {
-      return res.error(e);
-    }
-  }
-
   // Versioning API
-  @Get()
   @Version('1')
+  @Get()
   async getUsersV1(@Req() req: Request, @Res() res: Response): Promise<Response> {
     try {
       return res.success('Response from API version 1');
@@ -31,11 +21,22 @@ export class UsersController {
     }
   }
 
-  @Get()
   @Version('2')
+  @Get()
   async getUsersV2(@Req() req: Request, @Res() res: Response): Promise<Response> {
     try {
       return res.success('Response from API version 2');
+    } catch (e) {
+      return res.error(e);
+    }
+  }
+
+  @Version(VERSION_NEUTRAL)
+  @Get()
+  async getUsers(@Req() req: Request, @Res() res: Response): Promise<Response> {
+    try {
+      const users: User[] = await this.usersService.findAll();
+      return res.success(users);
     } catch (e) {
       return res.error(e);
     }

@@ -32,8 +32,6 @@ export default async function bootstrap(app: INestApplication) {
   // CORS configuration
   app.use(cors(corsOptions));
 
-  // middlewares, express specific
-  // app.use(CacheMiddleware);
   // Auto-validation
   // We'll start by binding ValidationPipe at the application level, thus ensuring all endpoints are protected from receiving incorrect data.
   app.useGlobalPipes(new ValidationPipe());

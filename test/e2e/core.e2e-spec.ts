@@ -2,11 +2,10 @@ import * as request from 'supertest';
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { AppModule } from '../../src/app.module';
+import { AppModule } from '@app/app.module';
 import coreBootstrap from '@app/core/bootstrap';
-import { RequestGuard } from '../../src/core';
-import AppLogger from '../../src/core/logger/AppLogger';
-import { redisConnection } from '../../src/core/middleware/cache.middleware';
+import { RequestGuard } from '@app/core';
+import AppLogger from '@app/core/logger/AppLogger';
 
 describe('Core module (e2e)', () => {
   let app: INestApplication;
@@ -17,10 +16,6 @@ describe('Core module (e2e)', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
-    const config = app.get(ConfigService);
-    if (config.get('app.applyCaching')) {
-      redisConnection(app);
-    }
     coreBootstrap(app);
     await app.init();
   });
