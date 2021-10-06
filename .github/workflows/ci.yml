@@ -44,16 +44,6 @@ jobs:
       run: npm run build --if-present
     - name: Test
       run: npm run test
-
-  sonarcloud:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        # ref: ${{ github.event.pull_request.head.ref }}
-        # repository: ${{ github.event.pull_request.head.repo.full_name }}
-        # Disabling shallow clone is recommended for improving relevancy of reporting
-        fetch-depth: 0
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       env:

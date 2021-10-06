@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { get, omit } from 'lodash';
 
 import { StatusCodes } from 'http-status-codes';
-import { encrypt } from '../crypto/crypto';
+import { encrypt } from '@app/core/crypto/crypto';
 import { ConfigService } from '@nestjs/config';
 
 interface ResponseType {
@@ -33,6 +33,7 @@ export class RequestGuard implements CanActivate {
 
   bindResponseHelpers(response: Response): Response {
     const APPLY_ENCRYPTION = this.config.get('app.applyEncription');
+    const APPLY_CACHING = this.config.get('app.applyCaching');
     const success = (data: Record<string, any> | Array<any> | string, status = StatusCodes.OK) => {
       let result: ResponseType | any = {
         success: true,
@@ -43,7 +44,6 @@ export class RequestGuard implements CanActivate {
       if (APPLY_ENCRYPTION) {
         result = encrypt(this.config, result);
       }
-
       return response.status(status).json(result);
     };
 
