@@ -1,8 +1,8 @@
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-import { AppModule } from '../../../src/app.module';
-import { User } from '../../../src/components/users/entities/user.entity';
-import { UserDbRepository } from '../../../src/components/users/repository/db/user.repository';
+import { AppModule } from '@app/app.module';
+import { User } from '@app/components/users/entities/user.entity';
+import { UserDbRepository } from '@app/components/users/repository/db/user.repository';
 import { AppController_test } from '../../e2e/user.e2e';
 import { userStub } from '../../mock/user.stub';
 

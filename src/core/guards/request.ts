@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { get, omit } from 'lodash';
 
 import { StatusCodes } from 'http-status-codes';
-import { encrypt } from '../crypto/crypto';
+import { encrypt } from '@app/core/crypto/crypto';
 import { ConfigService } from '@nestjs/config';
 
 interface ResponseType {

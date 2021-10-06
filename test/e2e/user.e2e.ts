@@ -5,8 +5,8 @@ import { AppModule } from '@app/app.module';
 import coreBootstrap from '@app/core/bootstrap';
 import { userStub } from '../mock/user.stub';
 import { updateUserStub } from '../mock/user.update.stub';
-import { setupAPIVersioning } from '../../src/core/api.versioning';
-import { setupSwagger } from '../../src/swagger';
+import { setupAPIVersioning } from '@app/core/api.versioning';
+import { setupSwagger } from '@app/swagger';
 
 export const AppController_test = () => {
   let app: INestApplication;

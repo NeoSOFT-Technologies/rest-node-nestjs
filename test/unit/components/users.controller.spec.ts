@@ -1,7 +1,7 @@
 import { Request, Response } from '@app/core';
 import { Test, TestingModule } from '@nestjs/testing';
-import { UsersService } from '../../../src/components/users/services/users.service';
-import { UsersController } from '../../../src/components/users/users.controller';
+import { UsersService } from '@app/components/users/services/users.service';
+import { UsersController } from '@app/components/users/users.controller';
 import * as httpMocks from 'node-mocks-http';
 import { users } from '../../mock/users.response';
 
