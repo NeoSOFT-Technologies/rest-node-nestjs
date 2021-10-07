@@ -19,7 +19,7 @@ describe('Testing API Versioning switch cases', () => {
           DatabaseModule,
           UsersModule,
           ConfigModule.forRoot({
-            envFilePath: [`${process.cwd()}/test/unit/misc/config/test.env`],
+            envFilePath: [`${process.cwd()}/config/env/test.env`],
             isGlobal: true,
             expandVariables: true,
             load: [appConfig1, database],
@@ -53,7 +53,7 @@ describe('Testing API Versioning switch cases', () => {
           DatabaseModule,
           UsersModule,
           ConfigModule.forRoot({
-            envFilePath: [`${process.cwd()}/test/unit/misc/config/test.env`],
+            envFilePath: [`${process.cwd()}/config/env/test.env`],
             isGlobal: true,
             expandVariables: true,
             load: [appConfig2, database],

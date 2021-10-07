@@ -6,7 +6,7 @@ import config from '@app/config/index';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: [`${process.cwd()}/test/unit/misc/config/test.env`],
+      envFilePath: [`${process.cwd()}/config/env/test.env`],
       isGlobal: true,
       expandVariables: true,
       load: config,
