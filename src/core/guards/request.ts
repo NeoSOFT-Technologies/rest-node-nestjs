@@ -33,7 +33,6 @@ export class RequestGuard implements CanActivate {
 
   bindResponseHelpers(response: Response): Response {
     const APPLY_ENCRYPTION = this.config.get('app.applyEncription');
-    const APPLY_CACHING = this.config.get('app.applyCaching');
     const success = (data: Record<string, any> | Array<any> | string, status = StatusCodes.OK) => {
       let result: ResponseType | any = {
         success: true,

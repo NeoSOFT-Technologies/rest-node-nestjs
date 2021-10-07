@@ -5,8 +5,9 @@ import { UsersService } from '@app/components/users/services/users.service';
 import coreBootstrap from '@app/core/bootstrap';
 import { users } from '../../mock/users.response';
 import * as request from 'supertest';
-import { Request, Response } from '@app/core';
 import { setupAPIVersioning } from '@app/core/api.versioning';
+import { mockResponse } from '../../mock/mock.response';
+import { mockRequest } from '../../mock/mock.request';
 
 describe('Testing request-guard', () => {
   let app: INestApplication;
@@ -57,11 +58,6 @@ describe('Testing request-guard', () => {
   });
 
   it('Mocking Request "all" method', async () => {
-    class mockRequest implements Partial<Request> {
-      all(): Record<string, any> {
-        return { key: 'value' };
-      }
-    }
     const requestObject = new mockRequest();
 
     const spy = jest.spyOn(requestObject, 'all');
@@ -71,20 +67,6 @@ describe('Testing request-guard', () => {
   });
 
   it('Mocking Response methods', async () => {
-    class mockResponse implements Partial<Response> {
-      success(): any {
-        return 'mock_success';
-      }
-      error(): any {
-        return 'mock_error';
-      }
-      noContent(): any {
-        return 'mock_noContent';
-      }
-      withMeta(): any {
-        return 'mock_withMeta';
-      }
-    }
     const responseObject = new mockResponse();
 
     const spywithMeta = jest.spyOn(responseObject, 'withMeta');
