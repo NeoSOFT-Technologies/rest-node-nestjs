@@ -50,7 +50,7 @@ describe('Testing Encryption-Decryption', () => {
     const config = app.get(ConfigService);
     const mockget = jest.spyOn(config, 'get');
     mockget.mockImplementation(() => {
-      throw new Error('hehe');
+      throw new Error('Error in encryption');
     });
     const data = 'This data is to be encrypted';
     expect(() => encrypt(config, data)).toThrow();
@@ -64,7 +64,7 @@ describe('Testing Encryption-Decryption', () => {
 
     const mockget = jest.spyOn(config, 'get');
     mockget.mockImplementation(() => {
-      throw new Error('hehe');
+      throw new Error('Error in decryption');
     });
     expect(() => decrypt(config, encrypted)).toThrow();
     mockget.mockRestore();
