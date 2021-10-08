@@ -6,6 +6,7 @@ import { AppModule } from '@app/app.module';
 import coreBootstrap from '@app/core/bootstrap';
 import { RequestGuard } from '@app/core';
 import AppLogger from '@app/core/logger/AppLogger';
+import { StatusCodes } from 'http-status-codes';
 
 describe('Core module (e2e)', () => {
   let app: INestApplication;
@@ -57,7 +58,7 @@ describe('Core module (e2e)', () => {
       const applogger = new AppLogger(config);
       const spy = jest.spyOn(applogger, 'log');
       const response = await request(app.getHttpServer()).get('/users');
-      if (response.status === 200) {
+      if (response.status === StatusCodes.OK) {
         applogger.log('Logger class called');
       }
       expect(spy).toHaveBeenCalled();

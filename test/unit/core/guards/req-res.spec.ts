@@ -33,34 +33,37 @@ describe('Testing binded properties of Request and Response with Encryption mode
     expect(body).toBeDefined();
     expect(statusCode).toEqual(StatusCodes.OK);
   });
+
   it('Testing res.error', async () => {
     const { body, statusCode }: any = await request(app.getHttpServer()).get('/users/test');
     expect(body).toBeDefined();
     expect(statusCode).toEqual(StatusCodes.UNAUTHORIZED);
   });
+
   it('Testing res.withMeta', async () => {
     const { body, statusCode }: any = await request(app.getHttpServer()).get('/withMeta');
     expect(body).toBeDefined();
     expect(typeof body).toBe('string');
     expect(statusCode).toEqual(StatusCodes.OK);
   });
+
   it('Testing res.noContent', async () => {
     const { body, statusCode }: any = await request(app.getHttpServer()).get('/noContent');
     expect(body).toBeDefined();
     expect(typeof body).toBe('object');
     expect(statusCode).toEqual(StatusCodes.NO_CONTENT);
   });
+
   it('Testing req.all', async () => {
     const { body, statusCode }: any = await request(app.getHttpServer()).get('/all/test');
     expect(body).toBeDefined();
     expect(typeof body).toBe('string');
     expect(statusCode).toEqual(StatusCodes.OK);
   });
+
   it('Testing AppLogger', async () => {
     const { body, statusCode }: any = await request(app.getHttpServer()).get('/logger');
-
     expect(body).toBeDefined();
-
     expect(typeof body).toBe('string');
     expect(statusCode).toEqual(StatusCodes.OK);
   });
