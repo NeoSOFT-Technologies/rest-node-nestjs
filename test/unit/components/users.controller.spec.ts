@@ -37,17 +37,11 @@ describe('Testing UsersController', () => {
   it('Testing error cases', async () => {
     mockResponse.error = jest.fn(() => 'error');
     expect(await usersController.getUsersV1(mockRequest, mockResponse)).toEqual('error');
-
     expect(await usersController.getUsersV2(mockRequest, mockResponse)).toEqual('error');
-
     expect(await usersController.getUsers(mockRequest, mockResponse)).toEqual('error');
-
     expect(await usersController.getUserById(mockRequest, mockResponse, 'mockID')).toEqual('error');
-
     expect(await usersController.saveUser(mockRequest, mockResponse)).toEqual('error');
-
     expect(await usersController.deleteUser(mockRequest, mockResponse, 'mockID')).toEqual('error');
-
     expect(await usersController.updateUserById(mockRequest, mockResponse, 'mockID')).toEqual('error');
   });
 

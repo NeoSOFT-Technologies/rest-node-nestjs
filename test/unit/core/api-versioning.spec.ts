@@ -4,6 +4,7 @@ import * as request from 'supertest';
 import { AppModule } from '@app/app.module';
 import coreBootstrap from '@app/core/bootstrap';
 import { ConfigService } from '@nestjs/config';
+import { StatusCodes } from 'http-status-codes';
 
 describe('Testing API Versioning', () => {
   let app: INestApplication;
@@ -28,7 +29,7 @@ describe('Testing API Versioning', () => {
     await app.init();
 
     const { status, body } = await request(app.getHttpServer()).get('/v1/users');
-    expect(status).toEqual(200);
+    expect(status).toEqual(StatusCodes.OK);
     const { data } = body;
     expect(data).toEqual('Response from API version 1');
   });
@@ -43,7 +44,7 @@ describe('Testing API Versioning', () => {
 
     const { status, body } = await request(app.getHttpServer()).get('/users').set('Accept', 'application/json;v=1');
 
-    expect(status).toEqual(200);
+    expect(status).toEqual(StatusCodes.OK);
     const { data } = body;
     expect(data).toEqual('Response from API version 1');
   });
@@ -58,7 +59,7 @@ describe('Testing API Versioning', () => {
 
     const { status, body } = await request(app.getHttpServer()).get('/users').set('custom', '1');
 
-    expect(status).toEqual(200);
+    expect(status).toEqual(StatusCodes.OK);
     const { data } = body;
     expect(data).toEqual('Response from API version 1');
   });

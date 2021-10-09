@@ -3,6 +3,7 @@ import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from '@app/app.module';
 import coreBootstrap from '@app/core/bootstrap';
+import { StatusCodes } from 'http-status-codes';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -21,8 +22,8 @@ describe('AppController (e2e)', () => {
     await app.close();
   });
 
-  it('Should return an hello world string along with status', async () => {
-    const { body }: any = await request(app.getHttpServer()).get('').expect(200);
+  it('Should return an hello world string along with status code 200', async () => {
+    const { body }: any = await request(app.getHttpServer()).get('').expect(StatusCodes.OK);
     expect(body.data).toEqual('Hello World!');
   });
 });
