@@ -45,4 +45,28 @@ describe('Testing Encryption-Decryption', () => {
     const decrypted = decrypt(config, encrypted);
     expect(decrypted).toEqual(data);
   });
+
+  it('Testing catch block for encryption', () => {
+    const config = app.get(ConfigService);
+    const mockget = jest.spyOn(config, 'get');
+    mockget.mockImplementation(() => {
+      throw new Error('Error in encryption');
+    });
+    const data = 'This data is to be encrypted';
+    expect(() => encrypt(config, data)).toThrow();
+    mockget.mockRestore();
+  });
+
+  it('Testing catch block for decryption', () => {
+    const config = app.get(ConfigService);
+    const data = 'This data is to be encrypted';
+    const encrypted = encrypt(config, data);
+
+    const mockget = jest.spyOn(config, 'get');
+    mockget.mockImplementation(() => {
+      throw new Error('Error in decryption');
+    });
+    expect(() => decrypt(config, encrypted)).toThrow();
+    mockget.mockRestore();
+  });
 });
