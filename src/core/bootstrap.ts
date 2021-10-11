@@ -2,11 +2,11 @@ import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { json, urlencoded } from 'express';
 import * as helmet from 'helmet';
-import { RequestGuard } from './guards';
+import { RequestGuard } from '@app/core/guards';
 import * as compression from 'compression';
-import { shouldCompress } from './compression/compression';
+import { shouldCompress } from '@app/core/compression/compression';
 import * as cors from 'cors';
-import { corsOptions } from './cors.config';
+import { corsOptions } from '@app/core/cors.config';
 /**
  * Core bootstrap module should be loaded here.
  * @param app

@@ -1,10 +1,10 @@
-import { User } from './entities/user.entity';
+import { User } from '@app/components/users/entities/user.entity';
 import { Controller, Delete, Get, Param, Patch, Post, Req, Res, Version, VERSION_NEUTRAL } from '@nestjs/common';
-import { UsersService } from './services/users.service';
+import { UsersService } from '@app/components/users/services/users.service';
 import { Request, Response } from '@app/core';
 import { StatusCodes } from 'http-status-codes';
-import { CreateUserDto } from './dto/create.user.dto';
-import { UpdateUserDto } from './dto/update.user.dto';
+import { CreateUserDto } from '@app/components/users/dto/create.user.dto';
+import { UpdateUserDto } from '@app/components/users/dto/update.user.dto';
 
 @Controller('users')
 export class UsersController {

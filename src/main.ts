@@ -1,9 +1,9 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { AppModule } from '@app/app.module';
 import coreBootstrap from '@app/core/bootstrap';
 import { ConfigService } from '@nestjs/config';
-import { setupSwagger } from './swagger';
-import { setupAPIVersioning } from './core/api.versioning';
+import { setupSwagger } from '@app/swagger';
+import { setupAPIVersioning } from '@app/core/api.versioning';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
