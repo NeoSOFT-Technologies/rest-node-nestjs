@@ -2,7 +2,7 @@ import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '@app/app.module';
 import coreBootstrap from '@app/core/bootstrap';
-import { ThrottleModule } from '@app/core/rate limiter/throttle.module';
+import { ThrottleModule } from '@app/core/rate-limiter/throttle.module';
 import * as request from 'supertest';
 import { ConfigService } from '@nestjs/config';
 import { StatusCodes } from 'http-status-codes';

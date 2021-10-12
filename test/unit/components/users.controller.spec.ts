@@ -3,7 +3,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UsersService } from '@app/components/users/services/users.service';
 import { UsersController } from '@app/components/users/users.controller';
 import * as httpMocks from 'node-mocks-http';
-import { users } from '../../mock/users.response';
+import { users } from '@test/mock/users.response';
 
 describe('Testing UsersController', () => {
   let usersController: UsersController;

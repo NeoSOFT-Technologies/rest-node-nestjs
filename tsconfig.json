@@ -13,7 +13,8 @@
     "incremental": true,
     "paths": {
       "@app": ["src"],
-      "@app/*": ["src/*"]
+      "@app/*": ["src/*"],
+      "@test/*": ["test/*"]
     }
   }
 }

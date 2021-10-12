@@ -3,11 +3,11 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '@app/app.module';
 import { UsersService } from '@app/components/users/services/users.service';
 import coreBootstrap from '@app/core/bootstrap';
-import { users } from '../../mock/users.response';
+import { users } from '@test/mock/users.response';
 import * as request from 'supertest';
 import { setupAPIVersioning } from '@app/core/api.versioning';
-import { mockResponse } from '../../mock/mock.response';
-import { mockRequest } from '../../mock/mock.request';
+import { mockResponse } from '@test/mock/mock.response';
+import { mockRequest } from '@test/mock/mock.request';
 
 describe('Testing request-guard', () => {
   let app: INestApplication;

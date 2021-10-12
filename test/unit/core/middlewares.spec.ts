@@ -3,7 +3,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
 import { AppModule } from '@app/app.module';
 import coreBootstrap from '@app/core/bootstrap';
-import { userStub } from '../../mock/user.stub';
+import { userStub } from '@test/mock/user.stub';
 import { StatusCodes } from 'http-status-codes';
 
 describe('Testing middlewares', () => {
