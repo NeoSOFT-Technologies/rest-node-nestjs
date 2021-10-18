@@ -31,7 +31,7 @@ export class EmailHandlerService {
             console.error(error);
           } else {
             //this means success
-            console.log(`${success}: users ready to mail myself`);
+            console.log('users ready to mail myself');
           }
         });
 
