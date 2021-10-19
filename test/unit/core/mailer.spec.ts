@@ -25,15 +25,6 @@ describe('Testing mailer', () => {
     mailerService = module.get<EmailHandlerService>(EmailHandlerService);
   });
 
-  it('Testing server "verify" method', async () => {
-    jest.spyOn(console, 'log');
-    await mailerService.sendEmail({
-      to: 'recipient-email@example.com',
-      subject: 'Email subject',
-      body: 'Email body',
-    });
-    expect(console.log).toHaveBeenCalledWith('users ready to mail myself');
-  });
   it('Sending email with pug template', async () => {
     const response = await mailerService.sendEmail({
       to: 'recipient-email@example.com',

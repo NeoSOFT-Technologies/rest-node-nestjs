@@ -16,24 +16,14 @@ export class EmailHandlerService {
           fromEmail: this.config.get('mailer.fromEmail'),
           host: this.config.get('mailer.host'),
           port: this.config.get('mailer.port'),
-          secure: false,
+          secure: this.config.get('mailer.secure'),
           auth: {
-            username: this.config.get('mailer.username'),
-            password: this.config.get('mailer.password'),
+            user: this.config.get('mailer.username'),
+            pass: this.config.get('mailer.password'),
           },
         };
 
         const server: Mail = await this.getEmailServer(mailConfig);
-
-        server.verify(async (error, success) => {
-          if (error) {
-            //if error happened code ends here
-            console.error(error);
-          } else {
-            //this means success
-            console.log('users ready to mail myself');
-          }
-        });
 
         const mailOptions: Mail.Options = {
           from: mailConfig.fromEmail,
@@ -44,7 +34,18 @@ export class EmailHandlerService {
         // if template name is exist then choose pug template from views
         if (options.templateName) {
           mailOptions.html = await this.getTemplate(options.templateName, options.replace);
-          // mailOptions.text = htmlToText.fromString(mailOptions.html);
+          mailOptions.attachments = [
+            {
+              filename: 'neosoft_logo.png',
+              path: `${__dirname}/email-templates/neosoft_logo.png`,
+              cid: 'neosoft_logo',
+            },
+            {
+              filename: 'nest_logo.png',
+              path: `${__dirname}/email-templates/nest_logo.png`,
+              cid: 'nest_logo',
+            },
+          ];
         }
 
         // if text body then assign as text
@@ -66,7 +67,7 @@ export class EmailHandlerService {
           } else {
             rejects({
               success: false,
-              error: err,
+              errors: err,
             });
           }
         });
@@ -74,20 +75,12 @@ export class EmailHandlerService {
     );
   }
 
-  private async getTemplate(templateName: string, options: any = {}): Promise<string> {
+  private async getTemplate(templateName: string, options: Record<string, any> = {}): Promise<string> {
     const html: string = pug.renderFile(`${__dirname}/email-templates/${templateName}.pug`, options);
     return juice(html);
   }
 
   private async getEmailServer(mailConfig: IMailConfig): Promise<Mail> {
-    return nodemailer.createTransport({
-      host: mailConfig.host,
-      port: mailConfig.port,
-      secure: mailConfig.secure,
-      auth: {
-        user: mailConfig.auth.username,
-        pass: mailConfig.auth.password,
-      },
-    });
+    return nodemailer.createTransport(mailConfig);
   }
 }

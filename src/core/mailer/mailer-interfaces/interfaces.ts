@@ -7,15 +7,15 @@ export interface IMailConfig {
 }
 
 interface IMailAuth {
-  username: string;
-  password: string;
+  user: string;
+  pass: string;
 }
 
 export interface IMailResponse {
   success: boolean;
   message?: string;
   item?: any;
-  error?: any;
+  errors?: any;
 }
 
 export interface IMailOptions {
@@ -23,6 +23,6 @@ export interface IMailOptions {
   templateName?: string;
   body?: string;
   htmlBody?: string;
-  replace?: any;
-  to?: string;
+  replace?: Record<string, any>;
+  to?: string | Array<string>;
 }
