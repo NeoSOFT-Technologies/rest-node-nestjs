@@ -15,6 +15,7 @@ $ openssl
 >The terminal should show the below output:
 
 ![SSL-Terminal](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/dev/wiki/images/terminal-ssl.png?raw=true)
+
 3. If the terminal shows `command not found` then click on the link below for the installation.
 [OpenSSL Installation](https://linuxtect.com/how-to-install-openssl-libraries-on-ubuntu-debian-mint/)
 
