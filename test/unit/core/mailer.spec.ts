@@ -5,7 +5,11 @@ import { CoreModule } from '@app/core/module';
 jest.mock('nodemailer', () => ({
   createTransport: jest.fn().mockReturnValue({
     sendMail: jest.fn().mockImplementation((mailoptions, callback) => {
-      callback(null, mailoptions);
+      if (mailoptions.html || mailoptions.text) {
+        callback(null, mailoptions);
+      } else {
+        callback(Error('myerror'), null);
+      }
     }),
     verify: jest.fn().mockImplementation((callback) => {
       callback();
@@ -35,11 +39,11 @@ describe('Testing mailer', () => {
     expect(response.success).toBe(true);
     expect(response.item.html).toBeDefined();
   });
+
   it('Sending email with text body', async () => {
     const response = await mailerService.sendEmail({
       to: 'recipient-email@example.com',
       subject: 'Email subject',
-      body: 'Email body',
     });
     expect(response.success).toBe(true);
     expect(response.item.text).toBeDefined();
@@ -53,5 +57,15 @@ describe('Testing mailer', () => {
     });
     expect(response.success).toBe(true);
     expect(response.item.html).toBeDefined();
+  });
+
+  it('Sending email without body', async () => {
+    expect(
+      async () =>
+        await mailerService.sendEmail({
+          to: 'recipient-email@example.com',
+          subject: 'Email subject',
+        })
+    ).rejects;
   });
 });

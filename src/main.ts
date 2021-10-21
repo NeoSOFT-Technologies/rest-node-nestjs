@@ -4,9 +4,19 @@ import coreBootstrap from '@app/core/bootstrap';
 import { ConfigService } from '@nestjs/config';
 import { setupSwagger } from '@app/swagger';
 import { setupAPIVersioning } from '@app/core/api.versioning';
+import * as fs from 'fs';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const ssl = process.env.SSL === 'true' ? true : false;
+  let httpsOptions = null;
+  if (ssl) {
+    httpsOptions = {
+      key: fs.readFileSync(`${__dirname}/${process.env.SSL_KEY_PATH || ''}`),
+      cert: fs.readFileSync(`${__dirname}/${process.env.SSL_CERT_PATH || ''}`),
+      passphrase: process.env.SSL_PASS_PHRASE || '',
+    };
+  }
+  const app = await NestFactory.create(AppModule, { httpsOptions });
 
   const config = app.get(ConfigService);
   const PORT = config.get('app.port');
