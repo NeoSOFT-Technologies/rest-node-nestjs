@@ -19,8 +19,23 @@ services:
         MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
         MYSQL_USER: '${DB_USER}'
         MYSQL_PASSWORD: '${DB_PASSWORD}'
+
+  mongodb:
+    image: mongo:3.7.1
+    container_name: '${APP_NAME}_mongodb'
+    networks:
+        - internal
+    environment:
+        MONGO_INITDB_ROOT_USERNAME: '${DB_USER}'
+        MONGO_INITDB_ROOT_PASSWORD: '${DB_PASSWORD}'
+    ports:
+        - "27017:27017"
+    volumes:
+        - mongoDB:/data/db
+
 volumes:
     mysql:
+    mongoDB:
 
 networks:
     internal:
