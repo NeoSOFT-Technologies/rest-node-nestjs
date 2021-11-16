@@ -125,6 +125,9 @@ A NoSQL injection vulnerability is an error in a web application that uses a NoS
  
 NoSQL injections are just one of many injection attacks, similar to traditional SQL Injections. They are engineered to exploit modern databases that do not use SQL. While NoSQL database engines have a different structure and do not support SQL statements and SQL queries, they still let users perform queries. They do not support one standardized language and therefore the query language is dependent on the implementation: database (e.g. MongoDB), language, and framework (e.g. Node.js, Angular). However, NoSQL queries are most often based on JSON and they can include user input. If this input is not sanitized, they are vulnerable to injections. 
 
+![NoSQL Injection](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/nosql_support/wiki/images/nosql-query-injection.png?raw=true)
+
+
 ### Types Of Injection Attacks 
 
 1) **In-band Injections** : In-band Injection is the most common and easy-to-exploit of Injection attacks. In-band Injection occurs when an attacker is able to use the same communication channel to both launch the attack and gather results. As an example, an attacker may use the HTTP communication deploy the attack to a backend and get the results on the same channel  
