@@ -116,3 +116,55 @@ constructor(
 ### Using other database apart from MySQL and MongoDb. 
 
 The existing boiler plate comes with by default support for MySQL. This doesn't mean that you cannot use any other database like  PostgreSQL, Oracle, Microsoft SQL Server etc. Install the respective package of the database and update the config.ts as per required database configuration.
+
+<hr>
+
+## NoSQL injections
+
+A NoSQL injection vulnerability is an error in a web application that uses a NoSQL database. This web application security issue lets a malicious party bypass authentication, extract data, modify data, or even gain complete control over the application. NoSQL injection attacks are the result of a lack of data sanitization. 
+ 
+NoSQL injections are just one of many injection attacks, similar to traditional SQL Injections. They are engineered to exploit modern databases that do not use SQL. While NoSQL database engines have a different structure and do not support SQL statements and SQL queries, they still let users perform queries. They do not support one standardized language and therefore the query language is dependent on the implementation: database (e.g. MongoDB), language, and framework (e.g. Node.js, Angular). However, NoSQL queries are most often based on JSON and they can include user input. If this input is not sanitized, they are vulnerable to injections. 
+
+### Types Of Injection Attacks 
+
+1) **In-band Injections** : In-band Injection is the most common and easy-to-exploit of Injection attacks. In-band Injection occurs when an attacker is able to use the same communication channel to both launch the attack and gather results. As an example, an attacker may use the HTTP communication deploy the attack to a backend and get the results on the same channel  
+
+2) **Inferential Injection (Blind Injection)**: In an inferential attack, no data is actually transferred via the web application and the attacker would not be able to see the result of an attack in-band. Instead, an attacker is able to reconstruct the database structure by sending payloads, observing the web application’s response and the resulting behavior of the database server. 
+Blind injection is nearly identical to normal injection, the only difference being the way the data is retrieved from the database. When the database does not output data to the web page, an attacker is forced to steal data by asking the database a series of true or false questions. This makes exploiting the Injection vulnerability more difficult, but not impossible. 
+
+3) **Out-of-band Injections**: This not very common type of injection, mostly because it depends on features being enabled on the database server being used by the web application. Out-of-band Injection occurs when an attacker is unable to use the same channel to launch the attack and gather results. 
+
+### How to prevent injection attacks 
+
+- Try to avoid building queries from strings, use safe APIs and prepared statements. 
+- Validate input to detect malicious values, also verify the types of input data i.e. string, number, Boolean, object etc. We can use joi or any other tool for this. 
+- To minimize the potential damage of a successful injection attack, do not assign DBA or admin type access rights to your application accounts, we can create new roles with specific/limited access. 
+- Sanitize the data, we can use express-mongo-sanitize to sanitize incoming data for express mongoDB. 
+## Database Vulnerabilty against injection
+
+| Connection type  | With ORM   | Without ORM   |
+| ------------ | ---------- | -------------- |
+| Security   | Risk is low <br/><br/>Data sanitization not required<br/><br/>Generates "parameterized statements" | Risk is high <br/><br/>Data sanitization required<br/><br/>"parameterized statements" needs to written manually  |
+
+TypeORM provide many ways to construct a database query, but they also give you the option to execute 'raw' queries as a string.Also they allow to write some part of a generated query as a raw string. This should to be avoided, as it defeats the purpose of using an ORM.
+
+In that scenario, simply injecting user input variables into a string query (instead of using the ORM's core API / query builder functions) puts data security at a higher risk.
+
+### Data sanitization for MongoDB
+
+We can use [express-mongo-sanitize](https://www.npmjs.com/package/express-mongo-sanitize) for this purpose,if required.This module searches for any keys in objects that begin with a `$` sign or contain a `.`, from req.body, req.query or req.params. It can then either:
+
+- completely remove these keys and associated data from the object, or
+- replace the prohibited characters with another allowed character.
+
+Object keys starting with a $ or containing a . are reserved for use by MongoDB as operators. Without this sanitization, malicious users could send an object containing a $ operator, or including a ., which could change the context of a database operation. Most notorious is the $where operator, which can execute arbitrary JavaScript on the database.The best way to prevent this is to sanitize the received data, and remove any offending keys, or replace the characters with a 'safe' one.
+> Simple add the the middleware after installing the library as shown below
+```ts
+# bootsrap.ts
+...
+import * as mongoSanitize  from 'express-mongo-sanitize';
+
+...
+app.use(mongoSanitize());
+...
+```
