@@ -6,6 +6,7 @@ import { User } from '@app/components/users/entities/user.entity';
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
+      // name: 'mysql_connection',
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
@@ -17,7 +18,24 @@ import { User } from '@app/components/users/entities/user.entity';
         database: config.get('db.database'),
         entities: [User],
         // entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        synchronize: true,
+        synchronize: config.get('app.env') === 'local' || 'dev' ? true : false,
+      }),
+    }),
+    TypeOrmModule.forRootAsync({
+      // name: 'mongoDB_connection',
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        type: 'mongodb',
+        host: config.get('db.host'),
+        port: config.get('db.port2'),
+        username: config.get('db.username'),
+        password: config.get('db.password'),
+        database: config.get('db.database'),
+        useUnifiedTopology: true,
+        authSource: 'admin',
+        entities: [User],
+        synchronize: config.get('app.env') === 'local' || 'dev' ? true : false,
       }),
     }),
   ],
