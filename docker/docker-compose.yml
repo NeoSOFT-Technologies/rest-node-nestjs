@@ -43,6 +43,7 @@ services:
         - internal
     depends_on:
         - database
+        - mongodb
     ports:
         - '5000:5000'
 

@@ -6,6 +6,8 @@ import { UserDbRepository } from '@app/components/users/repository/db/user.repos
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserDbRepository])],
+  // imports: [TypeOrmModule.forFeature([UserDbRepository],'mongoDB_connection')],
+  exports: [TypeOrmModule],
   providers: [UsersService],
   controllers: [UsersController],
 })
