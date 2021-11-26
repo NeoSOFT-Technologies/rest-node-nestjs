@@ -10,12 +10,23 @@ export class UserDbRepository extends Repository<User> implements UserRepository
   constructor() {
     super();
   }
+
   findUser(id: string): Promise<User> {
     return this.findOneOrFail(id);
   }
+
   findAllUser(): Promise<User[]> {
     return this.find();
   }
+
+  findUserByEmail(email: string): Promise<User> {
+    return this.findOneOrFail({
+      where: {
+        email: email,
+      },
+    });
+  }
+
   createUser(payload: CreateUserDto): Promise<User> {
     return this.save(payload);
   }
