@@ -27,11 +27,9 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   // Versioning API
-  @UseGuards(JwtAuthGuard)
   @Version('1')
   @Get()
   @ApiOkResponse({ description: apiResponse.apiUserGetResponseV1 })
-  @ApiBearerAuth('JWT-auth')
   async getUsersV1(@Req() req: Request, @Res() res: Response): Promise<Response> {
     try {
       return res.success('Response from API version 1');
@@ -40,11 +38,9 @@ export class UsersController {
     }
   }
 
-  @UseGuards(JwtAuthGuard)
   @Version('2')
   @Get()
   @ApiOkResponse({ description: apiResponse.apiUserGetResponseV2 })
-  @ApiBearerAuth('JWT-auth')
   async getUsersV2(@Req() req: Request, @Res() res: Response): Promise<Response> {
     try {
       return res.success('Response from API version 2');

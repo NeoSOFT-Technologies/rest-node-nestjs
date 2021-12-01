@@ -13,7 +13,7 @@ For MySQL install [mysql](https://www.npmjs.com/package/mysql2)
 ```
 $ npm install --save mysql2
 ```
-For MongoDB install [MongoDB NodeJS Driver](https://www.npmjs.com/package/mongodb).We install older version as typeorm does not support mongodb driver for v4
+For MongoDB install [MongoDB NodeJS Driver](https://www.npmjs.com/package/mongodb).We install older version as typeorm does not [support mongodb driver for v4](https://github.com/typeorm/typeorm/issues/7907)
 ```
 $ npm install --save mongodb@3.7.0
 ```

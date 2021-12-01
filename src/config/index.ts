@@ -5,5 +5,6 @@ import services from '@app/config/services';
 import crypto from '@app/config/crypto';
 import throttler from '@app/config/throttler';
 import mailer from './mailer';
+import auth from '@app/config/authentication';
 
-export default [app, db, crypto, settings, throttler, services, mailer];
+export default [app, db, crypto, settings, throttler, services, mailer, auth];

@@ -71,6 +71,8 @@ describe('Testing UsersService', () => {
       createuserDto = {
         firstName: userStub().firstName,
         lastName: userStub().lastName,
+        email: userStub().email,
+        password: userStub().password,
       };
       await usersService.save(createuserDto);
     });
@@ -78,6 +80,8 @@ describe('Testing UsersService', () => {
       expect(mockUsersRepository.createUser).toHaveBeenCalledWith({
         firstName: userStub().firstName,
         lastName: userStub().lastName,
+        email: userStub().email,
+        password: userStub().password,
       });
     });
   });
