@@ -22,15 +22,12 @@ services:
         MYSQL_PASSWORD: '${DB_PASSWORD}'
         
   mongodb:
-    image: mongo
+    image: mongo:3.6.19-xenial
     container_name: '${APP_NAME}_mongodb'
-    networks:
-        - internal
-    environment:
-        MONGO_INITDB_ROOT_USERNAME: '${DB_USER}'
-        MONGO_INITDB_ROOT_PASSWORD: '${DB_PASSWORD}'
     ports:
         - "27017:27017"
+    networks:
+        - internal
     volumes:
         - mongoDB:/data/db  
   nestjs:
