@@ -9,23 +9,16 @@ export class AuthService {
   constructor(private readonly usersService: UsersService, private readonly jwtService: JwtService) {}
 
   findUserByEmail(user: ValidateUserDto): Promise<User> {
-    return this.usersService.findEmail(user.email);
+    return this.usersService.findEmail(user.email, user.password);
   }
 
-  generateToken(user: ValidateUserDto): Promise<any> {
-    // return this.findUserByEmail(user);
-    return this.findUserByEmail(user).then((userData) => {
-      if (!userData) {
-        return {
-          status: 404,
-          message: 'Invalid Credentials',
-        };
-      }
-      const payload = `${userData.firstName}${userData.id}`;
-      const accessToken = this.jwtService.sign(payload);
-      return {
-        access_token: accessToken,
-      };
-    });
+  async generateToken(user: ValidateUserDto): Promise<any> {
+    const userData = await this.findUserByEmail(user);
+    const payload = `${userData.firstName}${userData.id}`;
+    const accessToken = this.jwtService.sign(payload);
+    const resultResponse = {
+      access_token: accessToken,
+    };
+    return resultResponse;
   }
 }

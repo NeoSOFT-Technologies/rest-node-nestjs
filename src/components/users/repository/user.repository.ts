@@ -6,9 +6,8 @@ import { User } from '@app/components/users/entities/user.entity';
 export interface UserRepository {
   findUser(id: string): Promise<User>;
   findAllUser(): Promise<User[]>;
-  findUserByEmail(email: string): Promise<User>;
+  findUserByEmail(email: string, password: string): Promise<User>;
   createUser(payload: CreateUserDto): Promise<User>;
-  // updateUser(id: string, payload: UpdateUserDto): Promise<User>;
   updateUser(id: string, user: UpdateUserDto): Promise<UpdateResult>;
   deleteUser(id: string): Promise<void>;
 }

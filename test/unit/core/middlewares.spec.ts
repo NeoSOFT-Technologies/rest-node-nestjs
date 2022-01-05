@@ -79,12 +79,16 @@ describe('Testing middlewares', () => {
     it('should respond with CREATED when request size is within memory limit', async () => {
       const response = await request(app.getHttpServer())
         .post('/users')
-        .send(`firstName=${userStub().firstName}&lastName=${userStub().lastName}`);
+        .send(
+          `firstName=${userStub().firstName}&lastName=${userStub().lastName}&email=${userStub().email}&password=${
+            userStub().password
+          }`
+        );
 
       expect(response.body.code).toEqual(StatusCodes.CREATED);
     });
 
-    it('should respond with error when request size exceeds memory limit', async () => {
+    it('should respond with ERROR when request size exceeds memory limit', async () => {
       const user = {
         firstName: Buffer.alloc(1000 * 1000 * 30, userStub().firstName).toString(),
         lastName: Buffer.alloc(1000 * 1000 * 25, userStub().lastName).toString(),

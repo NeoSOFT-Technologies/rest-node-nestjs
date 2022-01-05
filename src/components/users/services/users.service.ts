@@ -21,17 +21,14 @@ export class UsersService {
     return this.usersRepository.findUser(id);
   }
 
-  findEmail(email: string): Promise<User> {
-    return this.usersRepository.findUserByEmail(email);
+  findEmail(email: string, password: string): Promise<User> {
+    return this.usersRepository.findUserByEmail(email, password);
   }
 
   async save(user: CreateUserDto): Promise<void> {
     await this.usersRepository.createUser(user);
   }
 
-  // async update(id: string, user: UpdateUserDto): Promise<void> {
-  //   await this.usersRepository.updateUser(id, user);
-  // }
   async update(id: string, user: UpdateUserDto): Promise<void> {
     await this.usersRepository.updateUser(id, user);
   }
