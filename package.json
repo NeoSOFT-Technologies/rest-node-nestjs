@@ -78,7 +78,7 @@
     "winston": "^3.3.3"
   },
   "devDependencies": {
-    "@commitlint/cli": "^15.0.0",
+    "@commitlint/cli": "^16.0.1",
     "@commitlint/config-conventional": "^16.0.0",
     "@compodoc/compodoc": "^1.1.14",
     "@nestjs/cli": "^8.1.2",
