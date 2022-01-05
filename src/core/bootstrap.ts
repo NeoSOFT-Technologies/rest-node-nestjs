@@ -1,7 +1,7 @@
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { json, urlencoded } from 'express';
-//import * as helmet from 'helmet';
+import * as helmet from 'helmet';
 import { RequestGuard } from '@app/core/guards';
 import * as compression from 'compression';
 import { shouldCompress } from '@app/core/compression/compression';
@@ -20,7 +20,7 @@ export default async function bootstrap(app: INestApplication) {
   // middlewares, express specific\
   app.use(json({ limit: '50mb' }));
   app.use(urlencoded({ limit: '50mb', extended: true }));
-  //app.use(helmet());
+  app.use(helmet());
   app.use(
     compression({
       filter: shouldCompress,
