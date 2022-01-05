@@ -6,7 +6,6 @@ import { User } from '@app/components/users/entities/user.entity';
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
-      // name: 'mysql_connection',
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
@@ -21,23 +20,28 @@ import { User } from '@app/components/users/entities/user.entity';
         synchronize: config.get('app.env') === 'local' || 'dev' ? true : false,
       }),
     }),
-    TypeOrmModule.forRootAsync({
-      // name: 'mongoDB_connection',
-      imports: [ConfigModule],
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => ({
-        type: 'mongodb',
-        host: config.get('db.host'),
-        port: config.get('db.port2'),
-        username: config.get('db.username'),
-        password: config.get('db.password'),
-        database: config.get('db.database'),
-        useUnifiedTopology: true,
-        authSource: 'admin',
-        entities: [User],
-        synchronize: config.get('app.env') === 'local' || 'dev' ? true : false,
-      }),
-    }),
   ],
 })
 export class DatabaseModule {}
+
+/**
+ * For MongoDb setup
+ *
+ * TypeOrmModule.forRootAsync({
+ *   name: 'mongoDB_connection',
+ *   imports: [ConfigModule],
+ *   inject: [ConfigService],
+ *   useFactory: (config: ConfigService) => ({
+ *     type: 'mongodb',
+ *     host: config.get('db.host'),
+ *     port: config.get('db.mongodb_port'),
+ *     username: config.get('db.username'),
+ *     password: config.get('db.password'),
+ *     database: config.get('db.database'),
+ *     useUnifiedTopology: true,
+ *     authSource: 'admin',
+ *     entities: [User],
+ *     synchronize: config.get('app.env') === 'local' || 'dev' ? true : false,
+ *   }),
+ * }),
+ */
