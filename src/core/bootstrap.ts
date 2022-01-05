@@ -1,7 +1,7 @@
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { json, urlencoded } from 'express';
-import helmet from 'helmet';
+import * as helmet from 'helmet';
 import { RequestGuard } from '@app/core/guards';
 import * as compression from 'compression';
 import { shouldCompress } from '@app/core/compression/compression';
