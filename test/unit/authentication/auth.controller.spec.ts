@@ -3,8 +3,9 @@ import { Test, TestingModule } from '@nestjs/testing';
 import * as httpMocks from 'node-mocks-http';
 import { AuthController } from '@app/auth/auth.controller';
 import { AuthService } from '@app/auth/auth.service';
-import { AppModule } from '@app/app.module';
-import { ValidateUserDto } from '@app/components/users/dto/validate.user.dto';
+import { JwtModule } from '@nestjs/jwt';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { PassportModule } from '@nestjs/passport';
 
 describe('Testing AuthController', () => {
   let authController: AuthController;
@@ -17,24 +18,38 @@ describe('Testing AuthController', () => {
     generateToken: jest.fn().mockResolvedValue('sampleToken'),
   };
 
-  // beforeAll(async () => {
-  //   const module: TestingModule = await Test.createTestingModule({
-  //     imports: [AppModule],
-  //   })
-  //     .overrideProvider(AuthService)
-  //     .useValue(mockAuthService)
-  //     .compile();
+  beforeAll(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      imports: [
+        JwtModule.registerAsync({
+          imports: [ConfigModule],
+          useFactory: async (config: ConfigService) => {
+            return {
+              secret: config.get<string>('SECRET_JWT_KEY'),
+            };
+          },
+          inject: [ConfigService],
+        }),
+        ConfigModule,
+        PassportModule,
+      ],
+      controllers: [AuthController],
+      providers: [AuthService],
+    })
+      .overrideProvider(AuthService)
+      .useValue(mockAuthService)
+      .compile();
 
-  //   authController = module.get<AuthController>(AuthController);
-  // });
+    authController = module.get<AuthController>(AuthController);
+  });
 
   it('Testing error cases', async () => {
-    // mockResponse.error = jest.fn(() => 'error');
-    // expect(await authController.generateToken(mockRequest, mockResponse)).toEqual('error');
+    mockResponse.error = jest.fn(() => 'error');
+    expect(await authController.generateToken(mockRequest, mockResponse)).toEqual('error');
   });
 
   it('Testing authcontroller "generateToken"', async () => {
-    // mockResponse.success = jest.fn((input) => input);
-    // expect(await authController.generateToken(mockRequest, mockResponse)).toEqual('sampleToken');
+    mockResponse.success = jest.fn((input) => input);
+    expect(await authController.generateToken(mockRequest, mockResponse)).toEqual('sampleToken');
   });
 });
