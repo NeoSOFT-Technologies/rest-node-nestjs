@@ -16,7 +16,7 @@ export class EmailHandlerService {
           fromEmail: this.config.get('mailer.fromEmail'),
           host: this.config.get('mailer.host'),
           port: this.config.get('mailer.port'),
-          secure: this.config.get('mailer.secure'),
+          // secure: this.config.get('mailer.secure'),
           auth: {
             user: this.config.get('mailer.username'),
             pass: this.config.get('mailer.password'),
@@ -81,6 +81,9 @@ export class EmailHandlerService {
   }
 
   private async getEmailServer(mailConfig: IMailConfig): Promise<Mail> {
-    return nodemailer.createTransport(mailConfig);
+    return nodemailer.createTransport({
+      secure: true,
+      ...mailConfig,
+    });
   }
 }
