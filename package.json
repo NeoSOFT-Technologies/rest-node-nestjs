@@ -100,9 +100,9 @@
     "@typescript-eslint/parser": "^5.1.0",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.0.1",
+    "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-prettier": "^4.0.0",
     "husky": "^7.0.2",
     "jest": "^27.2.0",
@@ -128,7 +128,8 @@
     "rootDir": ".",
     "testRegex": [
       ".*\\.spec\\.ts$",
-      ".*\\-spec\\.ts$"
+      ".*\\-spec\\.ts$",
+      ".e2e-spec.ts$"
     ],
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
@@ -136,7 +137,7 @@
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],
-    "collectCoverage": true,
+    "collectCoverage": false,
     "testResultsProcessor": "jest-sonar-reporter",
     "coverageDirectory": "./coverage",
     "testEnvironment": "node",

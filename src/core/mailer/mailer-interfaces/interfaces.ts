@@ -2,7 +2,6 @@ export interface IMailConfig {
   fromEmail: string;
   host: string;
   port: number;
-  // secure: boolean;
   auth: IMailAuth;
 }
 

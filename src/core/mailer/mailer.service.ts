@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import * as juice from 'juice';
 import * as nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
-import * as juice from 'juice';
 import * as pug from 'pug';
+
 import { IMailConfig, IMailOptions, IMailResponse } from './mailer-interfaces';
-import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class EmailHandlerService {
@@ -16,7 +17,6 @@ export class EmailHandlerService {
           fromEmail: this.config.get('mailer.fromEmail'),
           host: this.config.get('mailer.host'),
           port: this.config.get('mailer.port'),
-          // secure: this.config.get('mailer.secure'),
           auth: {
             user: this.config.get('mailer.username'),
             pass: this.config.get('mailer.password'),
