@@ -13,7 +13,7 @@ To get started first we need to install the @nestjs/throttler package
 $ npm i --save @nestjs/throttler
 ```
 # Usability
-Once the installation is complete we can proceed forward towards implementation by configuring the **ThrottlerModule** as any other Nest Module using **forRoot** and **forRootAsync** methods. First we will be creating a throttle Module.
+Once the installation is complete we can proceed forward towards implementation by configuring the **ThrottlerModule* any other Nest Module using **forRoot** and **forRootAsync** methods. First we will be creating a throttle Module.
 ```
 @Module({
   imports: [
@@ -28,7 +28,7 @@ export class ThrottleModule {}
 Some parameters are explained below
 **ttl** :  stands for *time to live*
 **limit**: it stands for the maximum numer of requests to be made to the server in the given *ttl*
-Once you import the class then you can bind the class. But this is binding will happen locally. If you want to bind the class globally then we have to use the following code snippet in the **Provider** section 
+Once you import the class then you can bind the class. But this is binding will happen locally. If you want to bind the class globally then we have to use the following code snippet in the **Provider** section
 ```
 {
   provide: APP_GUARD,

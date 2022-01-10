@@ -1,14 +1,15 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
-import * as request from 'supertest';
-import { AppModule } from '@app/app.module';
-import coreBootstrap from '@app/core/bootstrap';
+import { Test, TestingModule } from '@nestjs/testing';
+import { loginCredentials } from '@test/mock/generate-token.stub';
 import { userStub } from '@test/mock/user.stub';
 import { updateUserStub } from '@test/mock/user.update.stub';
-import { setupAPIVersioning } from '@app/core/api.versioning';
-import { setupSwagger } from '@app/swagger';
 import { StatusCodes } from 'http-status-codes';
-import { loginCredentials } from '@test/mock/generate-token.stub';
+import request from 'supertest';
+
+import { AppModule } from '@app/app.module';
+import { setupAPIVersioning } from '@app/core/api.versioning';
+import coreBootstrap from '@app/core/bootstrap';
+import { setupSwagger } from '@app/swagger';
 
 export const AppController_test = () => {
   let app: INestApplication;

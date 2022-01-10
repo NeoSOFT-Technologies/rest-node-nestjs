@@ -1,10 +1,11 @@
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
+import { AppController_test } from '@test/e2e/user.e2e';
+import { userStub } from '@test/mock/user.stub';
+
 import { AppModule } from '@app/app.module';
 import { User } from '@app/components/users/entities/user.entity';
 import { UserDbRepository } from '@app/components/users/repository/db/user.repository';
-import { AppController_test } from '@test/e2e/user.e2e';
-import { userStub } from '@test/mock/user.stub';
 
 describe('Testing UserDbRepository', () => {
   let app: INestApplication;

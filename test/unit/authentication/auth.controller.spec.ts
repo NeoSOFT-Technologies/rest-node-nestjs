@@ -1,11 +1,12 @@
-import { Request, Response } from '@app/core';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
 import { Test, TestingModule } from '@nestjs/testing';
-import * as httpMocks from 'node-mocks-http';
+import httpMocks from 'node-mocks-http';
+
 import { AuthController } from '@app/auth/auth.controller';
 import { AuthService } from '@app/auth/auth.service';
-import { JwtModule } from '@nestjs/jwt';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { PassportModule } from '@nestjs/passport';
+import { Request, Response } from '@app/core';
 
 describe('Testing AuthController', () => {
   let authController: AuthController;

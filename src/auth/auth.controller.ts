@@ -1,9 +1,10 @@
 import { Controller, Post, Req, Res } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
-import { Request, Response } from '@app/core';
-import { ValidateUserDto } from '@app/components/users/dto/validate.user.dto';
-import { AuthService } from '@app/auth/auth.service';
 import { StatusCodes } from 'http-status-codes';
+
+import { AuthService } from '@app/auth/auth.service';
+import { ValidateUserDto } from '@app/components/users/dto/validate.user.dto';
+import { Request, Response } from '@app/core';
 
 @ApiTags('authentication')
 @Controller('auth')

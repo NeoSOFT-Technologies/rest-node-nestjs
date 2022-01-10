@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import * as juice from 'juice';
-import * as nodemailer from 'nodemailer';
+import juice from 'juice';
+import nodemailer from 'nodemailer';
 import Mail from 'nodemailer/lib/mailer';
-import * as pug from 'pug';
+import pug from 'pug';
 
 import { IMailConfig, IMailOptions, IMailResponse } from './mailer-interfaces';
 

@@ -1,4 +1,3 @@
-import { User } from '@app/components/users/entities/user.entity';
 import {
   Controller,
   Delete,
@@ -12,14 +11,16 @@ import {
   Version,
   VERSION_NEUTRAL,
 } from '@nestjs/common';
-import { UsersService } from '@app/components/users/services/users.service';
-import { Request, Response } from '@app/core';
+import { ApiBearerAuth, ApiBody, ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { StatusCodes } from 'http-status-codes';
+
+import { JwtAuthGuard } from '@app/auth/jwt.auth.guard';
+import { apiResponse } from '@app/components/users/constants/api.response.dto';
 import { CreateUserDto } from '@app/components/users/dto/create.user.dto';
 import { UpdateUserDto } from '@app/components/users/dto/update.user.dto';
-import { ApiBearerAuth, ApiBody, ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
-import { apiResponse } from '@app/components/users/constants/api.response.dto';
-import { JwtAuthGuard } from '@app/auth/jwt.auth.guard';
+import { User } from '@app/components/users/entities/user.entity';
+import { UsersService } from '@app/components/users/services/users.service';
+import { Request, Response } from '@app/core';
 
 @ApiTags('user_api')
 @Controller('users')

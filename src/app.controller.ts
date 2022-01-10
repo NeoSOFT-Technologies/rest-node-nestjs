@@ -1,8 +1,9 @@
-import { Request, Response } from '@app/core';
 import { Controller, Get, Req, Res } from '@nestjs/common';
-import { AppService } from '@app/app.service';
-import AppLogger from '@app/core/logger/AppLogger';
 import { ApiTags } from '@nestjs/swagger';
+
+import { AppService } from '@app/app.service';
+import { Request, Response } from '@app/core';
+import AppLogger from '@app/core/logger/AppLogger';
 
 @ApiTags('nest_app')
 @Controller()

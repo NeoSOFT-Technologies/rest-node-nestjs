@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+
 import { EmailHandlerService } from '@app/core/mailer/mailer.service';
 import { CoreModule } from '@app/core/module';
 

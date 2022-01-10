@@ -8,7 +8,7 @@ For integrating with SQL and NoSQL databases, Nest provides the [@nestjs/typeorm
 ```
 $ npm install --save @nestjs/typeorm typeorm
 ```
-Now proceed to install the associated client API libraries for selected database. 
+Now proceed to install the associated client API libraries for selected database.
 For MySQL install [mysql](https://www.npmjs.com/package/mysql2)
 ```
 $ npm install --save mysql2
@@ -113,7 +113,7 @@ constructor(
     private readonly usersRepository: UserRepository
   ) {}
 ```
-### Using other database apart from MySQL and MongoDb. 
+### Using other database apart from MySQL and MongoDb.
 
 The existing boiler plate comes with by default support for MySQL. This doesn't mean that you cannot use any other database like  PostgreSQL, Oracle, Microsoft SQL Server etc. Install the respective package of the database and update the config.ts as per required database configuration.
 
@@ -121,28 +121,28 @@ The existing boiler plate comes with by default support for MySQL. This doesn't 
 
 ## NoSQL injections
 
-A NoSQL injection vulnerability is an error in a web application that uses a NoSQL database. This web application security issue lets a malicious party bypass authentication, extract data, modify data, or even gain complete control over the application. NoSQL injection attacks are the result of a lack of data sanitization. 
- 
-NoSQL injections are just one of many injection attacks, similar to traditional SQL Injections. They are engineered to exploit modern databases that do not use SQL. While NoSQL database engines have a different structure and do not support SQL statements and SQL queries, they still let users perform queries. They do not support one standardized language and therefore the query language is dependent on the implementation: database (e.g. MongoDB), language, and framework (e.g. Node.js, Angular). However, NoSQL queries are most often based on JSON and they can include user input. If this input is not sanitized, they are vulnerable to injections. 
+A NoSQL injection vulnerability is an error in a web application that uses a NoSQL database. This web application security issue lets a malicious party bypass authentication, extract data, modify data, or even gain complete control over the application. NoSQL injection attacks are the result of a lack of data sanitization.
+
+NoSQL injections are just one of many injection attacks, similar to traditional SQL Injections. They are engineered to exploit modern databases that do not use SQL. While NoSQL database engines have a different structure and do not support SQL statements and SQL queries, they still let users perform queries. They do not support one standardized language and therefore the query language is dependent on the implementation: database (e.g. MongoDB), language, and framework (e.g. Node.js, Angular). However, NoSQL queries are most often based on JSON and they can include user input. If this input is not sanitized, they are vulnerable to injections.
 
 ![NoSQL Injection](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/nosql_support/wiki/images/nosql-query-injection.png?raw=true)
 
 
-### Types Of Injection Attacks 
+### Types Of Injection Attacks
 
-1) **In-band Injections** : In-band Injection is the most common and easy-to-exploit of Injection attacks. In-band Injection occurs when an attacker is able to use the same communication channel to both launch the attack and gather results. As an example, an attacker may use the HTTP communication deploy the attack to a backend and get the results on the same channel  
+1) **In-band Injections** : In-band Injection is the most common and easy-to-exploit of Injection attacks. In-band Injection occurs when an attacker is able to use the same communication channel to both launch the attack and gather results. As an example, an attacker may use the HTTP communication deploy the attack to a backend and get the results on the same channel
 
-2) **Inferential Injection (Blind Injection)**: In an inferential attack, no data is actually transferred via the web application and the attacker would not be able to see the result of an attack in-band. Instead, an attacker is able to reconstruct the database structure by sending payloads, observing the web application’s response and the resulting behavior of the database server. 
-Blind injection is nearly identical to normal injection, the only difference being the way the data is retrieved from the database. When the database does not output data to the web page, an attacker is forced to steal data by asking the database a series of true or false questions. This makes exploiting the Injection vulnerability more difficult, but not impossible. 
+2) **Inferential Injection (Blind Injection)**: In an inferential attack, no data is actually transferred via the web application and the attacker would not be able to see the result of an attack in-band. Instead, an attacker is able to reconstruct the database structure by sending payloads, observing the web application’s response and the resulting behavior of the database server.
+Blind injection is nearly identical to normal injection, the only difference being the way the data is retrieved from the database. When the database does not output data to the web page, an attacker is forced to steal data by asking the database a series of true or false questions. This makes exploiting the Injection vulnerability more difficult, but not impossible.
 
-3) **Out-of-band Injections**: This not very common type of injection, mostly because it depends on features being enabled on the database server being used by the web application. Out-of-band Injection occurs when an attacker is unable to use the same channel to launch the attack and gather results. 
+3) **Out-of-band Injections**: This not very common type of injection, mostly because it depends on features being enabled on the database server being used by the web application. Out-of-band Injection occurs when an attacker is unable to use the same channel to launch the attack and gather results.
 
-### How to prevent injection attacks 
+### How to prevent injection attacks
 
-- Try to avoid building queries from strings, use safe APIs and prepared statements. 
-- Validate input to detect malicious values, also verify the types of input data i.e. string, number, Boolean, object etc. We can use joi or any other tool for this. 
-- To minimize the potential damage of a successful injection attack, do not assign DBA or admin type access rights to your application accounts, we can create new roles with specific/limited access. 
-- Sanitize the data, we can use express-mongo-sanitize to sanitize incoming data for express mongoDB. 
+- Try to avoid building queries from strings, use safe APIs and prepared statements.
+- Validate input to detect malicious values, also verify the types of input data i.e. string, number, Boolean, object etc. We can use joi or any other tool for this.
+- To minimize the potential damage of a successful injection attack, do not assign DBA or admin type access rights to your application accounts, we can create new roles with specific/limited access.
+- Sanitize the data, we can use express-mongo-sanitize to sanitize incoming data for express mongoDB.
 ## Database Vulnerabilty against injection
 
 | Connection type  | With ORM   | Without ORM   |
@@ -165,7 +165,7 @@ Object keys starting with a $ or containing a . are reserved for use by MongoDB 
 ```ts
 # bootsrap.ts
 ...
-import * as mongoSanitize  from 'express-mongo-sanitize';
+import  mongoSanitize  from 'express-mongo-sanitize';
 
 ...
 app.use(mongoSanitize());
