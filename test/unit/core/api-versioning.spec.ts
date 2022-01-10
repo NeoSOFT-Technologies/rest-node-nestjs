@@ -1,10 +1,11 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication, VersioningType } from '@nestjs/common';
-import * as request from 'supertest';
+import { ConfigService } from '@nestjs/config';
+import { Test, TestingModule } from '@nestjs/testing';
+import { StatusCodes } from 'http-status-codes';
+import request from 'supertest';
+
 import { AppModule } from '@app/app.module';
 import coreBootstrap from '@app/core/bootstrap';
-import { ConfigService } from '@nestjs/config';
-import { StatusCodes } from 'http-status-codes';
 
 describe('Testing API Versioning', () => {
   let app: INestApplication;

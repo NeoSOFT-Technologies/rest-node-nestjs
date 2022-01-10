@@ -1,9 +1,10 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
-import * as request from 'supertest';
+import { Test, TestingModule } from '@nestjs/testing';
+import { StatusCodes } from 'http-status-codes';
+import request from 'supertest';
+
 import { AppModule } from '@app/app.module';
 import coreBootstrap from '@app/core/bootstrap';
-import { StatusCodes } from 'http-status-codes';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;

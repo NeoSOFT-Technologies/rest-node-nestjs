@@ -1,5 +1,6 @@
-import { Request, Response } from '@app/core';
 import { Controller, Get, Req, Res } from '@nestjs/common';
+
+import { Request, Response } from '@app/core';
 import AppLogger from '@app/core/logger/AppLogger';
 
 @Controller()

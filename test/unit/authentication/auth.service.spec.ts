@@ -1,12 +1,14 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { UsersService } from '@app/components/users/services/users.service';
-import { userStub } from '@test/mock/user.stub';
-import { AuthService } from '@app/auth/auth.service';
-import { JwtModule } from '@nestjs/jwt';
-import { TestCoreModule } from '../core/guards/module/core-test.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
+import { Test, TestingModule } from '@nestjs/testing';
+import { userStub } from '@test/mock/user.stub';
+
+import { AuthService } from '@app/auth/auth.service';
 import { JwtStrategy } from '@app/auth/jwt.strategy';
+import { UsersService } from '@app/components/users/services/users.service';
+
+import { TestCoreModule } from '../core/guards/module/core-test.module';
 
 describe('Testing AuthService', () => {
   let authService: AuthService;

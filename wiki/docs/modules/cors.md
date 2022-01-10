@@ -1,6 +1,6 @@
 # CORS
 
-Cross-origin resource sharing (CORS) is a mechanism that allows resources to be requested from another domain. Under the hood, Nest makes use of the Express [cors](https://github.com/expressjs/cors) package. This package provides various options that you can customize based on your requirements.The CORS mechanism supports secure cross-origin requests and data transfers between browsers and servers. 
+Cross-origin resource sharing (CORS) is a mechanism that allows resources to be requested from another domain. Under the hood, Nest makes use of the Express [cors](https://github.com/expressjs/cors) package. This package provides various options that you can customize based on your requirements.The CORS mechanism supports secure cross-origin requests and data transfers between browsers and servers.
 
 ## Installation
 ```
@@ -10,7 +10,7 @@ $ npm install cors
 ## Simple Usage (Enable *All* CORS Requests)
 ```
 # bootstrap.ts
-import * as cors from 'cors';
+import  cors from 'cors';
 import { corsOptions } from './CORS/cors.config';
 
 app.use(cors(corsOptions));

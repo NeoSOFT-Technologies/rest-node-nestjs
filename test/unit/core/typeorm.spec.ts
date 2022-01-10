@@ -2,6 +2,7 @@ import { INestApplication } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Connection, createConnection } from 'typeorm';
+
 import { User } from '@app/components/users/entities/user.entity';
 import { CoreModule } from '@app/core/module';
 

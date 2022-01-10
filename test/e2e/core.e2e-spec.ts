@@ -1,16 +1,17 @@
-import * as request from 'supertest';
-import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { AppModule } from '@app/app.module';
-import coreBootstrap from '@app/core/bootstrap';
-import { RequestGuard } from '@app/core';
-import AppLogger from '@app/core/logger/AppLogger';
-import { StatusCodes } from 'http-status-codes';
-import { setupAPIVersioning } from '@app/core/api.versioning';
-import { UserDbRepository } from '@app/components/users/repository/db/user.repository';
-import { userStub } from '@test/mock/user.stub';
+import { Test, TestingModule } from '@nestjs/testing';
 import { loginCredentials } from '@test/mock/generate-token.stub';
+import { userStub } from '@test/mock/user.stub';
+import { StatusCodes } from 'http-status-codes';
+import request from 'supertest';
+
+import { AppModule } from '@app/app.module';
+import { UserDbRepository } from '@app/components/users/repository/db/user.repository';
+import { RequestGuard } from '@app/core';
+import { setupAPIVersioning } from '@app/core/api.versioning';
+import coreBootstrap from '@app/core/bootstrap';
+import AppLogger from '@app/core/logger/AppLogger';
 
 describe('Core module (e2e)', () => {
   let app: INestApplication;

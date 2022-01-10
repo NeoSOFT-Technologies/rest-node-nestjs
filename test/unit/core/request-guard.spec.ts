@@ -1,14 +1,15 @@
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
+import { loginCredentials } from '@test/mock/generate-token.stub';
+import { mockRequest } from '@test/mock/mock.request';
+import { mockResponse } from '@test/mock/mock.response';
+import { users } from '@test/mock/users.response';
+import request from 'supertest';
+
 import { AppModule } from '@app/app.module';
 import { UsersService } from '@app/components/users/services/users.service';
-import coreBootstrap from '@app/core/bootstrap';
-import { users } from '@test/mock/users.response';
-import * as request from 'supertest';
 import { setupAPIVersioning } from '@app/core/api.versioning';
-import { mockResponse } from '@test/mock/mock.response';
-import { mockRequest } from '@test/mock/mock.request';
-import { loginCredentials } from '@test/mock/generate-token.stub';
+import coreBootstrap from '@app/core/bootstrap';
 
 describe('Testing request-guard', () => {
   let app: INestApplication;

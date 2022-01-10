@@ -1,15 +1,16 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import * as request from 'supertest';
-import coreBootstrap from '@app/core/bootstrap';
+import { Test, TestingModule } from '@nestjs/testing';
 import appConfig1 from '@test/unit/core/guards/config/appConfig1';
 import appConfig2 from '@test/unit/core/guards/config/appConfig2';
-import { DatabaseModule } from '@app/db/database.module';
-import { UsersModule } from '@app/components/users/users.module';
-import { setupAPIVersioning } from '@app/core/api.versioning';
-import database from '@app/config/database';
 import { StatusCodes } from 'http-status-codes';
+import request from 'supertest';
+
+import { UsersModule } from '@app/components/users/users.module';
+import database from '@app/config/database';
+import { setupAPIVersioning } from '@app/core/api.versioning';
+import coreBootstrap from '@app/core/bootstrap';
+import { DatabaseModule } from '@app/db/database.module';
 
 describe('Testing API Versioning switch cases', () => {
   let app: INestApplication;
