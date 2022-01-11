@@ -17,9 +17,8 @@ export class AuthService {
     const userData = await this.findUserByEmail(user);
     const payload = `${userData.firstName}${userData.id}`;
     const accessToken = this.jwtService.sign(payload);
-    const resultResponse = {
+    return {
       access_token: accessToken,
     };
-    return resultResponse;
   }
 }
