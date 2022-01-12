@@ -1,7 +1,7 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { TestCoreModule } from '../core/guards/module/core-test.module';
+import { Test, TestingModule } from '@nestjs/testing';
+import { TestCoreModule } from '@test/unit/core/guards/module/core-test.module';
 
 describe('Testing config variables default values', () => {
   let app: INestApplication;

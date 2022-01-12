@@ -18,9 +18,52 @@ services:
         MYSQL_EXPOSE_PORT: '${DB_PORT}'
         MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
         MYSQL_USER: '${DB_USER}'
+        MYSQL_ROOT_USER: '${DB_USER}'
         MYSQL_PASSWORD: '${DB_PASSWORD}'
+        
+  mongodb:
+    image: mongo:3.6.19-xenial
+    container_name: '${APP_NAME}_mongodb'
+    ports:
+        - "27017:27017"
+    networks:
+        - internal
+    volumes:
+        - mongoDB:/data/db  
+  nestjs:
+    build:
+        context: ./../
+    container_name: '${APP_NAME}_nestjs'
+    volumes:
+        - ./../:/usr/src/app
+    networks:
+        - internal
+    depends_on:
+        - database
+        - mongodb
+    ports:
+        - '5000:5000'
+
+  nginx:
+    image: nginx:1.20
+    container_name: '${APP_NAME}_nginx'
+    networks:
+        - internal
+    volumes:
+        - ./nginx.conf:/etc/nginx/conf.d/default.conf
+        - ./certs:/etc/nginx/certs
+    ports:
+        - '80:80'
+        - '443:443'
+    healthcheck:
+        test: ["CMD", "wget", "-qO-", "http://localhost:5000"]
+        interval: 2s
+        timeout: 60s
+        retries: 30
+
 volumes:
     mysql:
-
+    mongoDB:
+    
 networks:
     internal:

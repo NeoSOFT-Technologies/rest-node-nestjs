@@ -4,6 +4,8 @@ export const users = [
     id: 127,
     firstName: 'Santosh',
     lastName: 'Shinde',
+    email: 'santoshshinde@gmail.com',
+    password: '123456seven',
     isActive: true,
   },
 ];

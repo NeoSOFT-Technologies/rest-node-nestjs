@@ -1,5 +1,6 @@
+import crypto from 'crypto';
+
 import { ConfigService } from '@nestjs/config';
-import * as crypto from 'crypto';
 
 // algorithm - AES 256 GCM Mode
 const algorithm = 'aes-256-gcm';

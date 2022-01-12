@@ -1,6 +1,6 @@
 import { Injectable, LoggerService } from '@nestjs/common';
-import { Logger, createLogger, format, transports } from 'winston';
 import { ConfigService } from '@nestjs/config';
+import { Logger, createLogger, format, transports } from 'winston';
 
 enum WinstonLogLevel {
   INFO = 'info',

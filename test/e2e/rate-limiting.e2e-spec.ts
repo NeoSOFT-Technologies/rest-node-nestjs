@@ -1,11 +1,12 @@
 import { INestApplication } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
+import { StatusCodes } from 'http-status-codes';
+import request from 'supertest';
+
 import { AppModule } from '@app/app.module';
 import coreBootstrap from '@app/core/bootstrap';
-import { ThrottleModule } from '@app/core/rate limiter/throttle.module';
-import * as request from 'supertest';
-import { ConfigService } from '@nestjs/config';
-import { StatusCodes } from 'http-status-codes';
+import { ThrottleModule } from '@app/core/rate-limiter/throttle.module';
 
 describe('Testing api rate limit', () => {
   let app: INestApplication;

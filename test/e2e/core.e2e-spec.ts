@@ -1,15 +1,21 @@
-import * as request from 'supertest';
-import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { AppModule } from '@app/app.module';
-import coreBootstrap from '@app/core/bootstrap';
-import { RequestGuard } from '@app/core';
-import AppLogger from '@app/core/logger/AppLogger';
+import { Test, TestingModule } from '@nestjs/testing';
+import { loginCredentials } from '@test/mock/generate-token.stub';
+import { userStub } from '@test/mock/user.stub';
 import { StatusCodes } from 'http-status-codes';
+import request from 'supertest';
+
+import { AppModule } from '@app/app.module';
+import { UserDbRepository } from '@app/components/users/repository/db/user.repository';
+import { RequestGuard } from '@app/core';
+import { setupAPIVersioning } from '@app/core/api.versioning';
+import coreBootstrap from '@app/core/bootstrap';
+import AppLogger from '@app/core/logger/AppLogger';
 
 describe('Core module (e2e)', () => {
   let app: INestApplication;
+  let userDbRepository: UserDbRepository;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -17,7 +23,9 @@ describe('Core module (e2e)', () => {
     }).compile();
 
     app = moduleFixture.createNestApplication();
+    userDbRepository = moduleFixture.get<UserDbRepository>(UserDbRepository);
     coreBootstrap(app);
+    setupAPIVersioning(app);
     await app.init();
   });
 
@@ -38,8 +46,20 @@ describe('Core module (e2e)', () => {
       expect(guard.bindResponseHelpers).toBeDefined();
     });
 
+    it('Testing UserDbRepository method "createUser"', async () => {
+      expect(await userDbRepository.createUser(userStub())).toEqual({
+        id: expect.any(Number),
+        ...userStub(),
+      });
+    });
+
     it('Checking Response binder for valid GET request', async () => {
-      const response = await request(app.getHttpServer()).get('/users');
+      const loginResponse = await request(app.getHttpServer()).post('/auth/generateToken').send(loginCredentials);
+
+      const response = await request(app.getHttpServer())
+        .get('/users')
+        .set('Authorization', 'Bearer ' + loginResponse.body.data.access_token);
+
       expect(response.body.success).toBe(true);
     });
 
@@ -49,7 +69,12 @@ describe('Core module (e2e)', () => {
     });
 
     it('Checking Response binder for invalid GET request', async () => {
-      const response = await request(app.getHttpServer()).get('/users/test');
+      const loginResponse = await request(app.getHttpServer()).post('/auth/generateToken').send(loginCredentials);
+
+      const response = await request(app.getHttpServer())
+        .get('/users/test')
+        .set('Authorization', 'Bearer ' + loginResponse.body.data.access_token);
+
       expect(response.body.success).toBe(false);
     });
 
@@ -57,7 +82,12 @@ describe('Core module (e2e)', () => {
       const config = app.get(ConfigService);
       const applogger = new AppLogger(config);
       const spy = jest.spyOn(applogger, 'log');
-      const response = await request(app.getHttpServer()).get('/users');
+      const loginResponse = await request(app.getHttpServer()).post('/auth/generateToken').send(loginCredentials);
+
+      const response = await request(app.getHttpServer())
+        .get('/users')
+        .set('Authorization', 'Bearer ' + loginResponse.body.data.access_token);
+
       if (response.status === StatusCodes.OK) {
         applogger.log('Logger class called');
       }

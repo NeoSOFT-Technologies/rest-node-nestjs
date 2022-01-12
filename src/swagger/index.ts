@@ -1,6 +1,6 @@
 import { INestApplication } from '@nestjs/common';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 export const setupSwagger = (app: INestApplication) => {
   const config = app.get(ConfigService);
@@ -8,8 +8,19 @@ export const setupSwagger = (app: INestApplication) => {
     .setTitle(config.get('app.name'))
     .setDescription(`API Documentation for the app ${config.get('app.name')}`)
     .setVersion(config.get('app.version'))
-    .addBearerAuth()
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+        name: 'JWT',
+        description: 'Enter JWT token',
+        in: 'header',
+      },
+      'JWT-auth'
+    )
     .build();
+
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api/docs', app, document);
 };
