@@ -26,7 +26,10 @@
     "db:setup:prod": "docker-compose --env-file -f ./docker/docker-compose.yml up  ./config/env/.env.prod -d --build",
     "db:setup:test": "docker-compose --env-file -f docker/docker-compose.yml  ./config/env/.env.test up -d --build",
     "doc": "npx @compodoc/compodoc -p tsconfig.json --includesName Documentation --includes wiki/docs --theme stripe",
-    "document": "npx @compodoc/compodoc -p tsconfig.json --includesName Documentation --includes wiki/docs --theme stripe -s"
+    "document": "npx @compodoc/compodoc -p tsconfig.json --includesName Documentation --includes wiki/docs --theme stripe -s",
+    "typeorm": "ts-node --require tsconfig-paths/register ./node_modules/typeorm/cli.js --config src/db/typeorm.config.ts",
+    "migration:generate": "npm run typeorm migration:generate -- -n migration",
+    "prestart": "npm run migration:generate"
   },
   "repository": {
     "type": "git",
@@ -115,7 +118,7 @@
     "swagger-ui-express": "^4.1.6",
     "ts-jest": "^27.0.5",
     "ts-loader": "^9.2.6",
-    "ts-node": "^10.3.0",
+    "ts-node": "^10.4.0",
     "tsconfig-paths": "^3.11.0",
     "typescript": "^4.2.3"
   },
@@ -128,8 +131,7 @@
     "rootDir": ".",
     "testRegex": [
       ".*\\.spec\\.ts$",
-      ".*\\-spec\\.ts$",
-      ".e2e-spec.ts$"
+      ".*\\-spec\\.ts$"
     ],
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
@@ -137,7 +139,7 @@
     "collectCoverageFrom": [
       "**/*.(t|j)s"
     ],
-    "collectCoverage": false,
+    "collectCoverage": true,
     "testResultsProcessor": "jest-sonar-reporter",
     "coverageDirectory": "./coverage",
     "testEnvironment": "node",
