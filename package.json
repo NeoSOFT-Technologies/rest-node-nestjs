@@ -28,8 +28,7 @@
     "doc": "npx @compodoc/compodoc -p tsconfig.json --includesName Documentation --includes wiki/docs --theme stripe",
     "document": "npx @compodoc/compodoc -p tsconfig.json --includesName Documentation --includes wiki/docs --theme stripe -s",
     "typeorm": "ts-node --require tsconfig-paths/register ./node_modules/typeorm/cli.js --config src/db/typeorm.config.ts",
-    "migration:generate": "npm run typeorm migration:generate -- -n migration",
-    "prestart": "npm run migration:generate"
+    "migration:generate": "npm run typeorm migration:generate -- -n migration"
   },
   "repository": {
     "type": "git",
@@ -62,6 +61,7 @@
     "class-transformer": "^0.5.0",
     "class-validator": "^0.13.1",
     "compression": "^1.7.4",
+    "dotenv": "^11.0.0",
     "express-jwt": "^6.1.0",
     "helmet": "5.0.1",
     "http-status-codes": "^2.1.4",

@@ -231,12 +231,14 @@ OR
 - [Request Response](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/request-response.md)
 - [Mailer](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/mailer.md)
 - [Database](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/database.md)
+- [Reverse Proxy](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/reverse_proxy.md)
 - [Pattern](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/pattern.md)
 - [Crypto](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/crypto.md)
 - [Rate Limit](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/rateLimit.md)
 - [Compression](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/compression.md)
 - [CORS](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/cors.md)
 - [Swagger/Open API](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/swagger.md)
+- [Database Migration](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/database.migration.md)
 
 ### 4. Miscellaneous
 

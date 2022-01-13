@@ -1,11 +1,11 @@
-import * as dotenv from 'dotenv';
+import { config } from 'dotenv';
 import { ConnectionOptions } from 'typeorm';
 
 import { User } from '@app/components/users/entities/user.entity';
 
-dotenv.config({ path: 'config/env/.env' });
+config({ path: 'config/env/.env' });
 
-const config: ConnectionOptions = {
+const configa: ConnectionOptions = {
   type: 'mysql',
   host: process.env.DB_HOST,
   port: +process.env.DB_PORT,
@@ -19,4 +19,4 @@ const config: ConnectionOptions = {
   },
 };
 
-export = config;
+export = configa;
