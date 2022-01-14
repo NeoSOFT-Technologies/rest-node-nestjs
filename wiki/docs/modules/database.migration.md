@@ -3,8 +3,9 @@
 Database migration can be defined as the process of migrating data from one source database to anoither targeted database by using the data migration service.
 In our boilerplate we are implementing this module so that the user cannot lose its data from the database even after there are some changes made in the relational schema of the database.
 
->> The concept of Database migration is executed only when the application is running in the production environment.
->> This method is recommended by TypeORM itself in order to avoid loss of data.
+> The concept of Database migration is executed only when the application is running in the production environment.
+
+> This method is recommended by TypeORM itself in order to avoid loss of data.
 
 ## Implementation
 - We will be implementing Database Migration using the TypeORM migration. 
