@@ -4,7 +4,6 @@ Database migration can be defined as the process of migrating data from one sour
 In our boilerplate we are implementing this module so that the user cannot lose its data from the database even after there are some changes made in the relational schema of the database.
 
 > The concept of Database migration is executed only when the application is running in the production environment.
-
 > This method is recommended by TypeORM itself in order to avoid loss of data.
 
 ## Implementation
@@ -13,8 +12,8 @@ In our boilerplate we are implementing this module so that the user cannot lose 
 - Migrations are created and run after changing the applications data models; for example, after creating or changing Entities in NestJS.
 
 ## Prequisites
-- [NestJs]('https://docs.nestjs.com/') should be installed.
-- [TypeORM]('https://docs.nestjs.com/techniques/database') should be installed.
+- [NestJs](https://docs.nestjs.com/) should be installed.
+- [TypeORM](https://docs.nestjs.com/techniques/database) should be installed.
 
 ## Usage
 1. First create a filename named `typeorm.config.ts` with the following configuration.
@@ -34,7 +33,7 @@ cli: {
 };
 export = config;
 ```
->> Remember to keep `synchronize:false`
+> Remember to keep `synchronize:false`
 
 Then we have to make changes in the `src/db/database.module.ts`
 ```
@@ -60,7 +59,7 @@ Then we have to make changes in the `src/db/database.module.ts`
   ],
 })
 ```
->> If you want the migrations not to run automatically then  you can set `migrationsRun: false`
+> If you want the migrations not to run automatically then  you can set `migrationsRun: false`
 
 Once this is completed then the setup is complete and the module is ready for execution.
 
@@ -72,7 +71,7 @@ scripts :{
     "migration:generate": "npm run typeorm migration:generate -- -n migration"
 }
 ```
->> If you do not set `--config` parameter typeorm seek a valid configuration file at the root of the project.
+> If you do not set `--config` parameter typeorm seek a valid configuration file at the root of the project.
 
 ## Running the module.
 1. Run the following command
@@ -85,4 +84,4 @@ scripts :{
 3. If everything went well, you have up to date entites and a `migrations` table listing applied migrations in the database. 
 
 ## References
-[TypeORM Migrations]('https://github.com/typeorm/typeorm/blob/master/docs/migrations.md')
+[TypeORM Migrations](https://github.com/typeorm/typeorm/blob/master/docs/migrations.md)
