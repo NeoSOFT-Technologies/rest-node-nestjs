@@ -19,6 +19,8 @@ import { User } from '@app/components/users/entities/user.entity';
         entities: [User],
         // entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize: config.get('app.env') === 'local' || 'dev' ? true : false,
+        migrations: ['dist/db/migrations/*.js'],
+        migrationsRun: true,
       }),
     }),
   ],

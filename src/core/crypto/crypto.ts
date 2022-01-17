@@ -58,11 +58,8 @@ export const encrypt = (config: ConfigService, data: any) => {
     // extract the auth tag
     const tag = cipher.getAuthTag();
 
-    // return [enc1, enc2, iv, tag];
-    const encryptedData = Buffer.concat([enc1, enc2, iv, tag]).toString(outputEncoding);
-
     // return the result
-    return encryptedData;
+    return Buffer.concat([enc1, enc2, iv, tag]).toString(outputEncoding);
   } catch (exception) {
     throw new Error(exception);
   }
