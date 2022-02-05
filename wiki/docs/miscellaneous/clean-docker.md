@@ -1,20 +1,41 @@
-# [Clean Docker Images](https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes)
+## [Clean Docker Images](https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-containers-and-volumes)
 
-# How to Do a Clean Restart of a Docker Instance
+## How to Do a Clean Restart of a Docker Instance
 
-### 1. Stop the container(s) using the following command
+#### 1. Stop the container(s) using the following command
 
 `docker-compose down`
 
-### 2. Delete all containers using the following command
+#### 2. Stop and remove all containers
 
-`docker rm -f $(docker ps -a -q)`
+- List
 
-### 3. Delete all volumes using the following command
+   `docker ps -a`
+
+- Remove
+
+```
+docker stop $(docker ps -a -q)
+docker rm $(docker ps -a -q)
+```
+
+#### 4.Remove all images
+
+- List
+
+   `docker images -a`
+
+- Remove
+
+```
+docker rmi $(docker images -a -q)
+```
+
+#### 5. Delete all volumes using the following command
 
 `docker volume rm $(docker volume ls -q)`
 
-### 4. Restart the containers using the following command
+#### 6. Restart the containers using the following command
 
 `docker-compose up -d`
 
