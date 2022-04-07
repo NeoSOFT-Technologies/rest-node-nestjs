@@ -7,7 +7,6 @@ import { UsersController } from '@app/components/users/users.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserDbRepository])],
-  // imports: [TypeOrmModule.forFeature([UserDbRepository],'mongoDB_connection')],
   exports: [TypeOrmModule, UsersService],
   providers: [UsersService],
   controllers: [UsersController],
