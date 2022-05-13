@@ -19,8 +19,8 @@
 - Let the users authenticate with a username/password. Upon authentication, return a JWT. This JWT can be used for subsequent calls to the application.
 - Once the JWT token is generated then that token will be used in the hear of each request as a `Bearer Token` that will validate each API call.
 - See below illustration that explains the concept.
-- Image
 
+![Selection_179](https://user-images.githubusercontent.com/87708447/168235678-fd32d584-84f7-414c-baf3-d4b7a71e82c5.png)
 ---
 
 ## INSTALLATION OF THE PACKAGES
@@ -181,3 +181,19 @@ export class JwtAuthGuard extends AuthGuard('jwt') {}
 
 ```
 - Here, the request handler getUserById() uses the JwtAuthGuard. Basically, this means that unless there is a valid JWT in the Authorization header of the incoming HTTP request, the endpoint will not provide a valid response.
+---
+## OUTPUT WILL BE AS FOLLOWS.
+
+- **CASE 1:** If the token is not entered and the API is being accessed then following will be the output.
+
+![Selection_181](https://user-images.githubusercontent.com/87708447/168236333-be25a152-84e9-42bf-b0eb-3c07cc18c667.png)
+
+- **CASE 2:** If the user credentials are not valid.
+
+![Selection_182](https://user-images.githubusercontent.com/87708447/168236606-39998a73-88d3-4bad-9d03-723640cf197e.png)
+
+- **CASE 3:** If the credentials are valid then the access token is generated.
+
+![Selection_183](https://user-images.githubusercontent.com/87708447/168236814-3aa62556-9f24-4e1f-8f93-e1c9e03e3978.png)
+
+
