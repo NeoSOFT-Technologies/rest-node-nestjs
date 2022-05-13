@@ -58,6 +58,8 @@
     "@nestjs/platform-express": "^8.0.6",
     "@nestjs/throttler": "^2.0.0",
     "@nestjs/typeorm": "^8.0.2",
+    "@types/bcrypt": "^5.0.0",
+    "bcrypt": "^5.0.1",
     "class-transformer": "^0.5.0",
     "class-validator": "^0.13.1",
     "compression": "^1.7.4",

@@ -11,7 +11,7 @@ import { Request, Response } from '@app/core';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('generateToken')
+  @Post('login')
   @ApiBody({ type: ValidateUserDto })
   async generateToken(@Req() req: Request, @Res() res: Response): Promise<Response> {
     try {
