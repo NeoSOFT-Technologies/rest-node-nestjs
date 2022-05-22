@@ -54,7 +54,7 @@ describe('Testing binded properties of Request and Response with Encryption mode
   it('Testing res.withMeta', async () => {
     const { body, statusCode }: any = await request(app.getHttpServer()).get('/withMeta');
     expect(body).toBeDefined();
-    expect(typeof body).toBe('string');
+    expect(typeof body).toBe('object');
     expect(statusCode).toEqual(StatusCodes.OK);
   });
 
@@ -68,7 +68,7 @@ describe('Testing binded properties of Request and Response with Encryption mode
   it('Testing req.all', async () => {
     const { body, statusCode }: any = await request(app.getHttpServer()).get('/all/test');
     expect(body).toBeDefined();
-    expect(typeof body).toBe('string');
+    expect(typeof body).toBe('object');
     expect(statusCode).toEqual(StatusCodes.OK);
   });
 

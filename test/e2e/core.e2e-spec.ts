@@ -16,7 +16,7 @@ import AppLogger from '@app/core/logger/AppLogger';
 describe('Core module (e2e)', () => {
   let app: INestApplication;
   let userDbRepository: UserDbRepository;
-
+  let token: string;
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
@@ -34,6 +34,12 @@ describe('Core module (e2e)', () => {
   });
 
   describe('TestCases', () => {
+    beforeAll(async () => {
+      const loginResponse = await request(app.getHttpServer()).post('/auth/login').send(loginCredentials);
+      token =
+        loginResponse && loginResponse.body && loginResponse.body.data ? loginResponse.body.data.access_token : '';
+    });
+
     it('Testing Request binder', () => {
       const config = app.get(ConfigService);
       const guard = new RequestGuard(config);
@@ -54,11 +60,9 @@ describe('Core module (e2e)', () => {
     });
 
     it('Checking Response binder for valid GET request', async () => {
-      const loginResponse = await request(app.getHttpServer()).post('/auth/generateToken').send(loginCredentials);
-
       const response = await request(app.getHttpServer())
         .get('/users')
-        .set('Authorization', 'Bearer ' + loginResponse.body.data.access_token);
+        .set('Authorization', 'Bearer ' + token);
 
       expect(response.body.success).toBe(true);
     });
@@ -69,24 +73,21 @@ describe('Core module (e2e)', () => {
     });
 
     it('Checking Response binder for invalid GET request', async () => {
-      const loginResponse = await request(app.getHttpServer()).post('/auth/generateToken').send(loginCredentials);
-
       const response = await request(app.getHttpServer())
         .get('/users/test')
-        .set('Authorization', 'Bearer ' + loginResponse.body.data.access_token);
+        .set('Authorization', 'Bearer ' + token);
 
-      expect(response.body.success).toBe(false);
+      expect(response.body.success).toBe(undefined);
     });
 
     it('Checking Applogger', async () => {
       const config = app.get(ConfigService);
       const applogger = new AppLogger(config);
       const spy = jest.spyOn(applogger, 'log');
-      const loginResponse = await request(app.getHttpServer()).post('/auth/generateToken').send(loginCredentials);
 
       const response = await request(app.getHttpServer())
         .get('/users')
-        .set('Authorization', 'Bearer ' + loginResponse.body.data.access_token);
+        .set('Authorization', 'Bearer ' + token);
 
       if (response.status === StatusCodes.OK) {
         applogger.log('Logger class called');

@@ -13,6 +13,7 @@ import { setupSwagger } from '@app/swagger';
 
 export const AppController_test = () => {
   let app: INestApplication;
+  let token: string;
 
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -24,6 +25,8 @@ export const AppController_test = () => {
     setupAPIVersioning(app);
     setupSwagger(app);
     await app.init();
+    const loginResponse = await request(app.getHttpServer()).post('/auth/login').send(loginCredentials);
+    token = loginResponse && loginResponse.body && loginResponse.body.data ? token : '';
   });
 
   afterAll(async () => {
@@ -42,7 +45,7 @@ export const AppController_test = () => {
 
     const { status, body } = await request(app.getHttpServer())
       .get('/v1/users')
-      .set('Authorization', 'Bearer ' + loginResponse.body.data.access_token)
+      .set('Authorization', 'Bearer ' + token)
       .expect(StatusCodes.OK);
 
     expect(status).toEqual(StatusCodes.OK);
@@ -51,11 +54,9 @@ export const AppController_test = () => {
   });
 
   it('Should return response from version 2 along with 200 status code', async () => {
-    const loginResponse = await request(app.getHttpServer()).post('/auth/generateToken').send(loginCredentials);
-
     const { status, body } = await request(app.getHttpServer())
       .get('/v2/users')
-      .set('Authorization', 'Bearer ' + loginResponse.body.data.access_token)
+      .set('Authorization', 'Bearer ' + token)
       .expect(StatusCodes.OK);
 
     expect(status).toEqual(StatusCodes.OK);
@@ -64,11 +65,9 @@ export const AppController_test = () => {
   });
 
   it('Should return users array along with 200 status code', async () => {
-    const loginResponse = await request(app.getHttpServer()).post('/auth/generateToken').send(loginCredentials);
-
     const { status, body } = await request(app.getHttpServer())
       .get('/users')
-      .set('Authorization', 'Bearer ' + loginResponse.body.data.access_token)
+      .set('Authorization', 'Bearer ' + token)
       .expect(StatusCodes.OK);
 
     expect(status).toEqual(200);
@@ -77,11 +76,9 @@ export const AppController_test = () => {
   });
 
   it('Should return user of specified id along with 200 status code', async () => {
-    const loginResponse = await request(app.getHttpServer()).post('/auth/generateToken').send(loginCredentials);
-
     const response = await request(app.getHttpServer())
       .get('/users/2')
-      .set('Authorization', 'Bearer ' + loginResponse.body.data.access_token)
+      .set('Authorization', 'Bearer ' + token)
       .expect(StatusCodes.OK);
 
     expect(response.status).toEqual(StatusCodes.OK);
@@ -89,11 +86,9 @@ export const AppController_test = () => {
   });
 
   it('Should update user of specified id and return 200 status code', async () => {
-    const loginResponse = await request(app.getHttpServer()).post('/auth/generateToken').send(loginCredentials);
-
     const { status, body } = await request(app.getHttpServer())
       .patch('/users/2')
-      .set('Authorization', 'Bearer ' + loginResponse.body.data.access_token)
+      .set('Authorization', 'Bearer ' + token)
       .send(updateUserStub());
 
     expect(status).toEqual(StatusCodes.OK);
@@ -102,11 +97,9 @@ export const AppController_test = () => {
   });
 
   it('Should delete user of specified id and return 200 status code', async () => {
-    const loginResponse = await request(app.getHttpServer()).post('/auth/generateToken').send(loginCredentials);
-
     const { status, body } = await request(app.getHttpServer())
       .delete('/users/2')
-      .set('Authorization', 'Bearer ' + loginResponse.body.data.access_token)
+      .set('Authorization', 'Bearer ' + token)
       .expect(StatusCodes.OK);
 
     expect(status).toEqual(StatusCodes.OK);
