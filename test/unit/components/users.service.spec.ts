@@ -9,6 +9,11 @@ import { UserDbRepository } from '@app/components/users/repository/db/user.repos
 import { UsersService } from '@app/components/users/services/users.service';
 import { hashPassword } from '@app/core/hashing/hashing';
 
+jest.mock('bcrypt', () => ({
+  genSalt: jest.fn().mockResolvedValue('Salt'),
+  hash: jest.fn().mockResolvedValue('123456seven'),
+}));
+
 describe('Testing UsersService', () => {
   let usersService: UsersService;
   let userId = '1';
@@ -78,6 +83,27 @@ describe('Testing UsersService', () => {
     });
     it('Then findOne method of users service should return a user', () => {
       expect(user).toEqual(userStub());
+    });
+  });
+
+  describe('When save method of users service is called', () => {
+    let createuserDto: CreateUserDto;
+    beforeAll(async () => {
+      createuserDto = {
+        firstName: userStub().firstName,
+        lastName: userStub().lastName,
+        email: userStub().email,
+        password: userStub().password,
+      };
+      await usersService.save(createuserDto);
+    });
+    it('Then save method of users service should be called with a createUserDTO', async () => {
+      expect(mockUsersRepository.createUser).toHaveBeenCalledWith({
+        firstName: userStub().firstName,
+        lastName: userStub().lastName,
+        email: userStub().email,
+        password: userStub().password,
+      });
     });
   });
 

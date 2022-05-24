@@ -19,7 +19,11 @@ export class AuthService {
       const userData = await this.findUserByEmail(user);
       const isMatched = await comparePassword(user.password, userData.password);
       if (isMatched) {
-        const payload = `${userData.firstName}${userData.id}`;
+        const payload = {
+          id: userData.id,
+          firstName: userData.firstName,
+          email: userData.email,
+        };
         const accessToken = this.jwtService.sign(payload);
         return {
           access_token: accessToken,
