@@ -10,6 +10,9 @@ import { UsersService } from '@app/components/users/services/users.service';
 
 import { TestCoreModule } from '../core/guards/module/core-test.module';
 
+jest.mock('bcrypt', () => ({
+  compare: jest.fn().mockResolvedValue(true),
+}));
 describe('Testing AuthService', () => {
   let authService: AuthService;
   const validateuser = {
@@ -50,7 +53,7 @@ describe('Testing AuthService', () => {
       token = await authService.generateToken(validateuser);
     });
     it('Then findUserByEmail method of users service should be called with an id', () => {
-      expect(mockUsersService.findEmail).toHaveBeenCalledWith(validateuser.email, validateuser.password);
+      expect(mockUsersService.findEmail).toHaveBeenCalledWith(validateuser.email);
     });
     it('Then findUserByEmail method of users service should return a user', () => {
       expect(token.access_token).toBeDefined();

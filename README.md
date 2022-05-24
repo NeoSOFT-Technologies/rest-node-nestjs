@@ -239,6 +239,7 @@ OR
 - [CORS](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/cors.md)
 - [Swagger/Open API](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/swagger.md)
 - [Database Migration](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/database.migration.md)
+- [Authentication](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/authentication.md)
 
 ### 4. Miscellaneous
 
@@ -251,6 +252,34 @@ OR
 ### 5. Trainings
 - [Nest JS for Beginners](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/trainings/nestjs.md)
 - [Node JS for Beginners](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/trainings/nodejs.md)
+
+### 6. Video Tutorials
+
+Below are the video tutorial links for the modules that we have implemented in the boilerplate.
+
+The Below list is the demonstration Videos of the various modules in the nestjs boilerplate.
+- [Clone and Installation of Boilerplate](https://drive.google.com/file/d/1ApN9nWVRM4Q_yoae6sDLdhcPfCPnGcnR/view?usp=sharing)
+- [Docker Container](https://drive.google.com/file/d/1c4YFJfzHvRJqjAFCn4_u8m383ozWtdQ9/view?usp=sharing)
+- [Clean Code Architecture](https://drive.google.com/file/d/1s0NgsoyZPb8rWbRMMDjDtG6klafWuhk6/view?usp=sharing)
+- [Reverse Proxy Engine](https://drive.google.com/file/d/1r5SPaJe1gg-MISvPMRBHCcBV-zST8wya/view?usp=sharing)
+- [Database Handling & Mailer Service](https://drive.google.com/file/d/1K7K08OLuowrpvETrHko4OZjGwFWASoDU/view?usp=sharing)
+- [Compression](https://drive.google.com/file/d/18b7TiCnnbcS6OVlKQRVswYKTba-KFuMi/view?usp=sharing)
+- [Database Migration](https://drive.google.com/file/d/1WOAMS_dq5O6NQyBW4_PtPkFis0hf2_V7/view?usp=sharing)
+- [Error Handling](https://drive.google.com/file/d/1qwx96ExXVVgsYNwRmEObdJ95Bx9AaJlU/view?usp=sharing)
+- [Encryption](https://drive.google.com/file/d/1FKoYvI9VPLJ2MukxqZJLrddSBZlP72xS/view?usp=sharing)
+- [Logger and Config Handler](https://drive.google.com/file/d/1m27hoLop9KWG7kEyuIhoHav2VxVr0iZj/view?usp=sharing)
+- [Email Handler](https://drive.google.com/file/d/1HEX-Yf7BpiQ1-BP5nmbLGuMj7ncDdfAc/view?usp=sharing)
+- [Postman Demonstration](https://drive.google.com/file/d/1OnJW6SMylQbJ0qXkGt1lZPjTsRH7Laqy/view?usp=sharing)
+- [Swagger Demonstration](https://drive.google.com/file/d/1H7ol96umM5FgPbLv_WmaNLlGAdhGtJ8D/view?usp=sharing)
+
+The below list will tell us how to create components in the boilerplate.
+- [Create Update Component](https://drive.google.com/file/d/1y1lUEcz_EUDQS8nzu1CRTsycSVtTkKsO/view?usp=sharing)
+- [Create Update Component 1](https://drive.google.com/file/d/1m8BAIlZv0Ssfcjr3DrjTpNp6iO2QBAhy/view?usp=sharing)
+
+Testing Videos
+- [Unit Testing 1](https://drive.google.com/file/d/1E3r7PXap_KMHNX5Q_cFE5loFlSlqM_1h/view?usp=sharing)
+- [Unit Testing 2](https://drive.google.com/file/d/1E3r7PXap_KMHNX5Q_cFE5loFlSlqM_1h/view?usp=sharing)
+- [Unit Testing 3](https://drive.google.com/file/d/1H6CTJE7Z4QL_GmwXooZ1bp4zGU1mqY1e/view?usp=sharing)
 
 ## Contributing to this project
 

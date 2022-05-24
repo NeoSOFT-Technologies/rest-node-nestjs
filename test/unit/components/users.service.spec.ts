@@ -7,6 +7,12 @@ import { UpdateUserDto } from '@app/components/users/dto/update.user.dto';
 import { User } from '@app/components/users/entities/user.entity';
 import { UserDbRepository } from '@app/components/users/repository/db/user.repository';
 import { UsersService } from '@app/components/users/services/users.service';
+import { hashPassword } from '@app/core/hashing/hashing';
+
+jest.mock('bcrypt', () => ({
+  genSalt: jest.fn().mockResolvedValue('Salt'),
+  hash: jest.fn().mockResolvedValue('123456seven'),
+}));
 
 describe('Testing UsersService', () => {
   let usersService: UsersService;
@@ -33,12 +39,30 @@ describe('Testing UsersService', () => {
     usersService = module.get<UsersService>(UsersService);
   });
 
+  describe('When save method of users service is called', () => {
+    let createuserDto: CreateUserDto;
+    beforeAll(async () => {
+      createuserDto = {
+        firstName: userStub().firstName,
+        lastName: userStub().lastName,
+        email: userStub().email,
+        password: userStub().password,
+      };
+      await usersService.save(createuserDto);
+    });
+    it('Then save method of users service should be called with a createUserDTO', () => {
+      expect(mockUsersRepository.createUser).toBeCalled();
+    });
+  });
+
   describe('When findAll method of users service is called', () => {
     let users: User[];
+    let user: User;
     beforeAll(async () => {
       users = await usersService.findAll();
       if (users && users.length) {
         userId = users[0].id;
+        user = users[0];
       }
     });
     it('Then usersService should be defined', () => {
@@ -46,10 +70,6 @@ describe('Testing UsersService', () => {
     });
     it('Then findAll method of users service should be defined', () => {
       expect(usersService.findAll).toBeDefined();
-    });
-
-    it('Then findAll method of users service should return users array', () => {
-      expect(users).toEqual([userStub()]);
     });
   });
 
@@ -77,7 +97,7 @@ describe('Testing UsersService', () => {
       };
       await usersService.save(createuserDto);
     });
-    it('Then save method of users service should be called with a createUserDTO', () => {
+    it('Then save method of users service should be called with a createUserDTO', async () => {
       expect(mockUsersRepository.createUser).toHaveBeenCalledWith({
         firstName: userStub().firstName,
         lastName: userStub().lastName,

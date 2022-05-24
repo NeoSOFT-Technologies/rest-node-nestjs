@@ -17,8 +17,6 @@ services:
     environment:
         MYSQL_EXPOSE_PORT: '${DB_PORT}'
         MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-        MYSQL_USER: '${DB_USER}'
-        MYSQL_ROOT_USER: '${DB_USER}'
         MYSQL_PASSWORD: '${DB_PASSWORD}'
         
   nestjs:

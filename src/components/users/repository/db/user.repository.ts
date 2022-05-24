@@ -20,11 +20,10 @@ export class UserDbRepository extends Repository<User> implements UserRepository
     return this.find();
   }
 
-  findUserByEmail(email: string, password: string): Promise<User> {
+  findUserByEmail(email: string): Promise<User> {
     return this.findOneOrFail({
       where: {
         email: email,
-        password: password,
       },
     });
   }
