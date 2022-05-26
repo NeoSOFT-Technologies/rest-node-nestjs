@@ -1,5 +1,8 @@
 # Nest JS Skeleton for REST Application [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=NeoSOFT-Technologies_rest-node-nestjs&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=NeoSOFT-Technologies_rest-node-nestjs) [![CI](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/actions/workflows/ci.yml/badge.svg)](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/actions/workflows/ci.yml)
 
+A skeleton/boilerplate/starter project for quickly building RESTful APIs using Node.js, NestsJS, Express, and MySQL.
+
+By running one command, you will get a production-ready Node.js app installed and configured on your machine. There are many built-in features in the skeleton, including authentication using JWT, request validation, unit and integration tests, continuous integration, docker support, API documentation, pagination, etc. To learn more about its features, check out the following list.
 
 ## Description
 
@@ -9,35 +12,49 @@
 
 - There are superb libraries, helpers, and tools that exist for Node (and server-side JavaScript), none of them effectively solve the main problem of — Architecture.
 
-- ### Features of NestJS
-    - Extensible Approach
-    - Easy to use, learn and master
-    - Command Line Interface(CLI)
-    - Versatile
-    - Progressive
-    - Implemented Based on SOLID Principles
-    - Lazy and Dynamic Modules
-    - API Versioning
-    - Documentation
-    - Open Source
-    - Large & Active Community
-## Motivation
-
-- With this skeleton, we can easily start a server application using Node.js, Nest JS and TypeScript.
-- Rather than spending time on the project setup, get on with the important stuff right away.
-
 Take it for a test drive. We'd love to hear any feedback you have or if you've thought of a new feature.
-## Common Features
 
-- Quick start
-- Integrated ESLint, Prettier and Husky
-- Common Error Handler
-- Simple and Standard scaffolding
-- Production-Ready Skeleton
-- Followed SOLID Principles
+## Table of Contents
+
+- [Features](#features)
+- [Getting started](#getting=started)
+- [Project Structure](#project-structure)
+- [Documentation](#documentation)
+- [Miscellaneous](#miscellaneous)
+- [Trainings](#trainings)
+- [Video Tutorials](#video-tutorials)
+- [Contributing To This Project](#contributing-to-this-project)
+- [Issues and Discussions](#issues-and-discussions)
+- [Stay in touch](stay-in-touch)
+
+## Features
+
+- **Quick start**
+- **Integrated ESLint, Prettier and Husky**
+- **Simple and Standard scaffolding**
+- **Production-Ready Skeleton**
+- **Followed SOLID Principles**
+- **Authentication and authorization**: using [passport](http://www.passportjs.org)
+- **Validation**: request data validation using [Nest JS Pipe](https://docs.nestjs.com/techniques/validation)
+- **Logging**: using [winston](https://github.com/winstonjs/winston) 
+- **Testing**: unit and integration tests using [Jest](https://jestjs.io)
+- **Error handling**: centralized error handling mechanism
+- **API documentation**: with [swagger](https://docs.nestjs.com/openapi/introduction) 
+- **Process management**: advanced production process management using [PM2](https://pm2.keymetrics.io)
+- **Dependency management**: with [npm](https://www.npmjs.com/)
+- **Environment variables**: using [dotenv](https://github.com/motdotla/dotenv) and [cross-env](https://github.com/kentcdodds/cross-env#readme)
+- **API Versioning**
+- **Security**: set security HTTP headers using [helmet](https://helmetjs.github.io)
+- **Santizing**: sanitize request data against xss and query injection
+- **CORS**: Cross-Origin Resource-Sharing enabled using [cors](https://github.com/expressjs/cors)
+- **Compression**: gzip compression with [compression](https://github.com/expressjs/compression)
+- **CI**: Continuous integration with [Travis CI](https://travis-ci.org)
+- **Docker support**
+- **Git hooks**: with [husky](https://github.com/typicode/husky) and [lint-staged](https://github.com/okonet/lint-staged)
+- **Linting**: with [ESLint](https://eslint.org) and [Prettier](https://prettier.io)
+- **Editor config**: consistent editor configuration using [EditorConfig](https://editorconfig.org)
+
 ## Getting started
-
-Skeleton for REST API applications written in Node JS & Nest JS with TypeScript
 
 ### Prerequisites
 
@@ -49,7 +66,8 @@ Skeleton for REST API applications written in Node JS & Nest JS with TypeScript
 - [Docker Compose](https://docs.docker.com/compose/install/)
 - NestJS CLI <https://nestjs.com/>
 
-### Create Development Environment
+
+### Setup
 
 To get started, clone the repository to your local computer. Use the following command to run in your terminal.
 
@@ -59,7 +77,7 @@ To get started, clone the repository to your local computer. Use the following c
 // clone the application
 $ git clone https://github.com/NeoSOFT-Technologies/rest-node-nestjs.git
 ```
-#### Quick Installation
+#### Install The Dependencies
 
 Next, install the packages that are required for this project.
 
@@ -68,7 +86,7 @@ Next, install the packages that are required for this project.
 $ npm install
 ```
 
-### Create The Environment Variables
+#### Create The Environment Variables
 
 The `config/env/.env` file should be placed in root folder with the following variables.
 
@@ -90,7 +108,7 @@ DB_PASSWORD=root
 DB_PORT=3306
 ```
 
-### Start MySQL Database
+#### Start MySQL Database
 
 In order to use mysql, you need to have it installed in your local machine.
 Docker Compose is what we will be using in our case, In the project directory, execute the following command.
@@ -107,7 +125,7 @@ In order to apply your modified code to a running container, you should add a bu
 docker-compose  -f ./docker/docker-compose.yml --env-file ./config/env/.env up -d --build
 ```
 
-### Running the app
+#### Running the app
 
 ```bash
 # development
@@ -120,7 +138,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-### Test
+#### Test
 
 For this project, We chose [Jest](https://facebook.github.io/jest/) as our test framework.
 While Mocha is probably more common, Mocha seems to be looking for a new maintainer and setting up TypeScript testing in Jest is wicked simple.
@@ -138,7 +156,7 @@ $ npm run test:cov
 ```
 
 
-### Running the build
+#### Running the build
 
 All the different build steps are orchestrated via [npm scripts](https://docs.npmjs.com/misc/scripts).
 Npm scripts basically allow us to call (and chain) terminal commands via npm.
@@ -160,6 +178,9 @@ Below is a list of all the scripts this template has available:
 | `test`                    | Runs tests using Jest test runner                                                                 |
 | `test:watch`              | Runs tests in watch mode                                                                          |
 | `doc`              | Generate the project documenation using `compdoc`
+
+
+
 ## Project Structure
 
 In a TypeScript project, it's best to have separate _source_  and _distributable_ files.
@@ -171,31 +192,33 @@ Please find below a detailed description of the app's folder structures:
 
 > **Note!** Make sure you have already built the app using  `npm run build`
 
+
 | Name | Description |
 | ------------------------ | --------------------------------------------------------------------------------------------- |
-| **.vscode**              | Contains VS Code specific settings                                                            |
-| **.github**              | Contains GitHub settings and configurations, including the GitHub Actions workflows            |
-| **dist**                 | Contains the distributable (or output) from your TypeScript build. This is the code you ship  |
-| **node_modules**         | Contains all your npm dependencies                                                            |
-| **src**                  | Contains your source code that will be compiled to the dist dir                               |
-| **src/config**           | Here you will find all the environment configuration necessary to access the application
-| **src/components**      | Components define group of files/source that respond to various module(http requests)
-| **src/components/${module_name}/dto/**      |  DTO (Data Transfer Object) Schema, Validation           |
-| **src/components/${module_name}/entities/**      | Entities belongs to that Component             |
-| **src/components/${module_name}/repository/**      |   Repository belongs to that Component           |
-| **src/components/${module_name}/services/**      |  Services belongs to that Component         |
-| **src/components/${module_name}/module_name.controllers.ts**      |  Controller belongs to that Component           |
-| **src/components/${module_name}/module_name.module.ts**      |   Module belongs to that Component          |
-| **src/core**           | All core modules - Guards, Http Request & Response Handler, Logger|
-| **src**/main.ts        | Entry point to your express app                                                               |
-| **test**                 | Contains your tests. Separate from source because there is a different build process.         |
-| config/env/.env.example             | API keys, tokens, passwords, database URI. Clone this, but don't check it in to public repos. |
-| package.json             | File that contains npm dependencies
-| tsconfig.json            | Config settings for compiling server code written in TypeScript                               |
-| tsconfig.build.json      | Config settings for compiling tests written in TypeScript                                     |
-| .eslintrc                | Config settings for ESLint code style checking                                                |
-| .eslintignore            | Config settings for paths to exclude from linting                                             |
-## Documentations
+| ``.vscode``              | Contains VS Code specific settings                                                            |
+| ``.github``            | Contains GitHub settings and configurations, including the GitHub Actions workflows            |
+| ``dist``                 | Contains the distributable (or output) from your TypeScript build. This is the code you ship  |
+| ``node_modules``         | Contains all your npm dependencies                                                            |
+| ``src``                  | Contains your source code that will be compiled to the dist dir                               |
+| ``src/config``           | Here you will find all the environment configuration necessary to access the application `e.g. .env`
+| ``src/components``      | Components define group of files/source that respond to various module(http requests)
+| ``src/components/${module_name}/dto/``      |  DTO (Data Transfer Object) Schema, Validation           |
+| ``src/components/${module_name}/entities/``      | Entities belongs to that Component             |
+| ``src/components/${module_name}/repository/``      |   Repository belongs to that Component           |
+| ``src/components/${module_name}/services/``      |  Services belongs to that Component         |
+| ``src/components/${module_name}/module_name.controllers.ts``      |  Controller belongs to that Component           |
+| ``src/components/${module_name}/module_name.module.ts``      |   Module belongs to that Component          |
+| ``src/core``           | All core modules - Guards, Http Request & Response Handler, Logger|
+| ``src/main.ts``        | Entry point to your express app                                                               |
+| ``test``                | Contains your tests. Separate from source because there is a different build process.         |
+| ``config/env/.env.example``             | API keys, tokens, passwords, database URI. Clone this, but don't check it in to public repos. |
+| ``package.json``             | File that contains npm dependencies
+| ``tsconfig.json``            | Config settings for compiling server code written in TypeScript                               |
+| ``tsconfig.build.json``      | Config settings for compiling tests written in TypeScript                                     |
+| ``.eslintrc``                | Config settings for ESLint code style checking                                                |
+| ``.eslintignore``            | Config settings for paths to exclude from linting                                             |
+
+## Documentation
 
 ### 1. Generation with [compdoc](https://docs.nestjs.com/recipes/documentation)
 
@@ -239,23 +262,25 @@ OR
 - [Database Migration](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/database.migration.md)
 - [Authentication](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/authentication.md)
 
-### 4. Miscellaneous
+## Miscellaneous
 
 - [Known Issues](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main//wiki/docs/miscellaneous/known-issues.md)
 - [Git commits](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/miscellaneous/git-commits.md)
 - [Clean Docker Images](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/miscellaneous/clean-docker.md)
 - [Installation Pretteri, Husky & Lint](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/miscellaneous/installation-pretteri-husky-lint.md)
 
+## Trainings
 
-### 5. Trainings
 - [Nest JS for Beginners](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/trainings/nestjs.md)
 - [Node JS for Beginners](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/trainings/nodejs.md)
 
-### 6. Video Tutorials
+## Video Tutorials
+
 
 Below are the video tutorial links for the modules that we have implemented in the boilerplate.
 
-The Below list is the demonstration Videos of the various modules in the nestjs boilerplate.
+#### The Below list is the demonstration Videos of the various modules in the nestjs boilerplate.
+
 - [Clone and Installation of Boilerplate](https://drive.google.com/file/d/1ApN9nWVRM4Q_yoae6sDLdhcPfCPnGcnR/view?usp=sharing)
 - [Docker Container](https://drive.google.com/file/d/1c4YFJfzHvRJqjAFCn4_u8m383ozWtdQ9/view?usp=sharing)
 - [Clean Code Architecture](https://drive.google.com/file/d/1s0NgsoyZPb8rWbRMMDjDtG6klafWuhk6/view?usp=sharing)
@@ -270,16 +295,18 @@ The Below list is the demonstration Videos of the various modules in the nestjs 
 - [Postman Demonstration](https://drive.google.com/file/d/1OnJW6SMylQbJ0qXkGt1lZPjTsRH7Laqy/view?usp=sharing)
 - [Swagger Demonstration](https://drive.google.com/file/d/1H7ol96umM5FgPbLv_WmaNLlGAdhGtJ8D/view?usp=sharing)
 
-The below list will tell us how to create components in the boilerplate.
+#### The below list will tell us how to create components in the boilerplate.
+
 - [Create Update Component](https://drive.google.com/file/d/1y1lUEcz_EUDQS8nzu1CRTsycSVtTkKsO/view?usp=sharing)
 - [Create Update Component 1](https://drive.google.com/file/d/1m8BAIlZv0Ssfcjr3DrjTpNp6iO2QBAhy/view?usp=sharing)
 
-Testing Videos
+#### Testing Videos
+
 - [Unit Testing 1](https://drive.google.com/file/d/1E3r7PXap_KMHNX5Q_cFE5loFlSlqM_1h/view?usp=sharing)
 - [Unit Testing 2](https://drive.google.com/file/d/1E3r7PXap_KMHNX5Q_cFE5loFlSlqM_1h/view?usp=sharing)
 - [Unit Testing 3](https://drive.google.com/file/d/1H6CTJE7Z4QL_GmwXooZ1bp4zGU1mqY1e/view?usp=sharing)
 
-## Contributing to this project
+## Contributing To This Project
 
 Contributions are welcome from anyone and everyone. We encourage you to review the [guiding principles for contributing](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/contribution.md)
 
@@ -287,11 +314,12 @@ Contributions are welcome from anyone and everyone. We encourage you to review t
 * [Feature requests](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/contribution/feature-requests.md)
 * [Pull requests](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/contribution/pull-requests.md)
 
-### Issues/Discussions
+## Issues and Discussions
 
 - [Create New Issue](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/issues/new)
 - [Check Existing Issues](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/issues)
 - [Discussions](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/discussions)
+
 ## Stay in touch
 
 * Website - [https://www.neosofttech.com/](https://www.neosofttech.com/)
