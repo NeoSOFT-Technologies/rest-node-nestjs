@@ -1,6 +1,4 @@
-[![CI](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/actions/workflows/ci.yml/badge.svg)](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/actions/workflows/ci.yml)
-
-# Nest JS Skeleton for REST Application
+# Nest JS Skeleton for REST Application [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=NeoSOFT-Technologies_rest-node-nestjs&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=NeoSOFT-Technologies_rest-node-nestjs) [![CI](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/actions/workflows/ci.yml/badge.svg)](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/actions/workflows/ci.yml)
 
 
 ## Description
