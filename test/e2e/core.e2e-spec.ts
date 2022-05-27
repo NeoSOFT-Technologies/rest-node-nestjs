@@ -38,6 +38,7 @@ describe('Core module (e2e)', () => {
       const loginResponse = await request(app.getHttpServer()).post('/auth/login').send(loginCredentials);
       token =
         loginResponse && loginResponse.body && loginResponse.body.data ? loginResponse.body.data.access_token : '';
+      console.log('Token: ', token);
     });
 
     it('Testing Request binder', () => {
@@ -60,10 +61,13 @@ describe('Core module (e2e)', () => {
     });
 
     it('Checking Response binder for valid GET request', async () => {
+      const loginResponse = await request(app.getHttpServer()).post('/auth/login').send(loginCredentials);
+      const token = loginResponse.body.data.access_token;
+      console.log('LoginResponse: ', loginResponse.body.data);
+      console.log('Token: ', token);
       const response = await request(app.getHttpServer())
         .get('/users')
         .set('Authorization', 'Bearer ' + token);
-
       expect(response.body.success).toBe(true);
     });
 
@@ -76,8 +80,7 @@ describe('Core module (e2e)', () => {
       const response = await request(app.getHttpServer())
         .get('/users/test')
         .set('Authorization', 'Bearer ' + token);
-
-      expect(response.body.success).toBe(undefined);
+      expect(response.body.success).toBe(false);
     });
 
     it('Checking Applogger', async () => {
