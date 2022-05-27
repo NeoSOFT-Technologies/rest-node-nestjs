@@ -16,7 +16,6 @@ import AppLogger from '@app/core/logger/AppLogger';
 describe('Core module (e2e)', () => {
   let app: INestApplication;
   let userDbRepository: UserDbRepository;
-  let token: string;
   beforeAll(async () => {
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
@@ -34,13 +33,6 @@ describe('Core module (e2e)', () => {
   });
 
   describe('TestCases', () => {
-    beforeAll(async () => {
-      const loginResponse = await request(app.getHttpServer()).post('/auth/login').send(loginCredentials);
-      token =
-        loginResponse && loginResponse.body && loginResponse.body.data ? loginResponse.body.data.access_token : '';
-      console.log('Token: ', token);
-    });
-
     it('Testing Request binder', () => {
       const config = app.get(ConfigService);
       const guard = new RequestGuard(config);
@@ -54,17 +46,21 @@ describe('Core module (e2e)', () => {
     });
 
     it('Testing UserDbRepository method "createUser"', async () => {
-      expect(await userDbRepository.createUser(userStub())).toEqual({
+      expect(
+        await userDbRepository.createUser({
+          ...userStub(),
+          password: '$2b$10$Fi3YnUQr22/9iiqGilWOBOsziz05Q3pYFfZJfdD1uAPKzsFG.7mGe',
+        })
+      ).toEqual({
         id: expect.any(Number),
         ...userStub(),
+        password: '$2b$10$Fi3YnUQr22/9iiqGilWOBOsziz05Q3pYFfZJfdD1uAPKzsFG.7mGe',
       });
     });
 
     it('Checking Response binder for valid GET request', async () => {
       const loginResponse = await request(app.getHttpServer()).post('/auth/login').send(loginCredentials);
       const token = loginResponse.body.data.access_token;
-      console.log('LoginResponse: ', loginResponse.body.data);
-      console.log('Token: ', token);
       const response = await request(app.getHttpServer())
         .get('/users')
         .set('Authorization', 'Bearer ' + token);
@@ -77,6 +73,8 @@ describe('Core module (e2e)', () => {
     });
 
     it('Checking Response binder for invalid GET request', async () => {
+      const loginResponse = await request(app.getHttpServer()).post('/auth/login').send(loginCredentials);
+      const token = loginResponse.body.data.access_token;
       const response = await request(app.getHttpServer())
         .get('/users/test')
         .set('Authorization', 'Bearer ' + token);
@@ -84,6 +82,8 @@ describe('Core module (e2e)', () => {
     });
 
     it('Checking Applogger', async () => {
+      const loginResponse = await request(app.getHttpServer()).post('/auth/login').send(loginCredentials);
+      const token = loginResponse.body.data.access_token;
       const config = app.get(ConfigService);
       const applogger = new AppLogger(config);
       const spy = jest.spyOn(applogger, 'log');
