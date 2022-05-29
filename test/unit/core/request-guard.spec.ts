@@ -11,6 +11,11 @@ import { UsersService } from '@app/components/users/services/users.service';
 import { setupAPIVersioning } from '@app/core/api.versioning';
 import coreBootstrap from '@app/core/bootstrap';
 
+jest.mock('bcrypt', () => ({
+  genSalt: jest.fn().mockResolvedValue('Salt'),
+  hash: jest.fn().mockResolvedValue('123456seven'),
+  compare: jest.fn().mockResolvedValue(true),
+}));
 describe('Testing request-guard', () => {
   let app: INestApplication;
 
@@ -38,8 +43,7 @@ describe('Testing request-guard', () => {
   });
 
   it('Testing "success" method of bindResponseHelpers', async () => {
-    const loginResponse = await request(app.getHttpServer()).post('/auth/generateToken').send(loginCredentials);
-
+    const loginResponse = await request(app.getHttpServer()).post('/auth/login').send(loginCredentials);
     expect(
       (
         await request(app.getHttpServer())
@@ -56,8 +60,7 @@ describe('Testing request-guard', () => {
         errors: 'testError',
       };
     });
-    const loginResponse = await request(app.getHttpServer()).post('/auth/generateToken').send(loginCredentials);
-
+    const loginResponse = await request(app.getHttpServer()).post('/auth/login').send(loginCredentials);
     expect(
       (
         await request(app.getHttpServer())
@@ -79,7 +82,7 @@ describe('Testing request-guard', () => {
     mockUsersService.findAll = jest.fn().mockImplementation(() => {
       throw 'testErrorMessage';
     });
-    const loginResponse = await request(app.getHttpServer()).post('/auth/generateToken').send(loginCredentials);
+    const loginResponse = await request(app.getHttpServer()).post('/auth/login').send(loginCredentials);
 
     expect(
       (
