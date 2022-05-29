@@ -37,7 +37,6 @@ describe('Testing binded properties of Request and Response with Encryption mode
   it('Testing res.success', async () => {
     const config = app.get(ConfigService);
     const jwt = config.get('auth.jwtTokenForTest');
-    console.log('JWT TOKEN FOR TEST:', jwt);
     const { body, statusCode }: any = await request(app.getHttpServer())
       .get('/users')
       .set('Authorization', 'Bearer ' + jwt);
@@ -75,7 +74,7 @@ describe('Testing binded properties of Request and Response with Encryption mode
   it('Testing AppLogger', async () => {
     const { body, statusCode }: any = await request(app.getHttpServer()).get('/logger');
     expect(body).toBeDefined();
-    expect(typeof body).toBe('string');
+    expect(typeof body).toBe('object');
     expect(statusCode).toEqual(StatusCodes.OK);
   });
 });
