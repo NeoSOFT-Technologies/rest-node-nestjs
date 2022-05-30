@@ -262,6 +262,10 @@ OR
 - [Database Migration](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/database.migration.md)
 - [Authentication](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/authentication.md)
 
+### 3. Modules
+
+- [Coverage](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/coverage.md)
+
 ## Miscellaneous
 
 - [Known Issues](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main//wiki/docs/miscellaneous/known-issues.md)
