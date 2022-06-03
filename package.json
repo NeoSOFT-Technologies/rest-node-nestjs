@@ -57,7 +57,7 @@
     "@nestjs/passport": "^8.0.1",
     "@nestjs/platform-express": "^8.0.6",
     "@nestjs/throttler": "^2.0.0",
-    "@nestjs/typeorm": "^8.0.2",
+    "@nestjs/typeorm": "~8.0.2",
     "@types/bcrypt": "^5.0.0",
     "@types/jwt-decode": "^3.1.0",
     "bcrypt": "^5.0.1",
