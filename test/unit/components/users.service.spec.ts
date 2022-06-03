@@ -7,7 +7,6 @@ import { UpdateUserDto } from '@app/components/users/dto/update.user.dto';
 import { User } from '@app/components/users/entities/user.entity';
 import { UserDbRepository } from '@app/components/users/repository/db/user.repository';
 import { UsersService } from '@app/components/users/services/users.service';
-import { hashPassword } from '@app/core/hashing/hashing';
 
 jest.mock('bcrypt', () => ({
   genSalt: jest.fn().mockResolvedValue('Salt'),
@@ -62,7 +61,6 @@ describe('Testing UsersService', () => {
       users = await usersService.findAll();
       if (users && users.length) {
         userId = users[0].id;
-        user = users[0];
       }
     });
     it('Then usersService should be defined', () => {

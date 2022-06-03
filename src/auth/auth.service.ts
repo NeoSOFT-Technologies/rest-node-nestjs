@@ -17,7 +17,7 @@ export class AuthService {
   async generateToken(user: ValidateUserDto): Promise<any> {
     try {
       const userData = await this.findUserByEmail(user);
-      const isMatched = await comparePassword(user.password, userData.password);
+      const isMatched = comparePassword(user.password, userData.password);
       if (isMatched) {
         const payload = {
           id: userData.id,
@@ -32,6 +32,7 @@ export class AuthService {
         throw new HttpException('Invalid credentials', HttpStatus.UNAUTHORIZED);
       }
     } catch (e) {
+      console.error(e);
       throw e;
     }
   }
