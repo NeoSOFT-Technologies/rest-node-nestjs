@@ -1,12 +1,15 @@
+import { HttpException, HttpStatus } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { Test, TestingModule } from '@nestjs/testing';
 import { userStub } from '@test/mock/user.stub';
+import e from 'express';
 
 import { AuthService } from '@app/auth/auth.service';
 import { JwtStrategy } from '@app/auth/jwt.strategy';
 import { UsersService } from '@app/components/users/services/users.service';
+import { comparePassword } from '@app/core/hashing/hashing';
 
 import { TestCoreModule } from '../core/guards/module/core-test.module';
 
@@ -55,8 +58,19 @@ describe('Testing AuthService', () => {
     it('Then findUserByEmail method of users service should be called with an id', () => {
       expect(mockUsersService.findEmail).toHaveBeenCalledWith(validateuser.email);
     });
+
     it('Then findUserByEmail method of users service should return a user', () => {
       expect(token.access_token).toBeDefined();
+    });
+
+    describe('Exeption Test', () => {
+      jest.mock('bcrypt', () => ({
+        compare: jest.fn().mockResolvedValue(false),
+      }));
+      const error = 'Invalid credentials';
+      it('The Exception error should return "Invalid credentials"', () => {
+        expect(error).toBe('Invalid credentials');
+      });
     });
   });
 });

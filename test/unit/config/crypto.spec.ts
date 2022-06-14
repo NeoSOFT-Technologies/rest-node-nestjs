@@ -25,9 +25,19 @@ describe('Testing config variables default values', () => {
       expect(config.get('crypto.secretKey')).toBeDefined();
     });
 
+    it('"crypto.secretKey" should be defined', async () => {
+      const config = app.get(ConfigService);
+      expect(config.get('crypto.secretKey')).toEqual('sTJQgn5E8d8jMY15PhARwDrW4my6bLwE');
+    });
+
     it('"crypto.iv" should be defined', async () => {
       const config = app.get(ConfigService);
       expect(config.get('crypto.iv')).toBeDefined();
+    });
+
+    it('"crypto.iv" should be defined', async () => {
+      const config = app.get(ConfigService);
+      expect(config.get('crypto.iv')).toStrictEqual(process.env.IV || '0123456789abcdef');
     });
   });
 });
