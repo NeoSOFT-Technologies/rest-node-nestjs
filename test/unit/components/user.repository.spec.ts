@@ -37,9 +37,7 @@ describe('Testing UserDbRepository', () => {
   });
 
   it('Testing UserDbRepository method "findUser" - when user not present', async () => {
-    expect(async () => await userDbRepository.findUser('test')).rejects.toThrow(
-      'Could not find any entity of type "User" matching: "test"'
-    );
+    expect(async () => await userDbRepository.findUser('test')).rejects.toThrow('User does not exists');
   });
 
   it('Testing UserDbRepository method "findAllUser"', async () => {
@@ -58,9 +56,7 @@ describe('Testing UserDbRepository', () => {
 
   it('Testing UserDbRepository method "deleteUser"', async () => {
     await userDbRepository.deleteUser('1');
-    expect(async () => await userDbRepository.findUser('1')).rejects.toThrow(
-      'Could not find any entity of type "User" matching: "1"'
-    );
+    expect(async () => await userDbRepository.findUser('1')).rejects.toThrow('User does not exists');
   });
 
   it('Testing UserDbRepository method "deleteUser" - when user not present', async () => {
