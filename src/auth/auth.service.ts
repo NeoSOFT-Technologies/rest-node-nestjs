@@ -17,7 +17,7 @@ export class AuthService {
   async generateToken(user: ValidateUserDto): Promise<any> {
     try {
       const userData = await this.findUserByEmail(user);
-      const isMatched = comparePassword(user.password, userData.password);
+      const isMatched = await comparePassword(user.password, userData.password);
       if (isMatched) {
         const payload = {
           id: userData.id,
