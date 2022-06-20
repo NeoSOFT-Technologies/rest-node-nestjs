@@ -3,6 +3,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { Test, TestingModule } from '@nestjs/testing';
 import { userStub } from '@test/mock/user.stub';
+import * as bcrypt from 'bcrypt';
 
 import { AuthService } from '@app/auth/auth.service';
 import { JwtStrategy } from '@app/auth/jwt.strategy';
@@ -55,8 +56,16 @@ describe('Testing AuthService', () => {
     it('Then findUserByEmail method of users service should be called with an id', () => {
       expect(mockUsersService.findEmail).toHaveBeenCalledWith(validateuser.email);
     });
+
     it('Then findUserByEmail method of users service should return a user', () => {
       expect(token.access_token).toBeDefined();
+    });
+  });
+  describe('When password is invalid', () => {
+    it('Then "Invalid credentials" error should be thrown', () => {
+      const mockCompare = jest.spyOn(bcrypt, 'compare');
+      mockCompare.mockImplementation(() => Promise.resolve(false));
+      expect(async () => await authService.generateToken(validateuser)).rejects.toThrow('Invalid credentials');
     });
   });
 });

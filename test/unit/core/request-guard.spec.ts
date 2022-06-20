@@ -22,6 +22,7 @@ describe('Testing request-guard', () => {
   const mockUsersService = {
     findAll: jest.fn().mockResolvedValue(users),
     findEmail: jest.fn().mockResolvedValue(users),
+    findOne: jest.fn().mockResolvedValue(users),
   };
 
   beforeAll(async () => {

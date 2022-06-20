@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { EntityRepository, Repository, UpdateResult } from 'typeorm';
 
 import { CreateUserDto } from '@app/components/users/dto/create.user.dto';
@@ -12,8 +12,12 @@ export class UserDbRepository extends Repository<User> implements UserRepository
     super();
   }
 
-  findUser(id: string): Promise<User> {
-    return this.findOneOrFail(id);
+  async findUser(id: string): Promise<User> {
+    try {
+      return await this.findOneOrFail(id);
+    } catch (error) {
+      throw new NotFoundException('User does not exists');
+    }
   }
 
   findAllUser(): Promise<User[]> {
