@@ -31,6 +31,8 @@ services:
         - database
     ports:
         - '5000:5000'
+    environment:
+        DB_HOST: 'database'
 
   nginx:
     image: nginx:1.20
