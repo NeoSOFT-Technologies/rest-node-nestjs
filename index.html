@@ -1,0 +1,490 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>nestjs-boilerolate documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+        <link rel="stylesheet" href="./styles/stripe.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="./" class="navbar-brand">nestjs-boilerolate documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h1 id="nest-js-skeleton-for-rest-application-quality-gate-status-ci">Nest JS Skeleton for REST Application <a href="https://sonarcloud.io/summary/new_code?id=NeoSOFT-Technologies_rest-node-nestjs"><img src="https://sonarcloud.io/api/project_badges/measure?project=NeoSOFT-Technologies_rest-node-nestjs&metric=alert_status" alt="Quality Gate Status" class="img-responsive"></a> <a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/actions/workflows/ci.yml"><img src="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/actions/workflows/ci.yml/badge.svg" alt="CI" class="img-responsive"></a></h1>
+<p>A skeleton/boilerplate/starter project for quickly building RESTful APIs using Node.js, NestsJS, Express, and MySQL.</p>
+<p>By running one command, you will get a production-ready Node.js app installed and configured on your machine. There are many built-in features in the skeleton, including authentication using JWT, request validation, unit and integration tests, continuous integration, docker support, API documentation, pagination, etc. To learn more about its features, check out the following list.</p>
+<h2 id="description">Description</h2>
+<ul>
+<li><p><a href="https://github.com/nestjs/nest">Nest</a> framework TypeScript starter repository.</p>
+</li>
+<li><p>Nest provides a level of abstraction above these common Node.js frameworks (Express/Fastify) but also exposes their APIs directly to the developer. This allows developers the freedom to use the myriad of third-party modules which are available for the underlying platform.</p>
+</li>
+<li><p>There are superb libraries, helpers, and tools that exist for Node (and server-side JavaScript), none of them effectively solve the main problem of — Architecture.</p>
+</li>
+</ul>
+<p>Take it for a test drive. We&#39;d love to hear any feedback you have or if you&#39;ve thought of a new feature.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#features">Features</a></li>
+<li><a href="#getting=started">Getting started</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#documentation">Documentation</a></li>
+<li><a href="#miscellaneous">Miscellaneous</a></li>
+<li><a href="#trainings">Trainings</a></li>
+<li><a href="#video-tutorials">Video Tutorials</a></li>
+<li><a href="#contributing-to-this-project">Contributing To This Project</a></li>
+<li><a href="#issues-and-discussions">Issues and Discussions</a></li>
+<li><a href="stay-in-touch">Stay in touch</a></li>
+</ul>
+<h2 id="features">Features</h2>
+<ul>
+<li><strong>Quick start</strong></li>
+<li><strong>Integrated ESLint, Prettier and Husky</strong></li>
+<li><strong>Simple and Standard scaffolding</strong></li>
+<li><strong>Production-Ready Skeleton</strong></li>
+<li><strong>Followed SOLID Principles</strong></li>
+<li><strong>Authentication and authorization</strong>: using <a href="http://www.passportjs.org">passport</a></li>
+<li><strong>Validation</strong>: request data validation using <a href="https://docs.nestjs.com/techniques/validation">Nest JS Pipe</a></li>
+<li><strong>Logging</strong>: using <a href="https://github.com/winstonjs/winston">winston</a> </li>
+<li><strong>Testing</strong>: unit and integration tests using <a href="https://jestjs.io">Jest</a></li>
+<li><strong>Error handling</strong>: centralized error handling mechanism</li>
+<li><strong>API documentation</strong>: with <a href="https://docs.nestjs.com/openapi/introduction">swagger</a> </li>
+<li><strong>Process management</strong>: advanced production process management using <a href="https://pm2.keymetrics.io">PM2</a></li>
+<li><strong>Dependency management</strong>: with <a href="https://www.npmjs.com/">npm</a></li>
+<li><strong>Environment variables</strong>: using <a href="https://github.com/motdotla/dotenv">dotenv</a> and <a href="https://github.com/kentcdodds/cross-env#readme">cross-env</a></li>
+<li><strong>API Versioning</strong></li>
+<li><strong>Security</strong>: set security HTTP headers using <a href="https://helmetjs.github.io">helmet</a></li>
+<li><strong>Santizing</strong>: sanitize request data against xss and query injection</li>
+<li><strong>CORS</strong>: Cross-Origin Resource-Sharing enabled using <a href="https://github.com/expressjs/cors">cors</a></li>
+<li><strong>Compression</strong>: gzip compression with <a href="https://github.com/expressjs/compression">compression</a></li>
+<li><strong>CI</strong>: Continuous integration with <a href="https://travis-ci.org">Travis CI</a></li>
+<li><strong>Docker support</strong></li>
+<li><strong>Git hooks</strong>: with <a href="https://github.com/typicode/husky">husky</a> and <a href="https://github.com/okonet/lint-staged">lint-staged</a></li>
+<li><strong>Linting</strong>: with <a href="https://eslint.org">ESLint</a> and <a href="https://prettier.io">Prettier</a></li>
+<li><strong>Editor config</strong>: consistent editor configuration using <a href="https://editorconfig.org">EditorConfig</a></li>
+</ul>
+<h2 id="getting-started">Getting started</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>Node <a href="https://nodejs.org/en/">https://nodejs.org/en/</a> <em>use the LTS version</em></li>
+<li>NPM</li>
+<li>Docker <a href="https://www.docker.com/">https://www.docker.com/</a><ul>
+<li>Install Docker Desktop for MAC: <a href="https://docs.docker.com/docker-for-mac/install/">https://docs.docker.com/docker-for-mac/install/</a></li>
+<li>Install Docker Desktop for Windows: <a href="https://docs.docker.com/docker-for-windows/install/">https://docs.docker.com/docker-for-windows/install/</a></li>
+</ul>
+</li>
+<li><a href="https://docs.docker.com/compose/install/">Docker Compose</a></li>
+<li>NestJS CLI <a href="https://nestjs.com/">https://nestjs.com/</a></li>
+</ul>
+<h3 id="setup">Setup</h3>
+<p>To get started, clone the repository to your local computer. Use the following command to run in your terminal.</p>
+<h4 id="clone-the-application">Clone The Application</h4>
+<div><pre class="line-numbers"><code class="language-bash">// clone the application
+$ git clone https://github.com/NeoSOFT-Technologies/rest-node-nestjs.git</code></pre></div><h4 id="install-the-dependencies">Install The Dependencies</h4>
+<p>Next, install the packages that are required for this project.</p>
+<div><pre class="line-numbers"><code class="language-bash">// Install the required npm modules
+$ npm install</code></pre></div><h4 id="create-the-environment-variables">Create The Environment Variables</h4>
+<p>The <code>config/env/.env</code> file should be placed in root folder with the following variables.</p>
+<ul>
+<li><code>config/env/.env</code> : Default Environment File</li>
+<li><code>config/env/.env.dev</code> : Development Environment File</li>
+<li><code>config/env/.env.test</code> : Test Environment File</li>
+<li><code>config/env/.env.prod</code> : Production Environment File</li>
+</ul>
+<div><pre class="line-numbers"><code class="language-none"># config/env/.env.example
+
+APP_NAME=rest_api
+NODE_ENV=dev
+DB_HOST=127.0.0.1
+DB_DATABASE=rest_api
+DB_USER=user
+DB_PASSWORD=root
+DB_PORT=3306</code></pre></div><h4 id="start-mysql-database">Start MySQL Database</h4>
+<p>In order to use mysql, you need to have it installed in your local machine.
+Docker Compose is what we will be using in our case, In the project directory, execute the following command.</p>
+<div><pre class="line-numbers"><code class="language-none"># build images, create and run containers in background
+docker-compose -f ./docker/docker-compose.yml --env-file ./config/env/.env up -d</code></pre></div><p>In order to apply your modified code to a running container, you should add a build option.</p>
+<div><pre class="line-numbers"><code class="language-none"># if source code is changed, rebuild image, recreate and start container
+docker-compose  -f ./docker/docker-compose.yml --env-file ./config/env/.env up -d --build</code></pre></div><h4 id="running-the-app">Running the app</h4>
+<div><pre class="line-numbers"><code class="language-bash"># development
+$ npm run start
+
+# watch mode
+$ npm run start:dev
+
+# production mode
+$ npm run start:prod</code></pre></div><h4 id="test">Test</h4>
+<p>For this project, We chose <a href="https://facebook.github.io/jest/">Jest</a> as our test framework.
+While Mocha is probably more common, Mocha seems to be looking for a new maintainer and setting up TypeScript testing in Jest is wicked simple.</p>
+<div><pre class="line-numbers"><code class="language-bash"># unit tests
+$ npm run test
+
+# e2e tests
+$ npm run test:e2e
+
+# test coverage
+$ npm run test:cov</code></pre></div><h4 id="running-the-build">Running the build</h4>
+<p>All the different build steps are orchestrated via <a href="https://docs.npmjs.com/misc/scripts">npm scripts</a>.
+Npm scripts basically allow us to call (and chain) terminal commands via npm.
+This is nice because most JavaScript tools have easy to use command line utilities allowing us to not need grunt or gulp to manage our builds.
+If you open <code>package.json</code>, you will see a <code>scripts</code> section with all the different scripts you can call.
+To call a script, simply run <code>npm run &lt;script-name&gt;</code> from the command line.
+You&#39;ll notice that npm scripts can call each other which makes it easy to compose complex builds out of simple individual build scripts.
+Below is a list of all the scripts this template has available:</p>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Npm Script</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>build</code></td>
+<td>Full build. Runs ALL build tasks</td>
+</tr>
+<tr>
+<td><code>start:debug</code></td>
+<td>Performs a full build and then serves the app in watch mode</td>
+</tr>
+<tr>
+<td><code>lint</code></td>
+<td>Runs ESLint on project files</td>
+</tr>
+<tr>
+<td><code>format</code></td>
+<td>Runs the file formatter</td>
+</tr>
+<tr>
+<td><code>serve</code></td>
+<td>Runs node on <code>dist/server.js</code> which is the apps entry point</td>
+</tr>
+<tr>
+<td><code>start</code></td>
+<td>Does the same as &#39;npm run serve&#39;. Can be invoked with <code>npm start</code></td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td>Runs tests using Jest test runner</td>
+</tr>
+<tr>
+<td><code>test:watch</code></td>
+<td>Runs tests in watch mode</td>
+</tr>
+<tr>
+<td><code>doc</code></td>
+<td>Generate the project documenation using <code>compdoc</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="project-structure">Project Structure</h2>
+<p>In a TypeScript project, it&#39;s best to have separate <em>source</em>  and <em>distributable</em> files.
+TypeScript (<code>.ts</code>) files live in your <code>src</code> folder and after compilation are output as JavaScript (<code>.js</code>) in the <code>dist</code> folder.
+The <code>test</code> and <code>views</code> folders remain top level as expected.</p>
+<p>Please find below a detailed description of the app&#39;s folder structures:</p>
+<blockquote>
+<p><strong>Note!</strong> Make sure you have already built the app using  <code>npm run build</code></p>
+</blockquote>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.vscode</code></td>
+<td>Contains VS Code specific settings</td>
+</tr>
+<tr>
+<td><code>.github</code></td>
+<td>Contains GitHub settings and configurations, including the GitHub Actions workflows</td>
+</tr>
+<tr>
+<td><code>dist</code></td>
+<td>Contains the distributable (or output) from your TypeScript build. This is the code you ship</td>
+</tr>
+<tr>
+<td><code>node_modules</code></td>
+<td>Contains all your npm dependencies</td>
+</tr>
+<tr>
+<td><code>src</code></td>
+<td>Contains your source code that will be compiled to the dist dir</td>
+</tr>
+<tr>
+<td><code>src/config</code></td>
+<td>Here you will find all the environment configuration necessary to access the application <code>e.g. .env</code></td>
+</tr>
+<tr>
+<td><code>src/components</code></td>
+<td>Components define group of files/source that respond to various module(http requests)</td>
+</tr>
+<tr>
+<td><code>src/components/${module_name}/dto/</code></td>
+<td>DTO (Data Transfer Object) Schema, Validation</td>
+</tr>
+<tr>
+<td><code>src/components/${module_name}/entities/</code></td>
+<td>Entities belongs to that Component</td>
+</tr>
+<tr>
+<td><code>src/components/${module_name}/repository/</code></td>
+<td>Repository belongs to that Component</td>
+</tr>
+<tr>
+<td><code>src/components/${module_name}/services/</code></td>
+<td>Services belongs to that Component</td>
+</tr>
+<tr>
+<td><code>src/components/${module_name}/module_name.controllers.ts</code></td>
+<td>Controller belongs to that Component</td>
+</tr>
+<tr>
+<td><code>src/components/${module_name}/module_name.module.ts</code></td>
+<td>Module belongs to that Component</td>
+</tr>
+<tr>
+<td><code>src/core</code></td>
+<td>All core modules - Guards, Http Request &amp; Response Handler, Logger</td>
+</tr>
+<tr>
+<td><code>src/main.ts</code></td>
+<td>Entry point to your express app</td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td>Contains your tests. Separate from source because there is a different build process.</td>
+</tr>
+<tr>
+<td><code>config/env/.env.example</code></td>
+<td>API keys, tokens, passwords, database URI. Clone this, but don&#39;t check it in to public repos.</td>
+</tr>
+<tr>
+<td><code>package.json</code></td>
+<td>File that contains npm dependencies</td>
+</tr>
+<tr>
+<td><code>tsconfig.json</code></td>
+<td>Config settings for compiling server code written in TypeScript</td>
+</tr>
+<tr>
+<td><code>tsconfig.build.json</code></td>
+<td>Config settings for compiling tests written in TypeScript</td>
+</tr>
+<tr>
+<td><code>.eslintrc</code></td>
+<td>Config settings for ESLint code style checking</td>
+</tr>
+<tr>
+<td><code>.eslintignore</code></td>
+<td>Config settings for paths to exclude from linting</td>
+</tr>
+</tbody>
+</table>
+<h2 id="documentation">Documentation</h2>
+<h3 id="1-generation-with-compdoc">1. Generation with <a href="https://docs.nestjs.com/recipes/documentation">compdoc</a></h3>
+<p>Generate project documentation using the following command (npm 6 is required for npx support). See the <a href="https://compodoc.app/guides/usage.html">official documentation</a> for more options.</p>
+<p><code>npm run doc</code></p>
+<p>OR</p>
+<p><code>npx @compodoc/compodoc -p tsconfig.json -s</code></p>
+<h3 id="2-request-and-response-cycle">2. <a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/modules/request-response.md">Request and Response Cycle</a></h3>
+<blockquote>
+<p>An explanation of how the request and response cycle works is provided here</p>
+</blockquote>
+<h4 id="21-request-and-response-workflow">2.1 Request and Response Workflow</h4>
+<blockquote>
+<p>Boilerplate has a custom guard enabled for handling response and request for every api. The integration of request response guard is enabled by default with response structure</p>
+</blockquote>
+<p><img src="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/images/basic-nestJS-lifecycle.png?raw=true" alt="Request and Response Cycle" class="img-responsive"></p>
+<h4 id="22-request-workflow">2.2 Request Workflow</h4>
+<blockquote>
+<p>By creating a workflow, you can specify the template that should be used to create a change request when a request for service is logged.</p>
+</blockquote>
+<p><img src="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/images/code-flow.jpg?raw=true" alt="Request Workflow" class="img-responsive"></p>
+<h3 id="3-modules">3. Modules</h3>
+<ul>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/logger.md">Logger</a></li>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/request-response.md">Request Response</a></li>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/mailer.md">Mailer</a></li>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/database.md">Database</a></li>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/reverse_proxy.md">Reverse Proxy</a></li>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/pattern.md">Pattern</a></li>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/crypto.md">Crypto</a></li>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/rateLimit.md">Rate Limit</a></li>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/compression.md">Compression</a></li>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/cors.md">CORS</a></li>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/swagger.md">Swagger/Open API</a></li>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/database.migration.md">Database Migration</a></li>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/modules/authentication.md">Authentication</a></li>
+</ul>
+<h3 id="3-modules-1">3. Modules</h3>
+<ul>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/coverage.md">Coverage</a></li>
+</ul>
+<h2 id="miscellaneous">Miscellaneous</h2>
+<ul>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main//wiki/docs/miscellaneous/known-issues.md">Known Issues</a></li>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/miscellaneous/git-commits.md">Git commits</a></li>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/miscellaneous/clean-docker.md">Clean Docker Images</a></li>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/miscellaneous/installation-pretteri-husky-lint.md">Installation Pretteri, Husky &amp; Lint</a></li>
+</ul>
+<h2 id="trainings">Trainings</h2>
+<ul>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/trainings/nestjs.md">Nest JS for Beginners</a></li>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/trainings/nodejs.md">Node JS for Beginners</a></li>
+</ul>
+<h2 id="video-tutorials">Video Tutorials</h2>
+<p>Below are the video tutorial links for the modules that we have implemented in the boilerplate.</p>
+<h4 id="the-below-list-is-the-demonstration-videos-of-the-various-modules-in-the-nestjs-boilerplate">The Below list is the demonstration Videos of the various modules in the nestjs boilerplate.</h4>
+<ul>
+<li><a href="https://drive.google.com/file/d/1ApN9nWVRM4Q_yoae6sDLdhcPfCPnGcnR/view?usp=sharing">Clone and Installation of Boilerplate</a></li>
+<li><a href="https://drive.google.com/file/d/1c4YFJfzHvRJqjAFCn4_u8m383ozWtdQ9/view?usp=sharing">Docker Container</a></li>
+<li><a href="https://drive.google.com/file/d/1s0NgsoyZPb8rWbRMMDjDtG6klafWuhk6/view?usp=sharing">Clean Code Architecture</a></li>
+<li><a href="https://drive.google.com/file/d/1r5SPaJe1gg-MISvPMRBHCcBV-zST8wya/view?usp=sharing">Reverse Proxy Engine</a></li>
+<li><a href="https://drive.google.com/file/d/1K7K08OLuowrpvETrHko4OZjGwFWASoDU/view?usp=sharing">Database Handling &amp; Mailer Service</a></li>
+<li><a href="https://drive.google.com/file/d/18b7TiCnnbcS6OVlKQRVswYKTba-KFuMi/view?usp=sharing">Compression</a></li>
+<li><a href="https://drive.google.com/file/d/1WOAMS_dq5O6NQyBW4_PtPkFis0hf2_V7/view?usp=sharing">Database Migration</a></li>
+<li><a href="https://drive.google.com/file/d/1qwx96ExXVVgsYNwRmEObdJ95Bx9AaJlU/view?usp=sharing">Error Handling</a></li>
+<li><a href="https://drive.google.com/file/d/1FKoYvI9VPLJ2MukxqZJLrddSBZlP72xS/view?usp=sharing">Encryption</a></li>
+<li><a href="https://drive.google.com/file/d/1m27hoLop9KWG7kEyuIhoHav2VxVr0iZj/view?usp=sharing">Logger and Config Handler</a></li>
+<li><a href="https://drive.google.com/file/d/1HEX-Yf7BpiQ1-BP5nmbLGuMj7ncDdfAc/view?usp=sharing">Email Handler</a></li>
+<li><a href="https://drive.google.com/file/d/1OnJW6SMylQbJ0qXkGt1lZPjTsRH7Laqy/view?usp=sharing">Postman Demonstration</a></li>
+<li><a href="https://drive.google.com/file/d/1H7ol96umM5FgPbLv_WmaNLlGAdhGtJ8D/view?usp=sharing">Swagger Demonstration</a></li>
+</ul>
+<h4 id="the-below-list-will-tell-us-how-to-create-components-in-the-boilerplate">The below list will tell us how to create components in the boilerplate.</h4>
+<ul>
+<li><a href="https://drive.google.com/file/d/1y1lUEcz_EUDQS8nzu1CRTsycSVtTkKsO/view?usp=sharing">Create Update Component</a></li>
+<li><a href="https://drive.google.com/file/d/1m8BAIlZv0Ssfcjr3DrjTpNp6iO2QBAhy/view?usp=sharing">Create Update Component 1</a></li>
+</ul>
+<h4 id="testing-videos">Testing Videos</h4>
+<ul>
+<li><a href="https://drive.google.com/file/d/1E3r7PXap_KMHNX5Q_cFE5loFlSlqM_1h/view?usp=sharing">Unit Testing 1</a></li>
+<li><a href="https://drive.google.com/file/d/1E3r7PXap_KMHNX5Q_cFE5loFlSlqM_1h/view?usp=sharing">Unit Testing 2</a></li>
+<li><a href="https://drive.google.com/file/d/1H6CTJE7Z4QL_GmwXooZ1bp4zGU1mqY1e/view?usp=sharing">Unit Testing 3</a></li>
+</ul>
+<h2 id="contributing-to-this-project">Contributing To This Project</h2>
+<p>Contributions are welcome from anyone and everyone. We encourage you to review the <a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/contribution.md">guiding principles for contributing</a></p>
+<ul>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/contribution/bug-reports.md">Bug reports</a></li>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/contribution/feature-requests.md">Feature requests</a></li>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/main/wiki/docs/contribution/pull-requests.md">Pull requests</a></li>
+</ul>
+<h2 id="issues-and-discussions">Issues and Discussions</h2>
+<ul>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/issues/new">Create New Issue</a></li>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/issues">Check Existing Issues</a></li>
+<li><a href="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/discussions">Discussions</a></li>
+</ul>
+<h2 id="stay-in-touch">Stay in touch</h2>
+<ul>
+<li>Website - <a href="https://www.neosofttech.com/">https://www.neosofttech.com/</a></li>
+<li>Twitter - <a href="https://twitter.com/neosofttech">@neosofttech</a></li>
+<li>Meetup -  <a href="https://www.meetup.com/neosoft-technologies/">https://www.meetup.com/neosoft-technologies/</a></li>
+<li>Medium -  <a href="https://medium.com/@neosofttech-technologies-blog">https://medium.com/@neosofttech-technologies-blog</a></li>
+<li>GitHub - <a href="https://github.com/NeoSOFT-Technologies">https://github.com/NeoSOFT-Technologies</a></li>
+<li>Discord - <a href="https://discord.gg/9xW5gQhQa4">NodeJS</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

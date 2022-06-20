@@ -1,0 +1,176 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>nestjs-boilerolate documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../../images/favicon.ico">
+	   <link rel="stylesheet" href="../../styles/style.css">
+        <link rel="stylesheet" href="../../styles/dark.css">
+        <link rel="stylesheet" href="../../styles/stripe.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../../" class="navbar-brand">nestjs-boilerolate documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content additional-page">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1 id="mailer">Mailer</h1>
+<p>The objective of Mailer module</p>
+<ol>
+<li>This module would support sending emails via SMTP which stands for Simple Mail Transfer Protocol. We need to provide SMTP credentials in .env in the desired format mentioned below.</li>
+<li>Mailer module also supports the attachment functionality.</li>
+<li>We need to define the email template folder from where we need fetch the email template.</li>
+<li>Currently we support pug email templates</li>
+<li>The third-party service that we are using is the nodemailer package.</li>
+</ol>
+<h1 id="pug">Pug</h1>
+<p><a href="https://www.npmjs.com/package/pug">Pug</a> is a high performance template engine heavily influenced by <a href="https://haml.info/">Haml</a> and implemented with JavaScript for Node.js and browsers. This library is used for designing the template of the email body.</p>
+<h2 id="install-dependencies">Install Dependencies</h2>
+<p>First we need to install the nodemailer package by the following command.</p>
+<div><pre class="line-numbers"><code class="language-none">npm install --save nodemailer</code></pre></div><p>The below command is executed to support .ts files.</p>
+<div><pre class="line-numbers"><code class="language-none">npm install --save &#64;types/nodemailer</code></pre></div><p>To install Pug template execute the following instruction.
+For .js</p>
+<div><pre class="line-numbers"><code class="language-none">npm install --save pug</code></pre></div><p>For .ts</p>
+<div><pre class="line-numbers"><code class="language-none">npm install --save &#64;types/pug</code></pre></div><h2 id="configuration">Configuration</h2>
+<p>To configure the SMTP service we need to add below values in the environment. The values are self explanatory.  </p>
+<div><pre class="line-numbers"><code class="language-none">EMAIL_HOST=
+EMAIL_PORT=
+USER_EMAIL=
+USER_PASSWORD=</code></pre></div><p>Once the .env is setup then the values of the .env file will be imported in the application with the help of mailer.ts file present in the config directory.</p>
+<div><pre class="line-numbers"><code class="language-none">export default registerAs(&#39;mailer&#39;, () =&gt; ({
+fromEmail: process.env.USER_EMAIL,
+host: process.env.EMAIL_HOST ,
+port: process.env.EMAIL_PORT ,
+username: process.env.USER_EMAIL ,
+password: process.env.USER_PASSWORD ,
+}));</code></pre></div><h2 id="usability">Usability</h2>
+<p>Since Mailer is required in every module it is the part of the CoreModule imports.
+Also it is an independent module hence a mailer.module.ts file is being created in which we have provided the EmailHandlerService.</p>
+<div><pre class="line-numbers"><code class="language-none">&#64;Module({
+  providers: [EmailHandlerService],
+  exports: [EmailHandlerService],
+})
+export class EmailHandlerModule {}</code></pre></div><p>The class EmailHandlerModule can be used via importing it in any of the core module such as Users module or App module etc. Consider we want to use the Mailer module in the Users module. It can  be done simply by the below steps. First import the <code>EmailHandlerModule</code> in the user.module.ts file.</p>
+<div><pre class="line-numbers"><code class="language-none">&#64;Module({
+  imports: [TypeOrmModule.forFeature([UserDbRepository]), EmailHandlerModule],
+  providers: [UsersService],
+  controllers: [UsersController],
+})
+export class UsersModule {}</code></pre></div><p>Now since we need it in the User module we need to add the EmailHandlerService as a dependency in the user.controller.ts file.</p>
+<p><code>constructor(private readonly emailService: EmailHandlerService) {} </code></p>
+<p>Finally to trigger an email, we need pass below parameters to sendMail function in EmailHandlerService.</p>
+<p>In this case we are sending template as a mail.</p>
+<div><pre class="line-numbers"><code class="language-none"> await this.emailService.sendEmail({
+        to:&#39;&#39;,
+        subject:&#39;subject&#39;,
+        templateName:&#39;sample&#39;,
+        replace:{&#39;name&#39;: &#39;&#39;},
+ });</code></pre></div><p>The paramenters of the <code>sendEmail</code> function are self explanatory. The <code>templateName</code> parameter defines the template od the email that we are going to send through the  <code>sendEmail</code> function.
+The value sample is the <code>sample.pug</code> file which contains the template that is to be sent in the mail. The <code>.pug</code> should be kept in the template fol</p>
+<blockquote>
+<p>template: The <code>.pug</code> file should be kept in the template folder whose directory might be in the following format <rootdir>/src/core/mailer/template/sample.pug</p>
+</blockquote>
+<p>At the same time if we want to send a textbody via email then it has to be defined
+in as a value against the <code>body</code> parameter. Use the following snippet of the code.</p>
+<div><pre class="line-numbers"><code class="language-none"> await this.emailService.sendEmail({
+        to:&#39;&#39;,
+        subject:&#39;subject&#39;,
+        body:&#39;This is email body&#39;,
+ });</code></pre></div>
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 2;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'additional-page';
+            var COMPODOC_CURRENT_PAGE_URL = 'mailer.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../../js/libs/custom-elements.min.js"></script>
+       <script src="../../js/libs/lit-html.js"></script>
+
+       <script src="../../js/menu-wc.js" defer></script>
+       <script nomodule src="../../js/menu-wc_es5.js" defer></script>
+
+       <script src="../../js/libs/bootstrap-native.js"></script>
+
+       <script src="../../js/libs/es6-shim.min.js"></script>
+       <script src="../../js/libs/EventDispatcher.js"></script>
+       <script src="../../js/libs/promise.min.js"></script>
+       <script src="../../js/libs/zepto.min.js"></script>
+
+       <script src="../../js/compodoc.js"></script>
+
+       <script src="../../js/tabs.js"></script>
+       <script src="../../js/menu.js"></script>
+       <script src="../../js/libs/clipboard.min.js"></script>
+       <script src="../../js/libs/prism.js"></script>
+       <script src="../../js/sourceCode.js"></script>
+          <script src="../../js/search/search.js"></script>
+          <script src="../../js/search/lunr.min.js"></script>
+          <script src="../../js/search/search-lunr.js"></script>
+          <script src="../../js/search/search_index.js"></script>
+       <script src="../../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

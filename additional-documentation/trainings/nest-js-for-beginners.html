@@ -1,0 +1,288 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>nestjs-boilerolate documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../../images/favicon.ico">
+	   <link rel="stylesheet" href="../../styles/style.css">
+        <link rel="stylesheet" href="../../styles/dark.css">
+        <link rel="stylesheet" href="../../styles/stripe.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../../" class="navbar-brand">nestjs-boilerolate documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content additional-page">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1 id="nest-js-training">Nest JS Training</h1>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Node JS  </li>
+<li>Express JS </li>
+<li>Typescript</li>
+</ul>
+<h2 id="topics">Topics</h2>
+<h3 id="1-getting-started">1. Getting Started</h3>
+<ul>
+<li>Introduction to Nest JS <ul>
+<li>Rest API </li>
+<li>Microservices </li>
+<li>Web Sockets </li>
+<li>Graphql</li>
+</ul>
+</li>
+<li>Installing the NestJS CLI (command-line interface) <ul>
+<li>Installing Node.js</li>
+<li>Install NestJS CLI -globally </li>
+<li>Generating  Nest JS Application</li>
+</ul>
+</li>
+<li>What’s inside a Nest JS Application</li>
+</ul>
+<h3 id="2-creating-a-rest-api-application">2. Creating a REST API application</h3>
+<ul>
+<li>Prerequisite: Install Insomnia/Postman </li>
+<li>Creating a Basic Controller <ul>
+<li>nest generate controller</li>
+</ul>
+</li>
+<li>Use Route Parameters </li>
+<li>Handling Request Body / Payload </li>
+<li>Response Status Codes </li>
+<li>Handling Update and Delete Requests </li>
+<li>Implement Pagination with Query Parameters </li>
+<li>Creating a Basic Service <ul>
+<li>nest generate service {name}</li>
+</ul>
+</li>
+<li>Send User-Friendly Error Messages </li>
+<li>Encompass Business-Domain in Modules<ul>
+<li>controllers - Which you can think of as our API Routes, that we want this module to instantiate. </li>
+<li>exports - Here we can list providers within this current module that should be made available anywhere this module is imported </li>
+<li>imports - Just as we saw in the AppModule, the imports Array gives us the ability to list OTHER modules that THIS module requires. Any exported providers of these imported modules are now fully available here as well. </li>
+<li>providers - Here we’re going to list our services that need to be instantiated by the Nest injector.  Any providers here will be available only within “THIS” module itself, unless added to the exports array we saw above.</li>
+</ul>
+</li>
+<li>Introduction to Data Transfer Objects <ul>
+<li>Generate a DTO class with the Nest CLI   <ul>
+<li>nest g class coffees/dto/create-coffee.dto --no-spec</li>
+</ul>
+</li>
+<li>Validate Input Data with Data Transfer Objects <ul>
+<li>ValidationPipe  <ul>
+<li>Install needed dependencies - npm i class-validator class-transformer</li>
+</ul>
+</li>
+<li>Handling Malicious Request Data </li>
+<li>Auto-transform Payloads to DTO instances</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-add-postgresql-with-type-orm">3. Add PostgreSQL with Type ORM</h3>
+<ul>
+<li>Prerequisite: Install Docker </li>
+<li>Running PostgreSQL <ul>
+<li>How to visualize your Postgres Database (GUI) <ul>
+<li><a href="https://www.pgadmin.org/">https://www.pgadmin.org/</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Introducing the Type ORM Module </li>
+<li>Creating a Type ORM Entity </li>
+<li>Using Repository to Access Database </li>
+<li>Create a Relation between two Entities <ul>
+<li>Relations <ul>
+<li>One-to-one </li>
+<li>One-to-many or Many-to-one relations </li>
+<li>Many-to-many relations</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Retrieve Entities with their Relations </li>
+<li>Using Cascading Inserts and Updates </li>
+<li>Adding Pagination </li>
+<li>Use Transactions </li>
+<li>Adding Indexes to Entities </li>
+<li>Setting up Migrations</li>
+</ul>
+<h3 id="4-dependency-injection">4. Dependency Injection</h3>
+<ul>
+<li>Understand Dependency Injection <ul>
+<li>Injector </li>
+<li>Container </li>
+<li>Controller </li>
+<li>Service</li>
+</ul>
+</li>
+<li>Control Nest JS Module Encapsulation </li>
+<li>Diving Into Custom Providers <ul>
+<li>Strategy Pattern</li>
+</ul>
+</li>
+<li>Value based Providers </li>
+<li>Non-class-based Provider Tokens </li>
+<li>Class Providers </li>
+<li>Factory Providers </li>
+<li>Leverage Async Providers </li>
+<li>Create a Dynamic Module </li>
+<li>Control Providers Scope </li>
+<li>Diving Deeper Into Request-Scoped Providers</li>
+</ul>
+<h3 id="5-application-configuration">5. Application Configuration</h3>
+<ul>
+<li>Introducing the Config Module </li>
+<li>Custom Environment File Paths </li>
+<li>Schema Validation </li>
+<li>Using the Config Service </li>
+<li>Custom Configuration Files </li>
+<li>Configuration Namespaces and Partial Registration </li>
+<li>Asynchronously Configure Dynamic Modules</li>
+</ul>
+<h3 id="6-other-building-blocks-by-example">6. Other Building Blocks by Example</h3>
+<ul>
+<li>Introducing More Building Blocks </li>
+<li>Understanding Binding Techniques </li>
+<li>Catch Exceptions with Filters </li>
+<li>Protect Routes with Guards </li>
+<li>Using Metadata to Build Generic Guards or Interceptors </li>
+<li>Add Pointcuts with Interceptors </li>
+<li>Handling Timeouts with Interceptors </li>
+<li>Creating Custom Pipes </li>
+<li>Add Request Logging with Middleware </li>
+<li>Create Custom Param Decorators</li>
+</ul>
+<h3 id="7-generating-open-api-specification">7. Generating Open API Specification</h3>
+<ul>
+<li>Introducing the Swagger Module </li>
+<li>Enabling CLI Plugin </li>
+<li>Decorating Model Properties </li>
+<li>Adding Example Responses </li>
+<li>Using Tags to Group Resources</li>
+</ul>
+<h3 id="8-testing">8. Testing</h3>
+<ul>
+<li>Introduction to Jest </li>
+<li>Getting Started with Test Suites </li>
+<li>Adding Unit Tests </li>
+<li>Diving Into e2e Tests </li>
+<li>Creating our First e2e Test </li>
+<li>Implementing e2e Test Logic</li>
+</ul>
+<h3 id="9-add-mongodb-with-mongoose">9. Add MongoDB with Mongoose</h3>
+<ul>
+<li>Running MongoDB </li>
+<li>Introducing the Mongoose Module </li>
+<li>Creating a Mongoose Model </li>
+<li>Using a Mongoose Model to Access MongoDB </li>
+<li>Adding Pagination </li>
+<li>Use Transactions </li>
+<li>Adding Indexes to Schemas</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://github.com/nestjs/nest/issues/1006">Who is using Nest in production?</a></li>
+<li><a href="https://learn.nestjs.com/p/fundamentals">https://learn.nestjs.com/p/fundamentals</a></li>
+<li><a href="https://github.com/juliandavidmr/awesome-nestjs">https://github.com/juliandavidmr/awesome-nestjs</a></li>
+</ul>
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 2;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'additional-page';
+            var COMPODOC_CURRENT_PAGE_URL = 'nest-js-for-beginners.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../../js/libs/custom-elements.min.js"></script>
+       <script src="../../js/libs/lit-html.js"></script>
+
+       <script src="../../js/menu-wc.js" defer></script>
+       <script nomodule src="../../js/menu-wc_es5.js" defer></script>
+
+       <script src="../../js/libs/bootstrap-native.js"></script>
+
+       <script src="../../js/libs/es6-shim.min.js"></script>
+       <script src="../../js/libs/EventDispatcher.js"></script>
+       <script src="../../js/libs/promise.min.js"></script>
+       <script src="../../js/libs/zepto.min.js"></script>
+
+       <script src="../../js/compodoc.js"></script>
+
+       <script src="../../js/tabs.js"></script>
+       <script src="../../js/menu.js"></script>
+       <script src="../../js/libs/clipboard.min.js"></script>
+       <script src="../../js/libs/prism.js"></script>
+       <script src="../../js/sourceCode.js"></script>
+          <script src="../../js/search/search.js"></script>
+          <script src="../../js/search/lunr.min.js"></script>
+          <script src="../../js/search/search-lunr.js"></script>
+          <script src="../../js/search/search_index.js"></script>
+       <script src="../../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
