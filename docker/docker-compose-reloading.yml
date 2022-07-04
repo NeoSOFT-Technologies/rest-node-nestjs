@@ -1,0 +1,29 @@
+# Docker Compose for live-reloading containers during the run time
+
+version: '3'
+services:
+  database:
+   
+    container_name: '${APP_NAME}_mysql'
+    volumes:
+      - './init.sql:/docker-entrypoint-initdb.d/init.sql'
+      - 'mysql:/var/lib/mysql'
+    
+  
+  live_reloading:
+    image: apogiatzis/livereloading
+    container_name: livereloader
+    command: nest start --watch
+    
+    
+    privileged: true
+    environment:
+      - RELOAD_DELAY=1.5      #(in seconds)
+      - RELOAD_CONTAINER='${APP_NAME}_mysql'
+
+    volumes:
+      - './init.sql:/docker-entrypoint-initdb.d/init.sql'
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - 'mysql:/var/lib/mysql'
+
+    
