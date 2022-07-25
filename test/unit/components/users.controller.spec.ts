@@ -1,26 +1,33 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { users } from '@test/mock/users.response';
-import httpMocks from 'node-mocks-http';
 
-import { Request, Response } from '@app/core';
+import { CreateUserDto } from '@app/feature/users/dto/create.user.dto';
+import { UpdateUserDto } from '@app/feature/users/dto/update.user.dto';
 import { UsersService } from '@app/feature/users/services/users.service';
 import { UsersController } from '@app/feature/users/users.controller';
 
 describe('Testing UsersController', () => {
   let usersController: UsersController;
 
-  const mockRequest: Request = httpMocks.createRequest();
-
-  const mockResponse: Response = httpMocks.createResponse();
-
   const mockParam = 'mockID';
+  const mockCreateBody: CreateUserDto = {
+    firstName: 'string',
+    lastName: 'string',
+    email: 'string',
+    password: 'string',
+  };
+  const mockUpdateBody: UpdateUserDto = {
+    firstName: 'string',
+    lastName: 'string',
+    isActive: false,
+  };
 
   const mockUsersService = {
-    findAll: jest.fn().mockResolvedValue(users),
-    findOne: jest.fn().mockResolvedValue(users[0]),
-    remove: jest.fn(),
-    update: jest.fn(),
-    save: jest.fn(),
+    findAll: jest.fn().mockRejectedValueOnce(new Error('Test error')).mockResolvedValue(users),
+    findOne: jest.fn().mockRejectedValueOnce(new Error('Test error')).mockResolvedValue(users[0]),
+    remove: jest.fn().mockRejectedValueOnce(new Error('Test error')),
+    update: jest.fn().mockRejectedValueOnce(new Error('Test error')),
+    save: jest.fn().mockRejectedValueOnce(new Error('Test error')),
   };
 
   beforeAll(async () => {
@@ -36,35 +43,39 @@ describe('Testing UsersController', () => {
   });
 
   it('Testing error cases', async () => {
-    mockResponse.error = jest.fn(() => 'error');
-    expect(await usersController.getUsers(mockRequest, mockResponse)).toEqual('error');
-    expect(await usersController.getUserById(mockRequest, mockResponse, 'mockID')).toEqual('error');
-    expect(await usersController.saveUser(mockRequest, mockResponse)).toEqual('error');
-    expect(await usersController.deleteUser(mockRequest, mockResponse, 'mockID')).toEqual('error');
-    expect(await usersController.updateUserById(mockRequest, mockResponse, 'mockID')).toEqual('error');
+    expect(async () => {
+      await usersController.getUsers();
+    }).rejects.toThrowError('Test error');
+    expect(async () => {
+      await usersController.getUserById('mockID');
+    }).rejects.toThrowError('Test error');
+    expect(async () => {
+      await usersController.saveUser(mockCreateBody);
+    }).rejects.toThrowError('Test error');
+    expect(async () => {
+      await usersController.deleteUser('mockID');
+    }).rejects.toThrowError('Test error');
+    expect(async () => {
+      await usersController.updateUserById(mockUpdateBody, 'mockID');
+    }).rejects.toThrowError('Test error');
   });
 
   it('Testing usercontroller "getUsers"', async () => {
-    mockResponse.success = jest.fn((input) => input);
-    expect(await usersController.getUsers(mockRequest, mockResponse)).toEqual(users);
+    expect(await usersController.getUsers()).toEqual(users);
   });
 
   it('Testing usercontroller "getUserById"', async () => {
-    mockResponse.success = jest.fn((input) => input);
-    expect(await usersController.getUserById(mockRequest, mockResponse, mockParam)).toEqual(users[0]);
+    expect(await usersController.getUserById(mockParam)).toEqual(users[0]);
   });
   it('Testing usercontroller "saveUser"', async () => {
-    mockResponse.success = jest.fn((input) => input);
-    expect(await usersController.saveUser(mockRequest, mockResponse)).toEqual('success');
+    expect(await usersController.saveUser(mockCreateBody)).toEqual('success');
   });
 
   it('Testing usercontroller "deleteUser"', async () => {
-    mockResponse.success = jest.fn((input) => input);
-    expect(await usersController.deleteUser(mockRequest, mockResponse, mockParam)).toEqual('Deletion Successfull');
+    expect(await usersController.deleteUser(mockParam)).toEqual('Deletion Successfull');
   });
 
   it('Testing usercontroller "updateUserById"', async () => {
-    mockResponse.success = jest.fn((input) => input);
-    expect(await usersController.updateUserById(mockRequest, mockResponse, mockParam)).toEqual('Updation Successfull');
+    expect(await usersController.updateUserById(mockUpdateBody, mockParam)).toEqual('Updation Successfull');
   });
 });
