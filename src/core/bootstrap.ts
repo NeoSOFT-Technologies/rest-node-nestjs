@@ -7,7 +7,7 @@ import helmet from 'helmet';
 
 import { shouldCompress } from '@app/core/compression/compression';
 import { corsOptions } from '@app/core/cors.config';
-import { RequestResponseHandler } from '@app/core/middleware';
+import { ErrorHandler, RequestHandler, RequestResponseHandler, ResponseHandler } from '@app/core/middleware';
 /**
  * Core bootstrap module should be loaded here.
  * @param app
@@ -36,6 +36,12 @@ export default async function bootstrap(app: INestApplication) {
   // Auto-validation
   // We'll start by binding ValidationPipe at the application level, thus ensuring all endpoints are protected from receiving incorrect data.
   app.useGlobalPipes(new ValidationPipe());
+
+  // Bind Interceptors
+  app.useGlobalInterceptors(new RequestHandler(), new ResponseHandler());
+
+  // Error Handler
+  app.useGlobalFilters(new ErrorHandler());
 
   // guards
   const config = app.get(ConfigService);
