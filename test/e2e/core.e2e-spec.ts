@@ -7,11 +7,11 @@ import { StatusCodes } from 'http-status-codes';
 import request from 'supertest';
 
 import { AppModule } from '@app/app.module';
-import { UserDbRepository } from '@app/components/users/repository/db/user.repository';
 import { RequestGuard } from '@app/core';
 import { setupAPIVersioning } from '@app/core/api.versioning';
 import coreBootstrap from '@app/core/bootstrap';
 import AppLogger from '@app/core/logger/AppLogger';
+import { UserDbRepository } from '@app/feature/users/repository/db/user.repository';
 
 describe('Core module (e2e)', () => {
   let app: INestApplication;

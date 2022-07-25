@@ -5,9 +5,9 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { userStub } from '@test/mock/user.stub';
 import * as bcrypt from 'bcrypt';
 
-import { AuthService } from '@app/auth/auth.service';
-import { JwtStrategy } from '@app/auth/jwt.strategy';
-import { UsersService } from '@app/components/users/services/users.service';
+import { AuthService } from '@app/core/auth/auth.service';
+import { JwtStrategy } from '@app/core/auth/jwt.strategy';
+import { UsersService } from '@app/feature/users/services/users.service';
 
 import { TestCoreModule } from '../core/guards/module/core-test.module';
 

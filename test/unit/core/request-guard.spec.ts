@@ -7,9 +7,9 @@ import { users } from '@test/mock/users.response';
 import request from 'supertest';
 
 import { AppModule } from '@app/app.module';
-import { UsersService } from '@app/components/users/services/users.service';
 import { setupAPIVersioning } from '@app/core/api.versioning';
 import coreBootstrap from '@app/core/bootstrap';
+import { UsersService } from '@app/feature/users/services/users.service';
 
 jest.mock('bcrypt', () => ({
   genSalt: jest.fn().mockResolvedValue('Salt'),

@@ -7,7 +7,7 @@ import helmet from 'helmet';
 
 import { shouldCompress } from '@app/core/compression/compression';
 import { corsOptions } from '@app/core/cors.config';
-import { RequestGuard } from '@app/core/guards';
+import { RequestGuard } from '@app/core/middleware';
 /**
  * Core bootstrap module should be loaded here.
  * @param app

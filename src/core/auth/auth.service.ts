@@ -1,10 +1,10 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
-import { ValidateUserDto } from '@app/components/users/dto/validate.user.dto';
-import { User } from '@app/components/users/entities/user.entity';
-import { UsersService } from '@app/components/users/services/users.service';
 import { comparePassword } from '@app/core/hashing/hashing';
+import { ValidateUserDto } from '@app/feature/users/dto/validate.user.dto';
+import { User } from '@app/feature/users/entities/user.entity';
+import { UsersService } from '@app/feature/users/services/users.service';
 
 @Injectable()
 export class AuthService {

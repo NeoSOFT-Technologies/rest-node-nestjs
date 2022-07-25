@@ -6,11 +6,11 @@ import appConfig2 from '@test/unit/core/guards/config/appConfig2';
 import { StatusCodes } from 'http-status-codes';
 import request from 'supertest';
 
-import { UsersModule } from '@app/components/users/users.module';
 import database from '@app/config/database';
 import { setupAPIVersioning } from '@app/core/api.versioning';
 import coreBootstrap from '@app/core/bootstrap';
-import { DatabaseModule } from '@app/db/database.module';
+import { DatabaseModule } from '@app/core/db/database.module';
+import { UsersModule } from '@app/feature/users/users.module';
 
 describe('Testing API Versioning switch cases', () => {
   let app: INestApplication;

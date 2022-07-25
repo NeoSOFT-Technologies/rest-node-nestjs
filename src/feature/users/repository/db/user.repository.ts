@@ -1,10 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { EntityRepository, Repository, UpdateResult } from 'typeorm';
 
-import { CreateUserDto } from '@app/components/users/dto/create.user.dto';
-import { UpdateUserDto } from '@app/components/users/dto/update.user.dto';
-import { User } from '@app/components/users/entities/user.entity';
-import { UserRepository } from '@app/components/users/repository/user.repository';
+import { CreateUserDto } from '@app/feature/users/dto/create.user.dto';
+import { UpdateUserDto } from '@app/feature/users/dto/update.user.dto';
+import { User } from '@app/feature/users/entities/user.entity';
+import { UserRepository } from '@app/feature/users/repository/user.repository';
 @Injectable()
 @EntityRepository(User)
 export class UserDbRepository extends Repository<User> implements UserRepository {

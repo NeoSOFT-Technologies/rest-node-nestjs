@@ -14,13 +14,13 @@ import {
 import { ApiBearerAuth, ApiBody, ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { StatusCodes } from 'http-status-codes';
 
-import { JwtAuthGuard } from '@app/auth/jwt.auth.guard';
-import { apiResponse } from '@app/components/users/constants/api.response.dto';
-import { CreateUserDto } from '@app/components/users/dto/create.user.dto';
-import { UpdateUserDto } from '@app/components/users/dto/update.user.dto';
-import { User } from '@app/components/users/entities/user.entity';
-import { UsersService } from '@app/components/users/services/users.service';
 import { Request, Response } from '@app/core';
+import { JwtAuthGuard } from '@app/core/auth/jwt.auth.guard';
+import { apiResponse } from '@app/feature/users/constants/api.response.dto';
+import { CreateUserDto } from '@app/feature/users/dto/create.user.dto';
+import { UpdateUserDto } from '@app/feature/users/dto/update.user.dto';
+import { User } from '@app/feature/users/entities/user.entity';
+import { UsersService } from '@app/feature/users/services/users.service';
 
 @ApiTags('user_api')
 @Controller('users')

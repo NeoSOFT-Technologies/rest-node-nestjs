@@ -4,12 +4,12 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { StatusCodes } from 'http-status-codes';
 import request from 'supertest';
 
-import { AuthModule } from '@app/auth/auth.module';
-import { UsersModule } from '@app/components/users/users.module';
 import { setupAPIVersioning } from '@app/core/api.versioning';
+import { AuthModule } from '@app/core/auth/auth.module';
 import coreBootstrap from '@app/core/bootstrap';
+import { DatabaseModule } from '@app/core/db/database.module';
 import AppLogger from '@app/core/logger/AppLogger';
-import { DatabaseModule } from '@app/db/database.module';
+import { UsersModule } from '@app/feature/users/users.module';
 
 import { TestController } from './controller/test.controller';
 import { TestCoreModule } from './module/core-test.module';

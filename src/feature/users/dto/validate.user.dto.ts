@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEmail, IsNotEmpty, Matches } from 'class-validator';
 
-import { apiResponse } from '@app/components/users/constants/api.response.dto';
+import { apiResponse } from '@app/feature/users/constants/api.response.dto';
 
 export class ValidateUserDto {
   @IsNotEmpty()

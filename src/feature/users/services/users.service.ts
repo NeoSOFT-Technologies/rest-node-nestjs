@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
-import { CreateUserDto } from '@app/components/users/dto/create.user.dto';
-import { UpdateUserDto } from '@app/components/users/dto/update.user.dto';
-import { User } from '@app/components/users/entities/user.entity';
-import { UserDbRepository } from '@app/components/users/repository/db/user.repository';
-import { UserRepository } from '@app/components/users/repository/user.repository';
 import { hashPassword } from '@app/core/hashing/hashing';
+import { CreateUserDto } from '@app/feature/users/dto/create.user.dto';
+import { UpdateUserDto } from '@app/feature/users/dto/update.user.dto';
+import { User } from '@app/feature/users/entities/user.entity';
+import { UserDbRepository } from '@app/feature/users/repository/db/user.repository';
+import { UserRepository } from '@app/feature/users/repository/user.repository';
 
 @Injectable()
 export class UsersService {

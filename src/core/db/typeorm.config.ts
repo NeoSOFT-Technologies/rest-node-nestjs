@@ -1,7 +1,7 @@
 import { config } from 'dotenv';
 import { ConnectionOptions } from 'typeorm';
 
-import { User } from '@app/components/users/entities/user.entity';
+import { User } from '@app/feature/users/entities/user.entity';
 
 config({ path: 'config/env/.env' });
 
