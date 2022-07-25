@@ -7,8 +7,7 @@ import { StatusCodes } from 'http-status-codes';
 import request from 'supertest';
 
 import { AppModule } from '@app/app.module';
-import { RequestGuard } from '@app/core';
-import { setupAPIVersioning } from '@app/core/api.versioning';
+import { RequestResponseHandler } from '@app/core';
 import coreBootstrap from '@app/core/bootstrap';
 import AppLogger from '@app/core/logger/AppLogger';
 import { UserDbRepository } from '@app/feature/users/repository/db/user.repository';
@@ -24,7 +23,6 @@ describe('Core module (e2e)', () => {
     app = moduleFixture.createNestApplication();
     userDbRepository = moduleFixture.get<UserDbRepository>(UserDbRepository);
     coreBootstrap(app);
-    setupAPIVersioning(app);
     await app.init();
   });
 
@@ -35,13 +33,13 @@ describe('Core module (e2e)', () => {
   describe('TestCases', () => {
     it('Testing Request binder', () => {
       const config = app.get(ConfigService);
-      const guard = new RequestGuard(config);
+      const guard = new RequestResponseHandler(config);
       expect(guard.bindRequestHelpers).toBeDefined();
     });
 
     it('Testing Response binder', () => {
       const config = app.get(ConfigService);
-      const guard = new RequestGuard(config);
+      const guard = new RequestResponseHandler(config);
       expect(guard.bindResponseHelpers).toBeDefined();
     });
 

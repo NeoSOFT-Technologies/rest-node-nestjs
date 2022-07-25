@@ -7,7 +7,6 @@ import { users } from '@test/mock/users.response';
 import request from 'supertest';
 
 import { AppModule } from '@app/app.module';
-import { setupAPIVersioning } from '@app/core/api.versioning';
 import coreBootstrap from '@app/core/bootstrap';
 import { UsersService } from '@app/feature/users/services/users.service';
 
@@ -35,7 +34,6 @@ describe('Testing request-guard', () => {
 
     app = moduleFixture.createNestApplication();
     coreBootstrap(app);
-    setupAPIVersioning(app);
     await app.init();
   });
 

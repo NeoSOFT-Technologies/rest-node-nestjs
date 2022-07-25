@@ -4,7 +4,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { StatusCodes } from 'http-status-codes';
 import request from 'supertest';
 
-import { setupAPIVersioning } from '@app/core/api.versioning';
 import { AuthModule } from '@app/core/auth/auth.module';
 import coreBootstrap from '@app/core/bootstrap';
 import { DatabaseModule } from '@app/core/db/database.module';
@@ -26,7 +25,6 @@ describe('Testing binded properties of Request and Response with Encryption mode
 
     app = moduleFixture.createNestApplication();
     coreBootstrap(app);
-    setupAPIVersioning(app);
     await app.init();
   });
 

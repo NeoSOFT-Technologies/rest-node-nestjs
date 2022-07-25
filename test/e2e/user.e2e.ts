@@ -7,7 +7,6 @@ import { StatusCodes } from 'http-status-codes';
 import request from 'supertest';
 
 import { AppModule } from '@app/app.module';
-import { setupAPIVersioning } from '@app/core/api.versioning';
 import coreBootstrap from '@app/core/bootstrap';
 import { setupSwagger } from '@app/swagger';
 
@@ -20,7 +19,6 @@ export const AppController_test = () => {
 
     app = moduleFixture.createNestApplication();
     coreBootstrap(app);
-    setupAPIVersioning(app);
     setupSwagger(app);
     await app.init();
   });
@@ -33,32 +31,6 @@ export const AppController_test = () => {
     const response = await request(app.getHttpServer()).post('/users').send(userStub());
     expect(response.status).toBe(StatusCodes.CREATED);
     expect(response.body.data).toBe('success');
-  });
-
-  it('Should return response from version 1 along with 200 status code', async () => {
-    const loginResponse = await request(app.getHttpServer()).post('/auth/login').send(loginCredentials);
-    const token = loginResponse.body.data.access_token;
-    const { status, body } = await request(app.getHttpServer())
-      .get('/v1/users')
-      .set('Authorization', 'Bearer ' + token)
-      .expect(StatusCodes.OK);
-
-    expect(status).toEqual(StatusCodes.OK);
-    const { data } = body;
-    expect(data).toEqual('Response from API version 1');
-  });
-
-  it('Should return response from version 2 along with 200 status code', async () => {
-    const loginResponse = await request(app.getHttpServer()).post('/auth/login').send(loginCredentials);
-    const token = loginResponse.body.data.access_token;
-    const { status, body } = await request(app.getHttpServer())
-      .get('/v2/users')
-      .set('Authorization', 'Bearer ' + token)
-      .expect(StatusCodes.OK);
-
-    expect(status).toEqual(StatusCodes.OK);
-    const { data } = body;
-    expect(data).toEqual('Response from API version 2');
   });
 
   it('Should return users array along with 200 status code', async () => {
