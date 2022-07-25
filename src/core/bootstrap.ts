@@ -7,7 +7,7 @@ import helmet from 'helmet';
 
 import { shouldCompress } from '@app/core/compression/compression';
 import { corsOptions } from '@app/core/cors.config';
-import { RequestGuard } from '@app/core/middleware';
+import { RequestResponseHandler } from '@app/core/middleware';
 /**
  * Core bootstrap module should be loaded here.
  * @param app
@@ -39,5 +39,5 @@ export default async function bootstrap(app: INestApplication) {
 
   // guards
   const config = app.get(ConfigService);
-  app.useGlobalGuards(new RequestGuard(config));
+  app.useGlobalGuards(new RequestResponseHandler(config));
 }

@@ -16,7 +16,7 @@ interface ResponseType {
   meta?: any;
 }
 @Injectable()
-export class RequestGuard implements CanActivate {
+export class RequestResponseHandler implements CanActivate {
   constructor(private readonly config: ConfigService) {}
   canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
     this.bindRequestHelpers(context.switchToHttp().getRequest());
