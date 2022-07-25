@@ -28,8 +28,8 @@ export class UsersService {
   }
 
   async save(user: CreateUserDto): Promise<void> {
-    user.password = await hashPassword(user.password);
-    await this.usersRepository.createUser(user);
+    const password = await hashPassword(user.password);
+    await this.usersRepository.createUser({ ...user, password });
   }
 
   async update(id: string, user: UpdateUserDto): Promise<void> {

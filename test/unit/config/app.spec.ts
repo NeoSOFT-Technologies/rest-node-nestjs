@@ -24,25 +24,5 @@ describe('Testing config variables default values', () => {
       const config = app.get(ConfigService);
       expect(config.get('app.name')).toBeDefined();
     });
-
-    it('"app.version" should be defined', async () => {
-      const config = app.get(ConfigService);
-      expect(config.get('app.version')).toBeDefined();
-    });
-
-    it('"app.apiVersioning" should be defined', async () => {
-      const config = app.get(ConfigService);
-      expect(config.get('app.apiVersioning')).toBeDefined();
-    });
-
-    it('"app.apiVersioningHeader" should be defined', async () => {
-      const config = app.get(ConfigService);
-      expect(config.get('app.apiVersioningHeader')).toBeDefined();
-    });
-
-    it('"app.apiVersioningKey" should be defined', async () => {
-      const config = app.get(ConfigService);
-      expect(config.get('app.apiVersioningKey')).toBeDefined();
-    });
   });
 });
