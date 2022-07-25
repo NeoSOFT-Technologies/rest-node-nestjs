@@ -4,9 +4,9 @@ import { PassportModule } from '@nestjs/passport';
 import { Test, TestingModule } from '@nestjs/testing';
 import httpMocks from 'node-mocks-http';
 
-import { AuthController } from '@app/auth/auth.controller';
-import { AuthService } from '@app/auth/auth.service';
 import { Request, Response } from '@app/core';
+import { AuthController } from '@app/core/auth/auth.controller';
+import { AuthService } from '@app/core/auth/auth.service';
 
 describe('Testing AuthController', () => {
   let authController: AuthController;

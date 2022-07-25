@@ -2,9 +2,9 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { users } from '@test/mock/users.response';
 import httpMocks from 'node-mocks-http';
 
-import { UsersService } from '@app/components/users/services/users.service';
-import { UsersController } from '@app/components/users/users.controller';
 import { Request, Response } from '@app/core';
+import { UsersService } from '@app/feature/users/services/users.service';
+import { UsersController } from '@app/feature/users/users.controller';
 
 describe('Testing UsersController', () => {
   let usersController: UsersController;
@@ -37,8 +37,6 @@ describe('Testing UsersController', () => {
 
   it('Testing error cases', async () => {
     mockResponse.error = jest.fn(() => 'error');
-    expect(await usersController.getUsersV1(mockRequest, mockResponse)).toEqual('error');
-    expect(await usersController.getUsersV2(mockRequest, mockResponse)).toEqual('error');
     expect(await usersController.getUsers(mockRequest, mockResponse)).toEqual('error');
     expect(await usersController.getUserById(mockRequest, mockResponse, 'mockID')).toEqual('error');
     expect(await usersController.saveUser(mockRequest, mockResponse)).toEqual('error');
@@ -49,14 +47,6 @@ describe('Testing UsersController', () => {
   it('Testing usercontroller "getUsers"', async () => {
     mockResponse.success = jest.fn((input) => input);
     expect(await usersController.getUsers(mockRequest, mockResponse)).toEqual(users);
-  });
-  it('Testing usercontroller "getUsersV1"', async () => {
-    mockResponse.success = jest.fn((input) => input);
-    expect(await usersController.getUsersV1(mockRequest, mockResponse)).toEqual('Response from API version 1');
-  });
-  it('Testing usercontroller "getUsersV2"', async () => {
-    mockResponse.success = jest.fn((input) => input);
-    expect(await usersController.getUsersV2(mockRequest, mockResponse)).toEqual('Response from API version 2');
   });
 
   it('Testing usercontroller "getUserById"', async () => {

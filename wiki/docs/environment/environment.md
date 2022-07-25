@@ -52,5 +52,4 @@ process.env['RANDOM_ID'] = Math.random();
 - [Database Module](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/documentation/wiki/docs/environment/database.env.md)
 - [Encryption Module](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/documentation/wiki/docs/environment/crypto.env.md)
 - [Mailer Module](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/documentation/wiki/docs/environment/email.env.md)
-- [Api Rate Limit Module](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/documentation/wiki/docs/environment/rateLimit.env.md)
 - [Authentication Module](https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/documentation/wiki/docs/environment/authentication.env.md)

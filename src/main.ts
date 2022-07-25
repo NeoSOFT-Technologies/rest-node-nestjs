@@ -2,7 +2,6 @@ import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from '@app/app.module';
-import { setupAPIVersioning } from '@app/core/api.versioning';
 import coreBootstrap from '@app/core/bootstrap';
 import { setupSwagger } from '@app/swagger';
 
@@ -16,7 +15,6 @@ async function bootstrap() {
   const envList = ['dev', 'staging', 'local', 'test'];
 
   if (envList.includes(config.get('app.env'))) {
-    setupAPIVersioning(app);
     setupSwagger(app);
   }
 
