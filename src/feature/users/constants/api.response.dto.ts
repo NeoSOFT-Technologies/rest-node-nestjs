@@ -1,11 +1,7 @@
 export const apiResponse = {
   apiUserCreatedResponse: 'User has been created successfully',
 
-  apiUserGetResponseV1: 'Users list from version 1 returned successfully',
-
-  apiUserGetResponseV2: 'Users list from version 2 returned successfully',
-
-  apiUserGetResponseNeutral: 'Users list from version neutral returned successfully',
+  apiUserGetResponse: 'Users list returned successfully',
 
   apiUserGetById: 'User with specified Id returned successfully',
 

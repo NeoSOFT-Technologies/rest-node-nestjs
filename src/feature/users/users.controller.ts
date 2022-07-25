@@ -1,16 +1,4 @@
-import {
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Patch,
-  Post,
-  Req,
-  Res,
-  UseGuards,
-  Version,
-  VERSION_NEUTRAL,
-} from '@nestjs/common';
+import { Controller, Delete, Get, Param, Patch, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { StatusCodes } from 'http-status-codes';
 
@@ -27,33 +15,9 @@ import { UsersService } from '@app/feature/users/services/users.service';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  // Versioning API
-  @Version('1')
-  @Get()
-  @ApiOkResponse({ description: apiResponse.apiUserGetResponseV1 })
-  async getUsersV1(@Req() req: Request, @Res() res: Response): Promise<Response> {
-    try {
-      return res.success('Response from API version 1');
-    } catch (e) {
-      return res.error(e);
-    }
-  }
-
-  @Version('2')
-  @Get()
-  @ApiOkResponse({ description: apiResponse.apiUserGetResponseV2 })
-  async getUsersV2(@Req() req: Request, @Res() res: Response): Promise<Response> {
-    try {
-      return res.success('Response from API version 2');
-    } catch (e) {
-      return res.error(e);
-    }
-  }
-
   @UseGuards(JwtAuthGuard)
-  @Version(VERSION_NEUTRAL)
   @Get()
-  @ApiOkResponse({ description: apiResponse.apiUserGetResponseNeutral })
+  @ApiOkResponse({ description: apiResponse.apiUserGetResponse })
   @ApiBearerAuth('JWT-auth')
   async getUsers(@Req() req: Request, @Res() res: Response): Promise<Response> {
     try {
