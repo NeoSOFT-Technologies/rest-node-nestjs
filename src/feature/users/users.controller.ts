@@ -1,8 +1,6 @@
-import { Controller, Delete, Get, Param, Patch, Post, Req, Res, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Req, Res, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
-import { StatusCodes } from 'http-status-codes';
 
-import { Request, Response } from '@app/core';
 import { JwtAuthGuard } from '@app/core/auth/jwt.auth.guard';
 import { apiResponse } from '@app/feature/users/constants/api.response.dto';
 import { CreateUserDto } from '@app/feature/users/dto/create.user.dto';
@@ -19,25 +17,25 @@ export class UsersController {
   @Get()
   @ApiOkResponse({ description: apiResponse.apiUserGetResponse })
   @ApiBearerAuth('JWT-auth')
-  async getUsers(@Req() req: Request, @Res() res: Response): Promise<Response> {
+  async getUsers(): Promise<User[]> {
     try {
       const users: User[] = await this.usersService.findAll();
-      return res.success(users);
+      return users;
     } catch (e) {
-      return res.error(e);
+      throw e;
     }
   }
 
   @Post()
   @ApiCreatedResponse({ description: apiResponse.apiUserCreatedResponse })
   @ApiBody({ type: CreateUserDto })
-  async saveUser(@Req() req: Request, @Res() res: Response): Promise<Response> {
+  async saveUser(@Body() body: CreateUserDto): Promise<string> {
     try {
-      const user: CreateUserDto = req.body;
+      const user: CreateUserDto = body;
       await this.usersService.save(user);
-      return res.success('success', StatusCodes.CREATED);
+      return 'success';
     } catch (e) {
-      return res.error(e);
+      throw e;
     }
   }
 
@@ -45,12 +43,12 @@ export class UsersController {
   @Get(':id')
   @ApiOkResponse({ description: apiResponse.apiUserGetById })
   @ApiBearerAuth('JWT-auth')
-  async getUserById(@Req() req: Request, @Res() res: Response, @Param('id') id: string): Promise<Response> {
+  async getUserById(@Param('id') id: string): Promise<User> {
     try {
       const userById = await this.usersService.findOne(id);
-      return res.success(userById, StatusCodes.OK);
+      return userById;
     } catch (e) {
-      return res.error(e);
+      throw e;
     }
   }
 
@@ -58,12 +56,12 @@ export class UsersController {
   @Delete(':id')
   @ApiOkResponse({ description: apiResponse.apiUserDeletedResponse })
   @ApiBearerAuth('JWT-auth')
-  async deleteUser(@Req() req: Request, @Res() res: Response, @Param('id') id: string): Promise<Response> {
+  async deleteUser(@Param('id') id: string): Promise<string> {
     try {
       await this.usersService.remove(id);
-      return res.success('Deletion Successfull', StatusCodes.OK);
+      return 'Deletion Successfull';
     } catch (e) {
-      return res.error(e);
+      throw e;
     }
   }
 
@@ -72,13 +70,13 @@ export class UsersController {
   @ApiOkResponse({ description: apiResponse.apiUserUpdatedResponse })
   @ApiBody({ type: UpdateUserDto })
   @ApiBearerAuth('JWT-auth')
-  async updateUserById(@Req() req: Request, @Res() res: Response, @Param('id') id: string): Promise<Response> {
+  async updateUserById(@Body() body: UpdateUserDto, @Param('id') id: string): Promise<string> {
     try {
-      const updateUser: UpdateUserDto = req.body;
+      const updateUser: UpdateUserDto = body;
       await this.usersService.update(id, updateUser);
-      return res.success('Updation Successfull');
+      return 'Updation Successfull';
     } catch (e) {
-      return res.error(e);
+      throw e;
     }
   }
 }
