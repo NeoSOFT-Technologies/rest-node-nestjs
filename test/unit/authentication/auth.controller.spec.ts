@@ -2,23 +2,21 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { Test, TestingModule } from '@nestjs/testing';
-import httpMocks from 'node-mocks-http';
 
-import { Request, Response } from '@app/core';
 import { AuthController } from '@app/core/auth/auth.controller';
 import { AuthService } from '@app/core/auth/auth.service';
+import { ValidateUserDto } from '@app/feature/users/dto/validate.user.dto';
 
 describe('Testing AuthController', () => {
   let authController: AuthController;
 
-  const mockRequest: Request = httpMocks.createRequest();
-
-  const mockResponse: Response = httpMocks.createResponse();
-
   const mockAuthService = {
-    generateToken: jest.fn().mockResolvedValue('sampleToken'),
+    generateToken: jest.fn().mockRejectedValueOnce(new Error('Test Error')).mockResolvedValue('sampleToken'),
   };
-
+  const mockBody: ValidateUserDto = {
+    email: 'email',
+    password: 'password',
+  };
   beforeAll(async () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [
@@ -45,12 +43,10 @@ describe('Testing AuthController', () => {
   });
 
   it('Testing error cases', async () => {
-    mockResponse.error = jest.fn(() => 'error');
-    expect(await authController.generateToken(mockRequest, mockResponse)).toEqual('error');
+    expect(async () => await authController.generateToken(mockBody)).rejects.toThrowError('Test Error');
   });
 
   it('Testing authcontroller "generateToken"', async () => {
-    mockResponse.success = jest.fn((input) => input);
-    expect(await authController.generateToken(mockRequest, mockResponse)).toEqual('sampleToken');
+    expect(await authController.generateToken(mockBody)).toEqual('sampleToken');
   });
 });

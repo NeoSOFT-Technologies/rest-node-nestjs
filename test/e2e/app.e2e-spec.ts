@@ -25,6 +25,6 @@ describe('AppController (e2e)', () => {
 
   it('Should return an hello world string along with status code 200', async () => {
     const { body }: any = await request(app.getHttpServer()).get('').expect(StatusCodes.OK);
-    expect(body.data).toEqual('Hello World!');
+    expect(body.response).toEqual('Hello World!');
   });
 });
