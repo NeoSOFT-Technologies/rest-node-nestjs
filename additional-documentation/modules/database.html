@@ -1,0 +1,267 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>nestjs-boilerolate documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../../images/favicon.ico">
+	   <link rel="stylesheet" href="../../styles/style.css">
+        <link rel="stylesheet" href="../../styles/dark.css">
+        <link rel="stylesheet" href="../../styles/stripe.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../../" class="navbar-brand">nestjs-boilerolate documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content additional-page">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1 id="database">Database</h1>
+<p>Boiler plate has already included mysql and mongodb database configuration within the core modules. To leverage the functionality, we need to define the database connection in database.module.ts which is in db folder inside src. Update the database configuration as per your setting.</p>
+<h3 id="installation">Installation</h3>
+<p>For integrating with SQL and NoSQL databases, Nest provides the <a href="https://github.com/nestjs/typeorm">@nestjs/typeorm</a> package. Nest uses <a href="https://github.com/nestjs/typeorm">TypeORM</a> because it&#39;s the most mature Object Relational Mapper (ORM) available for TypeScript. Since it&#39;s written in TypeScript, it integrates well with the Nest framework.TypeORM provides support for many relational databases, such as PostgreSQL, Oracle, Microsoft SQL Server, SQLite, and even NoSQL databases like MongoDB.</p>
+<div><pre class="line-numbers"><code class="language-none">$ npm install --save &#64;nestjs/typeorm typeorm</code></pre></div><p>Now proceed to install the associated client API libraries for selected database.
+For MySQL install <a href="https://www.npmjs.com/package/mysql2">mysql</a></p>
+<div><pre class="line-numbers"><code class="language-none">$ npm install --save mysql2</code></pre></div><p>For MongoDB install <a href="https://www.npmjs.com/package/mongodb">MongoDB NodeJS Driver</a>.We install older version as typeorm does not <a href="https://github.com/typeorm/typeorm/issues/7907">support mongodb driver for v4</a></p>
+<div><pre class="line-numbers"><code class="language-none">$ npm install --save mongodb&#64;3.7.0</code></pre></div><blockquote>
+<p><strong>Note:</strong> It is a best practice to import database information from application configuration.</p>
+</blockquote>
+<h3 id="configuration">Configuration</h3>
+<div><pre class="line-numbers"><code class="language-ts"># database.module.ts
+
+&#64;Module({
+  imports: [
+    TypeOrmModule.forRootAsync({
+      name: &#39;mysql_connection&#39;,
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) =&gt; ({
+        type: &#39;mysql&#39;,
+        host: config.get(&#39;db.host&#39;),
+        port: config.get(&#39;db.port1&#39;),
+        username: config.get(&#39;db.username&#39;),
+        password: config.get(&#39;db.password&#39;),
+        database: config.get(&#39;db.database&#39;),
+        entities: [User],
+        // entities: [__dirname + &#39;/**/*.entity{.ts,.js}&#39;],
+        synchronize: config.get(&#39;app.env&#39;) === &#39;local&#39; || &#39;dev&#39; ? true : false,
+      }
+      ),
+    }),
+    TypeOrmModule.forRootAsync({
+      name: &#39;mongoDB_connection&#39;,
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) =&gt; ({
+        type: &#39;mongodb&#39;,
+        host: config.get(&#39;db.host&#39;),
+        port: config.get(&#39;db.port2&#39;),
+        username: config.get(&#39;db.username&#39;),
+        password: config.get(&#39;db.password&#39;),
+        database: config.get(&#39;db.database&#39;),
+        useUnifiedTopology: true,
+        authSource: &#39;admin&#39;,
+        entities: [User],
+        synchronize: config.get(&#39;app.env&#39;) === &#39;local&#39; || &#39;dev&#39; ? true : false,
+      }),
+    }),
+  ],
+})</code></pre></div><p><code>type:  </code> Database type. Must specify which database engine to use.
+<code>host:  </code> Database host.
+<code>port:  </code> Database host port. Default mysql port is 3306 &amp; default mongodb port is 27017.
+<code>username:  </code> Database username.
+<code>password:  </code> Database password.
+<code>database:  </code> Database name.
+<code>useUnifiedTopology:  </code> Determines whether or not to use the new Server Discovery and Monitoring engine.
+<code>authSource:  </code> If the Database authentication is dependent on another databaseName
+<code>entities:  </code> Entities that maps with database table. It is shown below</p>
+<div><pre class="line-numbers"><code class="language-ts"># users.entity.ts
+
+&#64;Entity()
+export class User {
+  &#64;PrimaryGeneratedColumn()
+  &#64;ObjectIdColumn()
+  id: string;
+
+  &#64;Column()
+  firstName: string;
+
+  &#64;Column()
+  lastName: string;
+
+  &#64;Column({ default: true })
+  isActive: boolean;
+}</code></pre></div><p><code>synchronize:  </code> Synchronize the entities with databases. Should not be enabled for production.</p>
+<blockquote>
+<p>Using the <code>forFeature()</code> method repositories are registered in the current scope.</p>
+</blockquote>
+<div><pre class="line-numbers"><code class="language-ts"># users.module.ts
+
+    &#64;Module({
+    imports: [TypeOrmModule.forFeature([UserDbRepository],&#39;mongoDB_connection&#39;)],
+    providers: [UsersService],
+    controllers: [UsersController],
+    })</code></pre></div><blockquote>
+<p>Inject UserDbRepository using <code>@InjectRepository</code> decorator</p>
+</blockquote>
+<div><pre class="line-numbers"><code class="language-ts"># users.service.ts
+
+constructor(
+    &#64;InjectRepository(UserDbRepository,&#39;mongoDB_connection&#39;)
+    private readonly usersRepository: UserRepository
+  ) {}</code></pre></div><h3 id="using-other-database-apart-from-mysql-and-mongodb">Using other database apart from MySQL and MongoDb.</h3>
+<p>The existing boiler plate comes with by default support for MySQL. This doesn&#39;t mean that you cannot use any other database like  PostgreSQL, Oracle, Microsoft SQL Server etc. Install the respective package of the database and update the config.ts as per required database configuration.</p>
+<hr>
+
+<h2 id="nosql-injections">NoSQL injections</h2>
+<p>A NoSQL injection vulnerability is an error in a web application that uses a NoSQL database. This web application security issue lets a malicious party bypass authentication, extract data, modify data, or even gain complete control over the application. NoSQL injection attacks are the result of a lack of data sanitization.</p>
+<p>NoSQL injections are just one of many injection attacks, similar to traditional SQL Injections. They are engineered to exploit modern databases that do not use SQL. While NoSQL database engines have a different structure and do not support SQL statements and SQL queries, they still let users perform queries. They do not support one standardized language and therefore the query language is dependent on the implementation: database (e.g. MongoDB), language, and framework (e.g. Node.js, Angular). However, NoSQL queries are most often based on JSON and they can include user input. If this input is not sanitized, they are vulnerable to injections.</p>
+<p><img src="https://github.com/NeoSOFT-Technologies/rest-node-nestjs/blob/nosql_support/wiki/images/nosql-query-injection.png?raw=true" alt="NoSQL Injection" class="img-responsive"></p>
+<h3 id="types-of-injection-attacks">Types Of Injection Attacks</h3>
+<ol>
+<li><p><strong>In-band Injections</strong> : In-band Injection is the most common and easy-to-exploit of Injection attacks. In-band Injection occurs when an attacker is able to use the same communication channel to both launch the attack and gather results. As an example, an attacker may use the HTTP communication deploy the attack to a backend and get the results on the same channel</p>
+</li>
+<li><p><strong>Inferential Injection (Blind Injection)</strong>: In an inferential attack, no data is actually transferred via the web application and the attacker would not be able to see the result of an attack in-band. Instead, an attacker is able to reconstruct the database structure by sending payloads, observing the web application’s response and the resulting behavior of the database server.
+Blind injection is nearly identical to normal injection, the only difference being the way the data is retrieved from the database. When the database does not output data to the web page, an attacker is forced to steal data by asking the database a series of true or false questions. This makes exploiting the Injection vulnerability more difficult, but not impossible.</p>
+</li>
+<li><p><strong>Out-of-band Injections</strong>: This not very common type of injection, mostly because it depends on features being enabled on the database server being used by the web application. Out-of-band Injection occurs when an attacker is unable to use the same channel to launch the attack and gather results.</p>
+</li>
+</ol>
+<h3 id="how-to-prevent-injection-attacks">How to prevent injection attacks</h3>
+<ul>
+<li>Try to avoid building queries from strings, use safe APIs and prepared statements.</li>
+<li>Validate input to detect malicious values, also verify the types of input data i.e. string, number, Boolean, object etc. We can use joi or any other tool for this.</li>
+<li>To minimize the potential damage of a successful injection attack, do not assign DBA or admin type access rights to your application accounts, we can create new roles with specific/limited access.</li>
+<li>Sanitize the data, we can use express-mongo-sanitize to sanitize incoming data for express mongoDB.</li>
+</ul>
+<h2 id="database-vulnerabilty-against-injection">Database Vulnerabilty against injection</h2>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Connection type</th>
+<th>With ORM</th>
+<th>Without ORM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Security</td>
+<td>Risk is low <br/><br/>Data sanitization not required<br/><br/>Generates &quot;parameterized statements&quot;</td>
+<td>Risk is high <br/><br/>Data sanitization required<br/><br/>&quot;parameterized statements&quot; needs to written manually</td>
+</tr>
+</tbody>
+</table>
+<p>TypeORM provide many ways to construct a database query, but they also give you the option to execute &#39;raw&#39; queries as a string.Also they allow to write some part of a generated query as a raw string. This should to be avoided, as it defeats the purpose of using an ORM.</p>
+<p>In that scenario, simply injecting user input variables into a string query (instead of using the ORM&#39;s core API / query builder functions) puts data security at a higher risk.</p>
+<h3 id="data-sanitization-for-mongodb">Data sanitization for MongoDB</h3>
+<p>We can use <a href="https://www.npmjs.com/package/express-mongo-sanitize">express-mongo-sanitize</a> for this purpose,if required.This module searches for any keys in objects that begin with a <code>$</code> sign or contain a <code>.</code>, from req.body, req.query or req.params. It can then either:</p>
+<ul>
+<li>completely remove these keys and associated data from the object, or</li>
+<li>replace the prohibited characters with another allowed character.</li>
+</ul>
+<p>Object keys starting with a $ or containing a . are reserved for use by MongoDB as operators. Without this sanitization, malicious users could send an object containing a $ operator, or including a ., which could change the context of a database operation. Most notorious is the $where operator, which can execute arbitrary JavaScript on the database.The best way to prevent this is to sanitize the received data, and remove any offending keys, or replace the characters with a &#39;safe&#39; one.</p>
+<blockquote>
+<p>Simple add the the middleware after installing the library as shown below</p>
+</blockquote>
+<div><pre class="line-numbers"><code class="language-ts"># bootsrap.ts
+...
+import  mongoSanitize  from &#39;express-mongo-sanitize&#39;;
+
+...
+app.use(mongoSanitize());
+...</code></pre></div>
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 2;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'additional-page';
+            var COMPODOC_CURRENT_PAGE_URL = 'database.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../../js/libs/custom-elements.min.js"></script>
+       <script src="../../js/libs/lit-html.js"></script>
+
+       <script src="../../js/menu-wc.js" defer></script>
+       <script nomodule src="../../js/menu-wc_es5.js" defer></script>
+
+       <script src="../../js/libs/bootstrap-native.js"></script>
+
+       <script src="../../js/libs/es6-shim.min.js"></script>
+       <script src="../../js/libs/EventDispatcher.js"></script>
+       <script src="../../js/libs/promise.min.js"></script>
+       <script src="../../js/libs/zepto.min.js"></script>
+
+       <script src="../../js/compodoc.js"></script>
+
+       <script src="../../js/tabs.js"></script>
+       <script src="../../js/menu.js"></script>
+       <script src="../../js/libs/clipboard.min.js"></script>
+       <script src="../../js/libs/prism.js"></script>
+       <script src="../../js/sourceCode.js"></script>
+          <script src="../../js/search/search.js"></script>
+          <script src="../../js/search/lunr.min.js"></script>
+          <script src="../../js/search/search-lunr.js"></script>
+          <script src="../../js/search/search_index.js"></script>
+       <script src="../../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

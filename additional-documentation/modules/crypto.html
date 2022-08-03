@@ -1,0 +1,170 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>nestjs-boilerolate documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../../images/favicon.ico">
+	   <link rel="stylesheet" href="../../styles/style.css">
+        <link rel="stylesheet" href="../../styles/dark.css">
+        <link rel="stylesheet" href="../../styles/stripe.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../../" class="navbar-brand">nestjs-boilerolate documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content additional-page">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h1 id="encryption-decryption">Encryption-Decryption</h1>
+<p>Encryption-Decryption module is present in the Boiler Plate. We have used the <a href="https://nodejs.org/api/crypto.html">crypto</a> library in order to implement the encryption decryption functionality.</p>
+<p>The objective of Encryption-Decryption module</p>
+<ol>
+<li>This module would support sending the requests to the server from the user in encrypted form and also encryptingthe reponses that the user will receive from the server.</li>
+<li>We need to provide a flag variable which tells us whether we need to encrypt the data or not in the .env file.</li>
+<li>Also we need to define the constants such as which algorithm to be used for encryption in the crypto.ts file.</li>
+<li>Currently we are using <strong>aes-256-gcm</strong> algorithm for encryption and decryption.</li>
+</ol>
+<h1 id="configuration">Configuration</h1>
+<p>To start the encryption-decryption service we need to set the APPLY_ENCRYPTION variable to 1 in the .env file.</p>
+<div><pre class="line-numbers"><code class="language-none">APPLY_ENCRYPTION=</code></pre></div><p>We can also set these constants according to our preference in the crypto.ts file.</p>
+<div><pre class="line-numbers"><code class="language-none">const inputEncoding= 
+const outputEncoding= 
+const salt= 
+const algorithm= 
+const password= </code></pre></div><h2 id="usability">Usability</h2>
+<p>Since we require to encrypt the request and responses of the application, Encryption-Decryption service is being included in the core module.</p>
+<h3 id="what-is-the-main-difference-between-a-key-an-iv-and-a-nonce"><a href="https://crypto.stackexchange.com/questions/3965/what-is-the-main-difference-between-a-key-an-iv-and-a-nonce">What is the main difference between a key, an IV and a nonce?</a></h3>
+<p>A key, in the context of symmetric cryptography, is something you keep secret. Anyone who knows your key (or can guess it) can decrypt any data you&#39;ve encrypted with it (or forge any authentication codes you&#39;ve calculated with it, etc.).</p>
+<p>An IV or initialization vector is, in its broadest sense, just the initial value used to start some iterated process. The term is used in a couple of different contexts and implies different security requirements in each of them.</p>
+<p>A nonce, in the broad sense, is just &quot;a number used only once&quot;. The only thing generally demanded of a nonce is that it should never be used twice (within the relevant scope, such as encryption with a particular key). The unique IVs used for block cipher encryption qualify as nonces, but various other cryptographic schemes make use of nonces as well.</p>
+<h3 id="why-does-the-signal-protocol-use-aescbc-instead-of-aesgcm"><a href="https://crypto.stackexchange.com/questions/68163/why-does-the-signal-protocol-use-aes-cbc-instead-of-aes-gcm">Why does the Signal protocol use AES/CBC instead of AES/GCM?</a></h3>
+<h3 id="aes-gcm-disadvantage"><a href="https://crypto.stackexchange.com/questions/18420/aes-gcm-disadvantage">AES-GCM Disadvantage</a></h3>
+<h3 id="why-would-i-ever-use-aes-256-cbc-if-aes-256-gcm-is-more-secure"><a href="https://security.stackexchange.com/questions/184305/why-would-i-ever-use-aes-256-cbc-if-aes-256-gcm-is-more-secure">Why would I ever use AES-256-CBC if AES-256-GCM is more secure?</a></h3>
+<h3 id="how-to-choose-an-authenticated-encryption-mode"><a href="https://blog.cryptographyengineering.com/2012/05/19/how-to-choose-authenticated-encryption/">How to choose an Authenticated Encryption mode</a></h3>
+<h3 id="nodejs---aes-encryptiondecryption-with-aes-256-gcm-using-random-initialization-vector--salt"><a href="https://gist.github.com/AndiDittrich/4629e7db04819244e843">Node.js - AES Encryption/Decryption with AES-256-GCM using random Initialization Vector + Salt</a></h3>
+<h3 id="encryption-algorithms-should-be-used-with-secure-mode-and-padding-scheme">Encryption algorithms should be used with secure mode and padding scheme</h3>
+<ul>
+<li><p>Encryption operation mode and the padding scheme should be chosen appropriately to guarantee data confidentiality, integrity and authenticity:</p>
+<ul>
+<li>For block cipher encryption algorithms (like AES):<ul>
+<li>The GCM (Galois Counter Mode) mode which works internally with zero/no padding scheme, is recommended, as it is designed to provide both data authenticity (integrity) and confidentiality. Other similar modes are CCM, CWC, EAX, IAPM and OCB.</li>
+<li>The CBC (Cipher Block Chaining) mode by itself provides only data confidentiality, it’s recommended to use it along with Message Authentication Code or similar to achieve data authenticity (integrity) too and thus to prevent padding oracle attacks.</li>
+<li>The ECB (Electronic Codebook) mode doesn’t provide serious message confidentiality: under a given key any given plaintext block always gets encrypted to the same ciphertext block. This mode should not be used.</li>
+<li>For RSA encryption algorithm, the recommended padding scheme is OAEP.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Noncompliant Code Example</p>
+<ul>
+<li>Noncompliant: CBC with PKCS5/7 (set by default) is vulnerable to oracle padding attacks</li>
+</ul>
+<p>  <code>crypto.createCipheriv(&quot;AES-128-CBC&quot;, key, iv);</code></p>
+<ul>
+<li>Noncompliant: ECB doesn&#39;t provide serious message confidentiality</li>
+</ul>
+<p>  <code>crypto.createCipheriv(&quot;AES-128-ECB&quot;, key, &quot;&quot;);</code></p>
+</li>
+<li><p>Compliant Solution</p>
+</li>
+</ul>
+<p><code>crypto.createCipheriv(&quot;AES-256-GCM&quot;, key, iv);</code></p>
+<h3 id="test">Test</h3>
+<p><a href="https://www.devglan.com/online-tools/aes-encryption-decryption">https://www.devglan.com/online-tools/aes-encryption-decryption</a></p>
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 2;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'additional-page';
+            var COMPODOC_CURRENT_PAGE_URL = 'crypto.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../../js/libs/custom-elements.min.js"></script>
+       <script src="../../js/libs/lit-html.js"></script>
+
+       <script src="../../js/menu-wc.js" defer></script>
+       <script nomodule src="../../js/menu-wc_es5.js" defer></script>
+
+       <script src="../../js/libs/bootstrap-native.js"></script>
+
+       <script src="../../js/libs/es6-shim.min.js"></script>
+       <script src="../../js/libs/EventDispatcher.js"></script>
+       <script src="../../js/libs/promise.min.js"></script>
+       <script src="../../js/libs/zepto.min.js"></script>
+
+       <script src="../../js/compodoc.js"></script>
+
+       <script src="../../js/tabs.js"></script>
+       <script src="../../js/menu.js"></script>
+       <script src="../../js/libs/clipboard.min.js"></script>
+       <script src="../../js/libs/prism.js"></script>
+       <script src="../../js/sourceCode.js"></script>
+          <script src="../../js/search/search.js"></script>
+          <script src="../../js/search/lunr.min.js"></script>
+          <script src="../../js/search/search-lunr.js"></script>
+          <script src="../../js/search/search_index.js"></script>
+       <script src="../../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
